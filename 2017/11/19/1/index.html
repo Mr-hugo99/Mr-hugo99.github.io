@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+
+  <meta name="description" content="一、node.js repl—–交互式解释器定义：类似于window环境下的终端，可以在终端中输入命令，并且接受系统的响应执行的操作：1、读取：读取用户输入，解析输入的JavaScript数据结构并存储在内存中2、执行：执行输入的数据结构3、打印4、循环：循环操作以上的步骤直至用户两次按下ctrl-">
+
+
+<link rel="alternate" href="/atom.xml" title="Hugo" type="application/atom+xml">
+<meta name="theme-color" content="#a1d0f6">
+<title>nodejs基本语法 - Hugo</title>
+<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="stylesheet" href="/css/style.css">
+<nav class="main-nav">
+	
+	    <a href="/">← Home</a>
+	
+	
+	    <a href="/archives/">Archives</a>
+	
+	<a class="cta" href="/atom.xml" data-no-instant>Subscribe</a>
+</nav>
+
+<section id="wrapper">
+    <article class="post">
+    <header>
+        
+            <h1>nodejs基本语法</h1>
+        
+        <h2 class="headline">Nov 19 2017
+        
+            
+            <a href="/categories/node-js/#node.js">node.js</a>
+        
+        </h2>
+    </header>
+</article>
+<section id="post-body"><p>一、node.js repl—–交互式解释器<br>定义：类似于window环境下的终端，可以在终端中输入命令，并且接受系统的响应<br>执行的操作：<br>1、读取：读取用户输入，解析输入的JavaScript数据结构并存储在内存中<br>2、执行：执行输入的数据结构<br>3、打印<br>4、循环：循环操作以上的步骤直至用户两次按下ctrl-c</p>
+<p>REPL 命令<br>ctrl + c - 退出当前终端。<br>ctrl + c 按下两次 - 退出 Node REPL。<br>ctrl + d - 退出 Node REPL.<br>向上/向下 键 - 查看输入的历史命令<br>tab 键 - 列出当前命令<br>.help - 列出使用命令<br>.break - 退出多行表达式<br>.clear - 退出多行表达式<br>.save filename - 保存当前的 Node REPL 会话到指定文件<br>.load filename - 载入当前 Node REPL 会话的文件内容。</p>
+<p>二、node.js回调函数<br>nodejs的异步特征就是提现再回调函数上<br>回调函数就是在函数运行完成之后被调用（例如：我们可以一边读取文件，一边执行其他命令，在文件读取完成后，我们将文件内容作为回调函数的参数返回  ）<br>var fs = require(“fs”);</p>
+<p>fs.readFile(‘input.txt’, function (err, data) {<br>    if (err) return console.error(err);<br>    console.log(data.toString());<br>});</p>
+<p>console.log(“程序执行结束!”);<br>上述程序表示：我们不需要等到程序1跑完再跑程序2.而是在跑程序1的同时可以跑程序2如此大大提高了程序的性能<br>这里可以引申两个概念：阻塞和非阻塞，两者的区别就是是否按顺序执行。        </p>
+<p>三、nodejs循环事件<br>Node.js 是单进程单线程应用程序，但是因为 V8 引擎提供的异步执行回调接口，通过这些接口可以处理大量的并发，所以性能非常高。<br>Node.js 几乎每一个 API 都是支持回调函数的。<br>Node.js 基本上所有的事件机制都是用设计模式中观察者模式实现。<br>Node.js 单线程类似进入一个while(true)的事件循环，直到没有事件观察者退出，每个异步事件都生成一个事件观察者，如果有事件发生就调用该回调函数.</p>
+<p>事件驱动程序：<br>Node.js 使用事件驱动模型，当web server接收到请求，就把它关闭然后进行处理，然后去服务下一个web请求。<br>当这个请求完成，它被放回处理队列，当到达队列开头，这个结果被返回给用户。<br>这个模型非常高效可扩展性非常强，因为webserver一直接受请求而不等待任何读写操作。（这也被称之为非阻塞式IO或者事件驱动IO）<br>在事件驱动模型中，会生成一个主循环来监听事件，当检测到事件时触发回调函数。</p>
+</section>
+    
+
+    <footer id="post-meta" class="clearfix">
+        <a href="/about/">
+        <img class="avatar" src="/images/avatar.png">
+        <div>
+            <span class="dark">Hugo</span>
+            <span></span>
+        </div>
+        </a>
+        <section id="sharing">
+            <a title="Share to Twitter" class="twitter" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2017/11/19/1/ - nodejs基本语法 @" target="_blank" rel="noopener"><span class="icon-twitter">tweet</span></a>
+            <a title="Share to Facebook" class="facebook" href="#" onclick="
+                window.open(
+                  'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+                  'facebook-share-dialog',
+                  'width=626,height=436');
+                return false;"><span class="icon-facebook-sign">Share</span>
+            </a>
+        </section>
+    </footer>
+
+
+  <section id="comment">
+    <button class="btn" id="loadcmts" onclick="cmts.load();">Load Comments</button>
+    <div id="gitment"></div>
+    <script src='/js/gitment.browser.js'></script>
+    <link rel="stylesheet" href=''>
+    <script>
+      var cmts={
+        load:function cmts(){
+          var gitment = new Gitment({
+          
+            id: "nodejs基本语法",
+          
+            owner: "",
+            repo: "",
+            oauth: {
+              client_id: "",
+              client_secret: "",
+            },
+          })
+          gitment.render('gitment');
+          var loadcmt = document.getElementById("loadcmts");
+          var imyourfather = loadcmt.parentNode;
+          imyourfather.removeChild(loadcmts)
+        }
+      }
+    </script>
+  </section>
+
+
+	<footer id="footer">
+	<div id="social">
+		<p class="small">©  hugo| Powered by Hexo & 
+			<a href="https://github.com/F0r3at/Lights" target="_blank" rel="noopener"> Lights</a>
+		</p>
+	</div>
+</footer>
+
+</section>
+
+	<script src="//cdnjs.loli.net/ajax/libs/instantclick/3.0.1/instantclick.min.js" data-no-instant></script>
+	<script data-no-instant>
+		
+		InstantClick.init('mousedown');
+	</script>
+
+
+

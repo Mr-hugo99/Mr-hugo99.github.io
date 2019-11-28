@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+
+  <meta name="description" content="JavaScript和typescript的区别：typescript是JavaScript的超集，拓展了JavaScript的语法，因此现有的JavaScript代码可能与typescript一起工作无需任何修改，typescript通过类型注解的静态类型检查
+2.typescript区分大小写3">
+
+
+<link rel="alternate" href="/atom.xml" title="Hugo" type="application/atom+xml">
+<meta name="theme-color" content="#a1d0f6">
+<title>typescript基础入门 - Hugo</title>
+<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="stylesheet" href="/css/style.css">
+<nav class="main-nav">
+	
+	    <a href="/">← Home</a>
+	
+	
+	    <a href="/archives/">Archives</a>
+	
+	<a class="cta" href="/atom.xml" data-no-instant>Subscribe</a>
+</nav>
+
+<section id="wrapper">
+    <article class="post">
+    <header>
+        
+            <h1>typescript基础入门</h1>
+        
+        <h2 class="headline">Nov 19 2017
+        
+            
+            <a href="/categories/typescript/#typescript">typescript</a>
+        
+        </h2>
+    </header>
+</article>
+<section id="post-body"><p>JavaScript和typescript的区别：<br>typescript是JavaScript的超集，拓展了JavaScript的语法，因此现有的JavaScript代码可能与typescript一起工作无需任何修改，typescript通过类型注解的静态类型检查</p>
+<p>2.typescript区分大小写<br>3.分号是可选的</p>
+<p>4.typescript与面向对象<br>typescript是一种面向对象的语言：<br>class site{<br>name():void{<br>console.log(“runoob”)}<br>}<br>var obj =new site();<br>obj.name;</p>
+<p>typescript  基础类型：<br>any 赋予人意类型的值<br>number 双精度64位浮点值<br>元祖 元祖类型用来表示一直元素数量和类型的数组，个元素的类型不必相同，对应位置的类型需要相同<br>枚举 枚举类型用于定义数值集合 enum<br>never never 是其他类型的子类型，代表从不会出现的值</p>
+<p>变量声明：<br>var 【变量名】：【类型】=值；</p>
+<p>运算符：<br>位运算符：<br>&amp;:AND 按位与处理两个长度相同的二进制数，<br>｜：OR，按位或处理两个长度相同的二进制数，<br>～：取反<br>^：异或<br>&lt;&lt;：左移把&lt;&lt;左边的运算数的各二进制位全部若干位，由&lt;&lt;右边的数指定移动的位数，高位丢弃，低位补0</p>
+<p>lambda函数<br>又称为箭头函数<br>函数只有一行语句：<br>（【param1，param2，···，paam n】）=&gt;statement；</p>
+<p>typescript接口<br>接口是一系列的抽象方法的声明，是一些方法特征的集合，这些方法都应该是抽象的，需要由具体的类去实现，然后第三方都可以通过这些抽象方法调用<br>typescript接口定义如下：<br>interface interface_name{}</p>
+<p>值得注意的一点是接口不能转换为JavaScript，因为它只是typescript的一部分</p>
+<p>接口和数组：<br>接口中我们可以将数组的索引值和元素设置为不同的类型，索引值可以是数字或是字符串<br>interface namelist{<br>[index:number]:string}<br>var list2:namelist=[“john”,1,”bran”]<br>interface ages{<br>[index:string]:number}<br>var agelist:ages;<br>agelist[“john”]=15<br>agelist[2]=”nice”</p>
+<p>接口继承：<br>接口继承可以说是接口可以通过其他的接口来扩展自己、typescript是可以接口继承多个接口、关键字为：extends<br>继承各个接口是使用的是，分隔</p>
+<p>类的继承<br>typescript支持继承类，即我们在创建类的时候继承一个已存在的类，这个已存在的类称为父类，继承他的类称为子类<br>关键字为：extends ，子类除了不能继承父类的私有成员和构造函数，其他的都可以继承，但是typescript不支持多个继承</p>
+<p>继承类的方法重写、关键字为super</p>
+<p>static关键字<br>static关键字用于定义类的数据成员（属性和方法）为静态的，静态成员可以直接通过类名调用</p>
+<p>typescript对象<br>对象是包含一组键值对的实例，值可以是标题、函数、数组、对象，</p>
+<p>鸭子类型：<br>duck typing 是动态类型的一种丰额。是多态的一种形式<br>鸭子类型是只关注对象的行为，能做什么，而不是关注对象的所属的类型</p>
+<p>typescript命名空间<br>作用：解决重名问题<br>typescript中命名空间使用namespace来定义：<br>namespace somenamespacename{<br>export interface ISomeInterfaceName{}<br>}</p>
+</section>
+    
+
+    <footer id="post-meta" class="clearfix">
+        <a href="/about/">
+        <img class="avatar" src="/images/avatar.png">
+        <div>
+            <span class="dark">Hugo</span>
+            <span></span>
+        </div>
+        </a>
+        <section id="sharing">
+            <a title="Share to Twitter" class="twitter" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2017/11/19/typescript/ - typescript基础入门 @" target="_blank" rel="noopener"><span class="icon-twitter">tweet</span></a>
+            <a title="Share to Facebook" class="facebook" href="#" onclick="
+                window.open(
+                  'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+                  'facebook-share-dialog',
+                  'width=626,height=436');
+                return false;"><span class="icon-facebook-sign">Share</span>
+            </a>
+        </section>
+    </footer>
+
+
+  <section id="comment">
+    <button class="btn" id="loadcmts" onclick="cmts.load();">Load Comments</button>
+    <div id="gitment"></div>
+    <script src='/js/gitment.browser.js'></script>
+    <link rel="stylesheet" href=''>
+    <script>
+      var cmts={
+        load:function cmts(){
+          var gitment = new Gitment({
+          
+            id: "typescript基础入门",
+          
+            owner: "",
+            repo: "",
+            oauth: {
+              client_id: "",
+              client_secret: "",
+            },
+          })
+          gitment.render('gitment');
+          var loadcmt = document.getElementById("loadcmts");
+          var imyourfather = loadcmt.parentNode;
+          imyourfather.removeChild(loadcmts)
+        }
+      }
+    </script>
+  </section>
+
+
+	<footer id="footer">
+	<div id="social">
+		<p class="small">©  hugo| Powered by Hexo & 
+			<a href="https://github.com/F0r3at/Lights" target="_blank" rel="noopener"> Lights</a>
+		</p>
+	</div>
+</footer>
+
+</section>
+
+	<script src="//cdnjs.loli.net/ajax/libs/instantclick/3.0.1/instantclick.min.js" data-no-instant></script>
+	<script data-no-instant>
+		
+		InstantClick.init('mousedown');
+	</script>
+
+
+
