@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    javascript-apply、call、bind |  Hugo
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon2.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-javascript/JavaScript_02" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  javascript-apply、call、bind
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/02/01/javascript/JavaScript_02/" class="article-date">
+  <time datetime="2020-02-01T00:00:00.000Z" itemprop="datePublished">2020-02-01</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">3.4k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">13 min</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h3 id="this、apply、call、bind"><a href="#this、apply、call、bind" class="headerlink" title="this、apply、call、bind"></a>this、apply、call、bind</h3><p>这又是一个面试经典问题也是 ES5中众多坑中的一个，在 ES6 中可能会极大避免 this产生的错误，但是为了一些老代码的维护，最好还是了解一下 this 的指向和 call、apply、bind 三者的区别。</p>
+<p>this 的指向<br>在 ES5 中，其实 this 的指向，始终坚持一个原理：this 永远指向最后调用它的那个对象，来，跟着我朗读三遍：this 永远指向最后调用它的那个对象，this 永远指向最后调用它的那个对象，this 永远指向最后调用它的那个对象。记住这句话，this 你已经了解一半了。</p>
+<p>下面我们来看一个最简单的例子：<br>例 1：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+function a() {
+    var name = &quot;Cherry&quot;;
+
+    console.log(this.name);          // windowsName
+
+    console.log(&quot;inner:&quot; + this);    // inner: Window
+}
+a();
+console.log(&quot;outer:&quot; + this)         // outer: Window复制代码</code></pre><p>这个相信大家都知道为什么 log 的是 windowsName，因为根据刚刚的那句话“this 永远指向最后调用它的那个对象”，我们看最后调用 a 的地方 a();，前面没有调用的对象那么就是全局对象 window，这就相当于是 window.a()；注意，这里我们没有使用严格模式，如果使用严格模式的话，全局对象就是 undefined，那么就会报错 Uncaught TypeError: Cannot read property ‘name’ of undefined。</p>
+<p>再看下这个例子：<br>例 2：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+var a = {
+    name: &quot;Cherry&quot;,
+    fn : function () {
+        console.log(this.name);      // Cherry
+    }
+}
+a.fn();复制代码</code></pre><p>在这个例子中，函数 fn 是对象 a 调用的，所以打印的值就是 a 中的 name 的值。是不是有一点清晰了呢~</p>
+<p>我们做一个小小的改动：<br>例 3：</p>
+<p>var name = “windowsName”;<br>    var a = {<br>        name: “Cherry”,<br>        fn : function () {<br>            console.log(this.name);      // Cherry<br>        }<br>    }<br>    window.a.fn();复制代码</p>
+<p>这里打印 Cherry 的原因也是因为刚刚那句话“this 永远指向最后调用它的那个对象”，最后调用它的对象仍然是对象 a。</p>
+<p>我们再来看一下这个例子：<br>例 4：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+var a = {
+    // name: &quot;Cherry&quot;,
+    fn : function () {
+        console.log(this.name);      // undefined
+    }
+}
+window.a.fn();</code></pre><p>这里为什么会打印 undefined 呢？这是因为正如刚刚所描述的那样，调用 fn 的是 a 对象，也就是说 fn 的内部的 this 是对象 a，而对象 a 中并没有对 name 进行定义，所以 log 的 this.name 的值是 undefined。</p>
+<p>这个例子还是说明了：this 永远指向最后调用它的那个对象，因为最后调用 fn 的对象是 a，所以就算 a 中没有 name 这个属性，也不会继续向上一个对象寻找 this.name，而是直接输出 undefined。</p>
+<p>再来看一个比较坑的例子：<br>例 5：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+var a = {
+    name : null,
+    // name: &quot;Cherry&quot;,
+    fn : function () {
+        console.log(this.name);      // windowsName
+    }
+}
+
+var f = a.fn;
+f();</code></pre><p>这里你可能会有疑问，为什么不是 Cherry，这是因为虽然将 a 对象的 fn 方法赋值给变量 f 了，但是没有调用，再接着跟我念这一句话：“this 永远指向最后调用它的那个对象”，由于刚刚的 f 并没有调用，所以 fn() 最后仍然是被 window 调用的。所以 this 指向的也就是 window。</p>
+<p>由以上五个例子我们可以看出，this 的指向并不是在创建的时候就可以确定的，在 es5 中，永远是this 永远指向最后调用它的那个对象。</p>
+<p>再来看一个例子：<br>例 6：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+
+function fn() {
+    var name = &apos;Cherry&apos;;
+    innerFunction();
+    function innerFunction() {
+        console.log(this.name);      // windowsName
+    }
+}
+
+fn()复制代码</code></pre><p>读到现在了应该能够理解这是为什么了吧(oﾟ▽ﾟ)o。</p>
+<p>怎么改变 this 的指向<br>改变 this 的指向我总结有以下几种方法：</p>
+<p>使用 ES6 的箭头函数<br>在函数内部使用 _this = this<br>使用 apply、call、bind<br>new 实例化一个对象<br>例 7：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+
+var a = {
+    name : &quot;Cherry&quot;,
+
+    func1: function () {
+        console.log(this.name)     
+    },
+
+    func2: function () {
+        setTimeout(  function () {
+            this.func1()
+        },100);
+    }
+
+};
+
+a.func2()     // this.func1 is not a function</code></pre><p>在不使用箭头函数的情况下，是会报错的，因为最后调用 setTimeout 的对象是 window，但是在 window 中并没有 func1 函数。</p>
+<p>我们在改变 this 指向这一节将把这个例子作为 demo 进行改造。</p>
+<p>箭头函数<br>众所周知，ES6 的箭头函数是可以避免 ES5 中使用 this 的坑的。箭头函数的 this 始终指向函数定义时的 this，而非执行时。，箭头函数需要记着这句话：“箭头函数中没有 this 绑定，必须通过查找作用域链来决定其值，如果箭头函数被非箭头函数包含，则 this 绑定的是最近一层非箭头函数的 this，否则，this 为 undefined”。</p>
+<p>例 8 ：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+
+var a = {
+    name : &quot;Cherry&quot;,
+
+    func1: function () {
+        console.log(this.name)     
+    },
+
+    func2: function () {
+        setTimeout( () =&gt; {
+            this.func1()
+        },100);
+    }
+
+};
+
+a.func2()     // Cherry复制代码</code></pre><p>在函数内部使用 _this = this<br>如果不使用 ES6，那么这种方式应该是最简单的不会出错的方式了，我们是先将调用这个函数的对象保存在变量 _this 中，然后在函数中都使用这个 _this，这样 _this 就不会改变了。<br>例 9：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+
+var a = {
+
+    name : &quot;Cherry&quot;,
+
+    func1: function () {
+        console.log(this.name)     
+    },
+
+    func2: function () {
+        var _this = this;
+        setTimeout( function() {
+            _this.func1()
+        },100);
+    }
+
+};
+
+a.func2()       // Cherry</code></pre><p>这个例子中，在 func2 中，首先设置 var _this = this;，这里的 this 是调用 func2 的对象 a，为了防止在 func2 中的 setTimeout 被 window 调用而导致的在 setTimeout 中的 this 为 window。我们将 this(指向变量 a) 赋值给一个变量 _this，这样，在 func2 中我们使用 _this 就是指向对象 a 了。</p>
+<p>使用 apply、call、bind<br>使用 apply、call、bind 函数也是可以改变 this 的指向的，原理稍后再讲，我们先来看一下是怎么实现的：</p>
+<p>使用 apply<br>例 10：</p>
+<pre><code>var a = {
+    name : &quot;Cherry&quot;,
+
+    func1: function () {
+        console.log(this.name)
+    },
+
+    func2: function () {
+        setTimeout(  function () {
+            this.func1()
+        }.apply(a),100);
+    }
+
+};
+
+a.func2()            // Cherry</code></pre><p>使用 call<br>例 11：</p>
+<pre><code>var a = {
+    name : &quot;Cherry&quot;,
+
+    func1: function () {
+        console.log(this.name)
+    },
+
+    func2: function () {
+        setTimeout(  function () {
+            this.func1()
+        }.call(a),100);
+    }
+
+};
+
+a.func2()            // Cherry</code></pre><p>使用 bind<br>例 12：</p>
+<pre><code>var a = {
+    name : &quot;Cherry&quot;,
+
+    func1: function () {
+        console.log(this.name)
+    },
+
+    func2: function () {
+        setTimeout(  function () {
+            this.func1()
+        }.bind(a)(),100);
+    }
+
+};
+
+a.func2()            // Cherry</code></pre><p>###apply、call、bind 区别<br>刚刚我们已经介绍了 apply、call、bind 都是可以改变 this 的指向的，但是这三个函数稍有不同。</p>
+<p>在 MDN 中定义 apply 如下；</p>
+<p>apply() 方法调用一个函数, 其具有一个指定的this值，以及作为一个数组（或类似数组的对象）提供的参数</p>
+<p>语法：</p>
+<p>fun.apply(thisArg, [argsArray])</p>
+<p>thisArg：在 fun 函数运行时指定的 this 值。需要注意的是，指定的 this 值并不一定是该函数执行时真正的 this 值，如果这个函数处于非严格模式下，则指定为 null 或 undefined 时会自动指向全局对象（浏览器中就是window对象），同时值为原始值（数字，字符串，布尔值）的 this 会指向该原始值的自动包装对象。<br>argsArray：一个数组或者类数组对象，其中的数组元素将作为单独的参数传给 fun 函数。如果该参数的值为null 或 undefined，则表示不需要传入任何参数。从ECMAScript 5 开始可以使用类数组对象。浏览器兼容性请参阅本文底部内容。<br>apply 和 call 的区别<br>其实 apply 和 call 基本类似，他们的区别只是传入的参数不同。</p>
+<p>call 的语法为：</p>
+<p>fun.call(thisArg[, arg1[, arg2[, …]]])复制代码<br>所以 apply 和 call 的区别是 call 方法接受的是若干个参数列表，而 apply 接收的是一个包含多个参数的数组。</p>
+<p>例 13：</p>
+<pre><code>var a ={
+    name : &quot;Cherry&quot;,
+    fn : function (a,b) {
+        console.log( a + b)
+    }
+}
+
+var b = a.fn;
+b.apply(a,[1,2])     // 3</code></pre><p>例 14：</p>
+<pre><code>var a ={
+    name : &quot;Cherry&quot;,
+    fn : function (a,b) {
+        console.log( a + b)
+    }
+}
+
+var b = a.fn;
+b.call(a,1,2)       // 3</code></pre><p>bind 和 apply、call 区别<br>我们先来将刚刚的例子使用 bind 试一下</p>
+<pre><code>var a ={
+    name : &quot;Cherry&quot;,
+    fn : function (a,b) {
+        console.log( a + b)
+    }
+}
+
+var b = a.fn;
+b.bind(a,1,2)</code></pre><p>我们会发现并没有输出，这是为什么呢，我们来看一下 MDN 上的文档说明：</p>
+<p>bind()方法创建一个新的函数, 当被调用时，将其this关键字设置为提供的值，在调用新函数时，在任何提供之前提供一个给定的参数序列。</p>
+<p>所以我们可以看出，bind 是创建一个新的函数，我们必须要手动去调用：</p>
+<pre><code>var a ={
+    name : &quot;Cherry&quot;,
+    fn : function (a,b) {
+        console.log( a + b)
+    }
+}
+
+var b = a.fn;
+b.bind(a,1,2)()           // 3</code></pre><p>JS 中的函数调用<br>看到留言说，很多童靴不理解为什么 例 6 的 innerFunction 和 例 7 的 this 是指向 window 的，所以我就来补充一下 JS 中的函数调用。<br>例 6：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+
+function fn() {
+    var name = &apos;Cherry&apos;;
+    innerFunction();
+    function innerFunction() {
+        console.log(this.name);      // windowsName
+    }
+}
+
+fn()</code></pre><p>例 7：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+
+var a = {
+    name : &quot;Cherry&quot;,
+
+    func1: function () {
+        console.log(this.name)     
+    },
+
+    func2: function () {
+        setTimeout(  function () {
+            this.func1()
+        },100);
+    }
+
+};
+
+a.func2()     // this.func1 is not a function</code></pre><p>函数调用的方法一共有 4 种</p>
+<p>作为一个函数调用<br>函数作为方法调用<br>使用构造函数调用函数<br>作为函数方法调用函数（call、apply）<br>作为一个函数调用<br>比如上面的 例 1：<br>例 1：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+function a() {
+    var name = &quot;Cherry&quot;;
+
+    console.log(this.name);          // windowsName
+
+    console.log(&quot;inner:&quot; + this);    // inner: Window
+}
+a();
+console.log(&quot;outer:&quot; + this)         // outer: Window</code></pre><p>这样一个最简单的函数，不属于任何一个对象，就是一个函数，这样的情况在 JavaScript 的在浏览器中的非严格模式默认是属于全局对象 window 的，在严格模式，就是 undefined。</p>
+<p>但这是一个全局的函数，很容易产生命名冲突，所以不建议这样使用。</p>
+<p>函数作为方法调用<br>所以说更多的情况是将函数作为对象的方法使用。比如例 2：<br>例 2：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+var a = {
+    name: &quot;Cherry&quot;,
+    fn : function () {
+        console.log(this.name);      // Cherry
+    }
+}
+a.fn();</code></pre><p>这里定义一个对象 a，对象 a 有一个属性（name）和一个方法（fn）。</p>
+<p>然后对象 a 通过 . 方法调用了其中的 fn 方法。</p>
+<p>然后我们一直记住的那句话“this 永远指向最后调用它的那个对象”，所以在 fn 中的 this 就是指向 a 的。</p>
+<p>使用构造函数调用函数<br>如果函数调用前使用了 new 关键字, 则是调用了构造函数。<br>这看起来就像创建了新的函数，但实际上 JavaScript 函数是重新创建的对象：</p>
+<p>// 构造函数:<br>function myFunction(arg1, arg2) {<br>    this.firstName = arg1;<br>    this.lastName  = arg2;<br>}</p>
+<p>// This    creates a new object<br>var a = new myFunction(“Li”,”Cherry”);<br>a.lastName;                             // 返回 “Cherry”复制代码<br>这就有要说另一个面试经典问题：new 的过程了，(ಥ_ಥ)<br>这里就简单的来看一下 new 的过程吧：<br>伪代码表示：</p>
+<p>var a = new myFunction(“Li”,”Cherry”);</p>
+<p>new myFunction{<br>    var obj = {};<br>    obj.<strong>proto</strong> = myFunction.prototype;<br>    var result = myFunction.call(obj,”Li”,”Cherry”);<br>    return typeof result === ‘obj’? result : obj;<br>}复制代码<br>创建一个空对象 obj;<br>将新创建的空对象的隐式原型指向其构造函数的显示原型。<br>使用 call 改变 this 的指向<br>如果无返回值或者返回一个非对象值，则将 obj 返回作为新对象；如果返回值是一个新对象的话那么直接直接返回该对象。<br>所以我们可以看到，在 new 的过程中，我们是使用 call 改变了 this 的指向。</p>
+<p>作为函数方法调用函数<br>在 JavaScript 中, 函数是对象。</p>
+<p>JavaScript 函数有它的属性和方法。<br>call() 和 apply() 是预定义的函数方法。 两个方法可用于调用函数，两个方法的第一个参数必须是对象本身</p>
+<p>在 JavaScript 严格模式(strict mode)下, 在调用函数时第一个参数会成为 this 的值， 即使该参数不是一个对象。<br>在 JavaScript 非严格模式(non-strict mode)下, 如果第一个参数的值是 null 或 undefined, 它将使用全局对象替代。</p>
+<p>这个时候我们再来看例 6：<br>例 6：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+
+function fn() {
+    var name = &apos;Cherry&apos;;
+    innerFunction();
+    function innerFunction() {
+        console.log(this.name);      // windowsName
+    }
+}
+
+fn()复制代码</code></pre><p>这里的 innerFunction() 的调用是不是属于第一种调用方式：作为一个函数调用（它就是作为一个函数调用的，没有挂载在任何对象上，所以对于没有挂载在任何对象上的函数，在非严格模式下 this 就是指向 window 的）</p>
+<p>然后再看一下 例 7：<br>例 7：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+
+var a = {
+    name : &quot;Cherry&quot;,
+
+    func1: function () {
+        console.log(this.name)     
+    },
+
+    func2: function () {
+        setTimeout(  function () {
+            this.func1()
+        },100 );
+    }
+
+};
+
+a.func2()     // this.func1 is not a function复制代码</code></pre><p>这个简单一点的理解可以理解为“匿名函数的 this 永远指向 window”，你可以这样想，还是那句话this 永远指向最后调用它的那个对象，那么我们就来找最后调用匿名函数的对象，这就很尴尬了，因为匿名函数名字啊，笑哭，所以我们是没有办法被其他对象调用匿名函数的。所以说 匿名函数的 this 永远指向 window。</p>
+<p>如果这个时候你要问，那匿名函数都是怎么定义的，首先，我们通常写的匿名函数都是自执行的，就是在匿名函数后面加 () 让其自执行。其次就是虽然匿名函数不能被其他对象调用，但是可以被其他函数调用啊，比如例 7 中的 setTimeout。</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/02/01/javascript/JavaScript_02/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%A7%86%E9%A2%91/" rel="tag">视频</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/02/01/javascript/JavaScript_03/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">javascript-cookie、localStorage和sessionStorage 三者之间的区别以及存储、获取、删除等使用方式</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'monsterid',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2019-2020
+        <i class="ri-heart-fill heart_icon"></i> hugo
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/hugo.svg" alt="Hugo"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Subtitle -->
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['走一条自己的路', '', ''],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: false
+    });
+  } catch (err) {
+    console.log(err)
+  }
+</script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+    
+  </div>
+</body>
+
+</html>
