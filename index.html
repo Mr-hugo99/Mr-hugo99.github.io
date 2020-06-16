@@ -134,7 +134,7 @@ function a() {
     console.log(&quot;inner:&quot; + this);    // inner: Window
 }
 a();
-console.log(&quot;outer:&quot; + this)         // outer: Window复制代码</code></pre><p>这个相信大家都知道为什么 log 的是 windowsName，因为根据刚刚的那句话“this 永远指向最后调用它的那个对象”，我们看最后调用 a 的地方 a();，前面没有调用的对象那么就是全局对象 window，这就相当于是 window.a()；注意，这里我们没有使用严格模式，如果使用严格模式的话，全局对象就是 undefined，那么就会报错 Uncaught TypeError: Cannot read property ‘name’ of undefined。</p>
+console.log(&quot;outer:&quot; + this)         // outer: Window</code></pre><p>这个相信大家都知道为什么 log 的是 windowsName，因为根据刚刚的那句话“this 永远指向最后调用它的那个对象”，我们看最后调用 a 的地方 a();，前面没有调用的对象那么就是全局对象 window，这就相当于是 window.a()；注意，这里我们没有使用严格模式，如果使用严格模式的话，全局对象就是 undefined，那么就会报错 Uncaught TypeError: Cannot read property ‘name’ of undefined。</p>
 <p>再看下这个例子：<br>例 2：</p>
 <pre><code>var name = &quot;windowsName&quot;;
 var a = {
@@ -143,9 +143,9 @@ var a = {
         console.log(this.name);      // Cherry
     }
 }
-a.fn();复制代码</code></pre><p>在这个例子中，函数 fn 是对象 a 调用的，所以打印的值就是 a 中的 name 的值。是不是有一点清晰了呢~</p>
+a.fn();</code></pre><p>在这个例子中，函数 fn 是对象 a 调用的，所以打印的值就是 a 中的 name 的值。是不是有一点清晰了呢~</p>
 <p>我们做一个小小的改动：<br>例 3：</p>
-<p>var name = “windowsName”;<br>    var a = {<br>        name: “Cherry”,<br>        fn : function () {<br>            console.log(this.name);      // Cherry<br>        }<br>    }<br>    window.a.fn();复制代码</p>
+<p>var name = “windowsName”;<br>    var a = {<br>        name: “Cherry”,<br>        fn : function () {<br>            console.log(this.name);      // Cherry<br>        }<br>    }<br>    window.a.fn();</p>
 <p>这里打印 Cherry 的原因也是因为刚刚那句话“this 永远指向最后调用它的那个对象”，最后调用它的对象仍然是对象 a。</p>
 <p>我们再来看一下这个例子：<br>例 4：</p>
 <pre><code>var name = &quot;windowsName&quot;;
@@ -181,7 +181,7 @@ function fn() {
     }
 }
 
-fn()复制代码</code></pre><p>读到现在了应该能够理解这是为什么了吧(oﾟ▽ﾟ)o。</p>
+fn()</code></pre><p>读到现在了应该能够理解这是为什么了吧(oﾟ▽ﾟ)o。</p>
 <p>怎么改变 this 的指向<br>改变 this 的指向我总结有以下几种方法：</p>
 <p>使用 ES6 的箭头函数<br>在函数内部使用 _this = this<br>使用 apply、call、bind<br>new 实例化一个对象<br>例 7：</p>
 <pre><code>var name = &quot;windowsName&quot;;
@@ -222,7 +222,7 @@ var a = {
 
 };
 
-a.func2()     // Cherry复制代码</code></pre><p>在函数内部使用 _this = this<br>如果不使用 ES6，那么这种方式应该是最简单的不会出错的方式了，我们是先将调用这个函数的对象保存在变量 _this 中，然后在函数中都使用这个 _this，这样 _this 就不会改变了。<br>例 9：</p>
+a.func2()     // Cherry</code></pre><p>在函数内部使用 _this = this<br>如果不使用 ES6，那么这种方式应该是最简单的不会出错的方式了，我们是先将调用这个函数的对象保存在变量 _this 中，然后在函数中都使用这个 _this，这样 _this 就不会改变了。<br>例 9：</p>
 <pre><code>var name = &quot;windowsName&quot;;
 
 var a = {
@@ -299,7 +299,7 @@ a.func2()            // Cherry</code></pre><p>###apply、call、bind 区别<br>�
 <p>fun.apply(thisArg, [argsArray])</p>
 <p>thisArg：在 fun 函数运行时指定的 this 值。需要注意的是，指定的 this 值并不一定是该函数执行时真正的 this 值，如果这个函数处于非严格模式下，则指定为 null 或 undefined 时会自动指向全局对象（浏览器中就是window对象），同时值为原始值（数字，字符串，布尔值）的 this 会指向该原始值的自动包装对象。<br>argsArray：一个数组或者类数组对象，其中的数组元素将作为单独的参数传给 fun 函数。如果该参数的值为null 或 undefined，则表示不需要传入任何参数。从ECMAScript 5 开始可以使用类数组对象。浏览器兼容性请参阅本文底部内容。<br>apply 和 call 的区别<br>其实 apply 和 call 基本类似，他们的区别只是传入的参数不同。</p>
 <p>call 的语法为：</p>
-<p>fun.call(thisArg[, arg1[, arg2[, …]]])复制代码<br>所以 apply 和 call 的区别是 call 方法接受的是若干个参数列表，而 apply 接收的是一个包含多个参数的数组。</p>
+<p>fun.call(thisArg[, arg1[, arg2[, …]]])<br>所以 apply 和 call 的区别是 call 方法接受的是若干个参数列表，而 apply 接收的是一个包含多个参数的数组。</p>
 <p>例 13：</p>
 <pre><code>var a ={
     name : &quot;Cherry&quot;,
@@ -393,9 +393,9 @@ a.fn();</code></pre><p>这里定义一个对象 a，对象 a 有一个属性（n
 <p>然后我们一直记住的那句话“this 永远指向最后调用它的那个对象”，所以在 fn 中的 this 就是指向 a 的。</p>
 <p>使用构造函数调用函数<br>如果函数调用前使用了 new 关键字, 则是调用了构造函数。<br>这看起来就像创建了新的函数，但实际上 JavaScript 函数是重新创建的对象：</p>
 <p>// 构造函数:<br>function myFunction(arg1, arg2) {<br>    this.firstName = arg1;<br>    this.lastName  = arg2;<br>}</p>
-<p>// This    creates a new object<br>var a = new myFunction(“Li”,”Cherry”);<br>a.lastName;                             // 返回 “Cherry”复制代码<br>这就有要说另一个面试经典问题：new 的过程了，(ಥ_ಥ)<br>这里就简单的来看一下 new 的过程吧：<br>伪代码表示：</p>
+<p>// This    creates a new object<br>var a = new myFunction(“Li”,”Cherry”);<br>a.lastName;                             // 返回 “Cherry”<br>这就有要说另一个面试经典问题：new 的过程了，(ಥ_ಥ)<br>这里就简单的来看一下 new 的过程吧：<br>伪代码表示：</p>
 <p>var a = new myFunction(“Li”,”Cherry”);</p>
-<p>new myFunction{<br>    var obj = {};<br>    obj.<strong>proto</strong> = myFunction.prototype;<br>    var result = myFunction.call(obj,”Li”,”Cherry”);<br>    return typeof result === ‘obj’? result : obj;<br>}复制代码<br>创建一个空对象 obj;<br>将新创建的空对象的隐式原型指向其构造函数的显示原型。<br>使用 call 改变 this 的指向<br>如果无返回值或者返回一个非对象值，则将 obj 返回作为新对象；如果返回值是一个新对象的话那么直接直接返回该对象。<br>所以我们可以看到，在 new 的过程中，我们是使用 call 改变了 this 的指向。</p>
+<p>new myFunction{<br>    var obj = {};<br>    obj.<strong>proto</strong> = myFunction.prototype;<br>    var result = myFunction.call(obj,”Li”,”Cherry”);<br>    return typeof result === ‘obj’? result : obj;<br>}<br>创建一个空对象 obj;<br>将新创建的空对象的隐式原型指向其构造函数的显示原型。<br>使用 call 改变 this 的指向<br>如果无返回值或者返回一个非对象值，则将 obj 返回作为新对象；如果返回值是一个新对象的话那么直接直接返回该对象。<br>所以我们可以看到，在 new 的过程中，我们是使用 call 改变了 this 的指向。</p>
 <p>作为函数方法调用函数<br>在 JavaScript 中, 函数是对象。</p>
 <p>JavaScript 函数有它的属性和方法。<br>call() 和 apply() 是预定义的函数方法。 两个方法可用于调用函数，两个方法的第一个参数必须是对象本身</p>
 <p>在 JavaScript 严格模式(strict mode)下, 在调用函数时第一个参数会成为 this 的值， 即使该参数不是一个对象。<br>在 JavaScript 非严格模式(non-strict mode)下, 如果第一个参数的值是 null 或 undefined, 它将使用全局对象替代。</p>
@@ -410,7 +410,7 @@ function fn() {
     }
 }
 
-fn()复制代码</code></pre><p>这里的 innerFunction() 的调用是不是属于第一种调用方式：作为一个函数调用（它就是作为一个函数调用的，没有挂载在任何对象上，所以对于没有挂载在任何对象上的函数，在非严格模式下 this 就是指向 window 的）</p>
+fn()</code></pre><p>这里的 innerFunction() 的调用是不是属于第一种调用方式：作为一个函数调用（它就是作为一个函数调用的，没有挂载在任何对象上，所以对于没有挂载在任何对象上的函数，在非严格模式下 this 就是指向 window 的）</p>
 <p>然后再看一下 例 7：<br>例 7：</p>
 <pre><code>var name = &quot;windowsName&quot;;
 
@@ -429,7 +429,7 @@ var a = {
 
 };
 
-a.func2()     // this.func1 is not a function复制代码</code></pre><p>这个简单一点的理解可以理解为“匿名函数的 this 永远指向 window”，你可以这样想，还是那句话this 永远指向最后调用它的那个对象，那么我们就来找最后调用匿名函数的对象，这就很尴尬了，因为匿名函数名字啊，笑哭，所以我们是没有办法被其他对象调用匿名函数的。所以说 匿名函数的 this 永远指向 window。</p>
+a.func2()     // this.func1 is not a function</code></pre><p>这个简单一点的理解可以理解为“匿名函数的 this 永远指向 window”，你可以这样想，还是那句话this 永远指向最后调用它的那个对象，那么我们就来找最后调用匿名函数的对象，这就很尴尬了，因为匿名函数名字啊，笑哭，所以我们是没有办法被其他对象调用匿名函数的。所以说 匿名函数的 this 永远指向 window。</p>
 <p>如果这个时候你要问，那匿名函数都是怎么定义的，首先，我们通常写的匿名函数都是自执行的，就是在匿名函数后面加 () 让其自执行。其次就是虽然匿名函数不能被其他对象调用，但是可以被其他函数调用啊，比如例 7 中的 setTimeout。</p>
 
       
@@ -970,83 +970,6 @@ a.func2()     // this.func1 is not a function复制代码</code></pre><p>这个�
 
 </article>
     
-    <article id="post-css/css_01" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2019/11/01/css/css_01/"
-    >css-3D</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2019/11/01/css/css_01/" class="article-date">
-  <time datetime="2019-11-01T00:00:00.000Z" itemprop="datePublished">2019-11-01</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/css/">css</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h3 id="rotate3d（x-y-z-angle）"><a href="#rotate3d（x-y-z-angle）" class="headerlink" title="rotate3d（x,y,z,angle）"></a>rotate3d（x,y,z,angle）</h3><h3 id="景深："><a href="#景深：" class="headerlink" title="景深："></a>景深：</h3><p>作用：让3D场景有近大远小的效果，<br>不能继承，但是能作用于后台元素（不是作用于本身）<br>原理：<br>CSS3中，perspective用于激活一个3D空间<br>属性值就是景深大小（默认none无景深）</p>
-<h3 id="3D属性transform-style"><a href="#3D属性transform-style" class="headerlink" title="3D属性transform-style"></a>3D属性transform-style</h3><p>这个属性指定了子元素如何在空间中展示<br>只有两个属性值：flat（默认）和preserve-3d<br>flat 表示所有子元素在2D平面呈现<br>preserve-3d 表示所有子元素在3D平面呈现<br>（prederve是保护、维持的意思，preserve-3d就是保持三维空间的意思）<br>当然如果我们想要3D的效果，就要使用 transform-style: preserve-3d;</p>
-<p><strong>这个属性只是针对设置属性元素的子元素如何展示</strong></p>
-<p>而对子元素的子元素无效<br>而且对于设置了overflow: hidden;的元素，设置3D效果会失效<br>道理很简单，跳出了父元素平面的子元素无法显示了，结果自然还是2D效果<br>应用于这个属性的元素我们称作“容器”<br>这个属性我们下面通过一个例子再来体会</p>
-<h3 id="背面可见属性backface-visibility"><a href="#背面可见属性backface-visibility" class="headerlink" title="背面可见属性backface-visibility"></a>背面可见属性backface-visibility</h3><p>通过这个元素我们可以指定当元素背对我们时是否可见<br>只有两个属性值visibility（默认）和hidden<br>如果我们希望元素背对我们不可见<br>就这样设置</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.demo &#123;</span><br><span class="line">    ...</span><br><span class="line">    backface-visibility: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="示例：旋转的三维立方体"><a href="#示例：旋转的三维立方体" class="headerlink" title="示例：旋转的三维立方体"></a>示例：旋转的三维立方体</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"stage"</span>&gt;</span>  <span class="comment">&lt;!--舞台元素，视角所在--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"three-d-box"</span>&gt;</span>   <span class="comment">&lt;!--动画容器，通过它来控制整个立方体--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♑<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  <span class="comment">&lt;!--动画元素，立方体的六个面--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♍<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♌<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♋<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♎<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♓<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">ul &#123;  /*调整ul标签的样式，取消内边距、外边距，和“点”样式*/</span><br><span class="line">    padding: 0;</span><br><span class="line">    margin: 0;</span><br><span class="line">    list-style-type: none;</span><br><span class="line">&#125;</span><br><span class="line">.stage &#123;  /*设置舞台元素在屏幕居中，设置合适的景深大小*/</span><br><span class="line">    position: relative;</span><br><span class="line">    width: 800px;</span><br><span class="line">    height: 800px;</span><br><span class="line">    margin: 100px auto;</span><br><span class="line">    perspective: 800px;</span><br><span class="line">&#125;</span><br><span class="line">@keyframes move &#123; /*设置动画关键帧*/</span><br><span class="line">    0% &#123;</span><br><span class="line">        transform: rotateX(0deg);</span><br><span class="line">    &#125;</span><br><span class="line">    25% &#123;</span><br><span class="line">        transform: rotateX(180deg);</span><br><span class="line">    &#125;</span><br><span class="line">    50% &#123;</span><br><span class="line">        transform: rotateX(360deg) rotateY(0deg);</span><br><span class="line">    &#125;</span><br><span class="line">    75% &#123;</span><br><span class="line">        transform: rotateX(360deg) rotateY(180deg);</span><br><span class="line">    &#125;       </span><br><span class="line">    100% &#123;</span><br><span class="line">        transform: rotateX(360deg) rotateY(360deg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box &#123;  /*动画容器居中在舞台元素中间*/</span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 200px;</span><br><span class="line">    position: absolute;</span><br><span class="line">    left: 50%;</span><br><span class="line">    top: 50%;</span><br><span class="line">    margin: -100px 0 0 -100px;</span><br><span class="line">    transform-style: preserve-3d; /*设置3D属性让子元素三维空间呈现*/</span><br><span class="line">    animation: move 3s linear infinite; /*设置动画*/</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li &#123; /*设置动画子元素公共属性*/</span><br><span class="line">    position: absolute;</span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 200px;</span><br><span class="line">    left: 0;</span><br><span class="line">    top: 0;</span><br><span class="line">    font-size: 50px;</span><br><span class="line">    line-height: 200px;</span><br><span class="line">    text-align: center;</span><br><span class="line">    opacity: 0.5;</span><br><span class="line">&#125;</span><br><span class="line">/*为了保证我们对立方体位置的控制，我们需要让动画容器在立方体的中间位置*/</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(1) &#123;</span><br><span class="line">    background-color: red;</span><br><span class="line">    transform: translateZ(-100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(2) &#123;</span><br><span class="line">    background-color: greenyellow;</span><br><span class="line">    transform: translateZ(100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(3) &#123;</span><br><span class="line">    background-color: cornflowerblue;</span><br><span class="line">    transform: rotateX(90deg) translateZ(100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(4) &#123;</span><br><span class="line">    background-color: orangered;</span><br><span class="line">    transform: rotateX(-90deg) translateZ(100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(5) &#123;</span><br><span class="line">    background-color: deeppink;</span><br><span class="line">    transform: rotateY(90deg) translateZ(100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(6) &#123;</span><br><span class="line">    background-color: lightcoral;</span><br><span class="line">    transform: rotateY(-90deg) translateZ(100px);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%A7%86%E9%A2%91/" rel="tag">视频</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
     <article id="post-javascript/javascript_01" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -1532,7 +1455,7 @@ a.func2()     // this.func1 is not a function复制代码</code></pre><p>这个�
 
 </article>
     
-    <article id="post-vue/vue_03" class="article article-type-post" itemscope
+    <article id="post-css/css_01" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -1540,8 +1463,8 @@ a.func2()     // this.func1 is not a function复制代码</code></pre><p>这个�
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2019/11/01/vue/vue_03/"
-    >vue权威指导笔记-计算属性</a> 
+  <a class="article-title" href="/2019/11/01/css/css_01/"
+    >css-3D</a> 
 </h2>
  
 
@@ -1550,7 +1473,84 @@ a.func2()     // this.func1 is not a function复制代码</code></pre><p>这个�
 
     
     <div class="article-meta">
-      <a href="/2019/11/01/vue/vue_03/" class="article-date">
+      <a href="/2019/11/01/css/css_01/" class="article-date">
+  <time datetime="2019-11-01T00:00:00.000Z" itemprop="datePublished">2019-11-01</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/css/">css</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h3 id="rotate3d（x-y-z-angle）"><a href="#rotate3d（x-y-z-angle）" class="headerlink" title="rotate3d（x,y,z,angle）"></a>rotate3d（x,y,z,angle）</h3><h3 id="景深："><a href="#景深：" class="headerlink" title="景深："></a>景深：</h3><p>作用：让3D场景有近大远小的效果，<br>不能继承，但是能作用于后台元素（不是作用于本身）<br>原理：<br>CSS3中，perspective用于激活一个3D空间<br>属性值就是景深大小（默认none无景深）</p>
+<h3 id="3D属性transform-style"><a href="#3D属性transform-style" class="headerlink" title="3D属性transform-style"></a>3D属性transform-style</h3><p>这个属性指定了子元素如何在空间中展示<br>只有两个属性值：flat（默认）和preserve-3d<br>flat 表示所有子元素在2D平面呈现<br>preserve-3d 表示所有子元素在3D平面呈现<br>（prederve是保护、维持的意思，preserve-3d就是保持三维空间的意思）<br>当然如果我们想要3D的效果，就要使用 transform-style: preserve-3d;</p>
+<p><strong>这个属性只是针对设置属性元素的子元素如何展示</strong></p>
+<p>而对子元素的子元素无效<br>而且对于设置了overflow: hidden;的元素，设置3D效果会失效<br>道理很简单，跳出了父元素平面的子元素无法显示了，结果自然还是2D效果<br>应用于这个属性的元素我们称作“容器”<br>这个属性我们下面通过一个例子再来体会</p>
+<h3 id="背面可见属性backface-visibility"><a href="#背面可见属性backface-visibility" class="headerlink" title="背面可见属性backface-visibility"></a>背面可见属性backface-visibility</h3><p>通过这个元素我们可以指定当元素背对我们时是否可见<br>只有两个属性值visibility（默认）和hidden<br>如果我们希望元素背对我们不可见<br>就这样设置</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.demo &#123;</span><br><span class="line">    ...</span><br><span class="line">    backface-visibility: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="示例：旋转的三维立方体"><a href="#示例：旋转的三维立方体" class="headerlink" title="示例：旋转的三维立方体"></a>示例：旋转的三维立方体</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"stage"</span>&gt;</span>  <span class="comment">&lt;!--舞台元素，视角所在--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"three-d-box"</span>&gt;</span>   <span class="comment">&lt;!--动画容器，通过它来控制整个立方体--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♑<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  <span class="comment">&lt;!--动画元素，立方体的六个面--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♍<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♌<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♋<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♎<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♓<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">ul &#123;  /*调整ul标签的样式，取消内边距、外边距，和“点”样式*/</span><br><span class="line">    padding: 0;</span><br><span class="line">    margin: 0;</span><br><span class="line">    list-style-type: none;</span><br><span class="line">&#125;</span><br><span class="line">.stage &#123;  /*设置舞台元素在屏幕居中，设置合适的景深大小*/</span><br><span class="line">    position: relative;</span><br><span class="line">    width: 800px;</span><br><span class="line">    height: 800px;</span><br><span class="line">    margin: 100px auto;</span><br><span class="line">    perspective: 800px;</span><br><span class="line">&#125;</span><br><span class="line">@keyframes move &#123; /*设置动画关键帧*/</span><br><span class="line">    0% &#123;</span><br><span class="line">        transform: rotateX(0deg);</span><br><span class="line">    &#125;</span><br><span class="line">    25% &#123;</span><br><span class="line">        transform: rotateX(180deg);</span><br><span class="line">    &#125;</span><br><span class="line">    50% &#123;</span><br><span class="line">        transform: rotateX(360deg) rotateY(0deg);</span><br><span class="line">    &#125;</span><br><span class="line">    75% &#123;</span><br><span class="line">        transform: rotateX(360deg) rotateY(180deg);</span><br><span class="line">    &#125;       </span><br><span class="line">    100% &#123;</span><br><span class="line">        transform: rotateX(360deg) rotateY(360deg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box &#123;  /*动画容器居中在舞台元素中间*/</span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 200px;</span><br><span class="line">    position: absolute;</span><br><span class="line">    left: 50%;</span><br><span class="line">    top: 50%;</span><br><span class="line">    margin: -100px 0 0 -100px;</span><br><span class="line">    transform-style: preserve-3d; /*设置3D属性让子元素三维空间呈现*/</span><br><span class="line">    animation: move 3s linear infinite; /*设置动画*/</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li &#123; /*设置动画子元素公共属性*/</span><br><span class="line">    position: absolute;</span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 200px;</span><br><span class="line">    left: 0;</span><br><span class="line">    top: 0;</span><br><span class="line">    font-size: 50px;</span><br><span class="line">    line-height: 200px;</span><br><span class="line">    text-align: center;</span><br><span class="line">    opacity: 0.5;</span><br><span class="line">&#125;</span><br><span class="line">/*为了保证我们对立方体位置的控制，我们需要让动画容器在立方体的中间位置*/</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(1) &#123;</span><br><span class="line">    background-color: red;</span><br><span class="line">    transform: translateZ(-100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(2) &#123;</span><br><span class="line">    background-color: greenyellow;</span><br><span class="line">    transform: translateZ(100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(3) &#123;</span><br><span class="line">    background-color: cornflowerblue;</span><br><span class="line">    transform: rotateX(90deg) translateZ(100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(4) &#123;</span><br><span class="line">    background-color: orangered;</span><br><span class="line">    transform: rotateX(-90deg) translateZ(100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(5) &#123;</span><br><span class="line">    background-color: deeppink;</span><br><span class="line">    transform: rotateY(90deg) translateZ(100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(6) &#123;</span><br><span class="line">    background-color: lightcoral;</span><br><span class="line">    transform: rotateY(-90deg) translateZ(100px);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%A7%86%E9%A2%91/" rel="tag">视频</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-vue/vue_02" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/11/01/vue/vue_02/"
+    >vue权威指导笔记-指令</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/11/01/vue/vue_02/" class="article-date">
   <time datetime="2019-11-01T00:00:00.000Z" itemprop="datePublished">2019-11-01</time>
 </a>
       
@@ -1572,14 +1572,73 @@ a.func2()     // this.func1 is not a function复制代码</code></pre><p>这个�
       
 
       
-      <h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><p>计算属性就是当其依赖属性的值发生变化时，这个属性的值会自动更新，与之相关的DOM部分也会同步自动更新</p>
-<h3 id="计算属性缓存"><a href="#计算属性缓存" class="headerlink" title="计算属性缓存"></a>计算属性缓存</h3><p>在vue0.12.8版本之前，只要读取相应的计算属性，对应的getter就会重新执行，而在vue0.12.8版本中在这方便进行了优化，即只有计算属性依赖的属性值发生了改变时才会重新执行getter：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">data:&#123;</span><br><span class="line">  welcome:<span class="string">'welcome'</span></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">computed:&#123;</span><br><span class="line">  example:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Date</span>.now()+<span class="keyword">this</span>.welcome</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
-<p>每次访问example时都会读取最新的时间而不是缓存的时间，而vue0.12.11版本开始，默认提供了缓存开关，在计算属性中指定cache字段来控制是否开启缓存：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data:&#123;</span><br><span class="line">  welcome:<span class="string">'welcome'</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">compute:&#123;</span><br><span class="line">  example:&#123;</span><br><span class="line">    coche:<span class="literal">false</span></span><br><span class="line">    <span class="keyword">get</span>:function()&#123;</span><br><span class="line">      <span class="keyword">return</span> Data.now() +<span class="keyword">this</span>.welcome</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
-<p>设置cache属性为false关闭缓存之后每次直接访问example时都会重新执行getter方法</p>
-<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><ol>
-<li>计算属性getter不执行的场景<br>当包含计算属性的节点被移除并且模版中的其他地方没有再引用该属性时，那么对应的计算属性的getter方法不会执行<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">'toggleshow'</span>&gt;</span>toggle<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"show"</span>&gt;</span>&#123;&#123;to&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">new vue(&#123;</span><br><span class="line">el:'#example',</span><br><span class="line">data:&#123;</span><br><span class="line">  show:true,</span><br><span class="line">  base:100</span><br><span class="line">&#125;,</span><br><span class="line">computed:&#123;</span><br><span class="line">  to:function()&#123;</span><br><span class="line">    return this.base+1</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">methods:&#123;</span><br><span class="line">  to:function()&#123;</span><br><span class="line">    this.show=!this.show</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+      <h3 id="内部指令"><a href="#内部指令" class="headerlink" title="内部指令"></a>内部指令</h3><p>v-show v-html v-else v-on v-model v-bind v-repeat(1.0-) v-ref v-for() v-pre v-text v-cloak v-el v-if</p>
+<h4 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a>v-if</h4><p>v-if指令可以完全根据表达式的值在DOM中生成或移除一个元素，如果v-if表达式赋值为false，那么对应的元素就会从DOM中移除，否则，对应元素的克隆将会被重新插入DOM中</p>
+<h4 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a>v-show</h4><p>v-show指令是根据表达式的值来显示或者隐藏HTML元素，当v-show赋值为false时，元素将会被隐藏<br>注意：v-show不支持<code>&lt;template&gt;</code>语法</p>
+<h4 id="v-else"><a href="#v-else" class="headerlink" title="v-else"></a>v-else</h4><p>它必须跟着v-if或v-show，充当else功能</p>
+<h4 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h4><p>用于在input、select、text、checkbox、radio等表单控件元素上创建双向数据绑定，根据控件类型v-model自动选取正确的方法更新元素。v-model指令后面还可以添加多个参数（number、lazy、debounce）<br>1.number：将用户的输入自动转换为number类型<br>2.lazy：在默认情况下，v-model在input事件中同步输入框的值和数据，我们可以添加一个lazy特性，从而将数据改到change事件中发生</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"msg"</span> <span class="attr">lazy</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>3.debounce：设置一个最小延时，在每次敲击之后延时同步输入框的值和数据，如果每次更新都要进行高消耗操作（例如，在input中输入内容时要随时发送Ajax请求），那么它较为有效</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"msg"</span> <span class="attr">debounce</span>=<span class="string">"5000"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="v-for"><a href="#v-for" class="headerlink" title="v-for"></a>v-for</h4><p>v-for指令基于源数据重复渲染元素，我们也可以使用$index来呈现相应对应的数据索引：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">id</span>=<span class="string">"example"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"demo"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"item initems"</span> <span class="attr">class</span>=<span class="string">"item-&#123;&#123;$index&#125;&#125;"</span>&gt;</span></span><br><span class="line">&#123;&#123;$index&#125;&#125;-&#123;&#123;parentMessage&#125;&#125; &#123;&#123;item.msg&#125;&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>v-for需要特殊的别名，形式为item in items，在vue.js1.0.17及之后的版本支持of分隔符，更接近JavaScript遍历器语法<br>使用v-for，将会得到一个特殊的作用域，类似与Angular的隔离作用域，我们需要明确指定props属性传递数据，否则在组件内将获取不到数据。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">my-item</span> <span class="attr">v-for</span>=<span class="string">"item in items"</span> <span class="attr">:item</span>=<span class="string">"item"</span> <span class="attr">:index</span>=<span class="string">"$index"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;item.text&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">my-item</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>*当数组数据发生变动时如何检测？ vue包装了被观察数组变异方法，它们能触发视图更新，被包装的方法有：<br>push（）<br>pop（）<br>shift（）<br>unshift（）<br>splice（）<br>sort（）<br>reverse（）</p>
+<h4 id="v-bind"><a href="#v-bind" class="headerlink" title="v-bind"></a>v-bind</h4><p>v-bind指令用于响应更新HTML特性，将一个或者多个attribute，或者一个组件prop动态绑定到表达式，可以简写为：<br>在没有参数时，可以绑定到一个对象，注意，此时class和style绑定不支持数组和对象（对象key会转换为小写）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind</span>=<span class="string">"&#123;id:someProp,'OTHERAttr':otherProp&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">data:&#123;</span><br><span class="line">  someProp:'idName',</span><br><span class="line">  otherProp:'prop'</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在绑定prop时，prop必须在子组件中声明，可以用修饰符指定不同的绑定类型，修饰符为：<br>*.sync:双向绑定，只能用于prop绑定<br>*.once：单次绑定，只能用于prop绑定<br>*.camel:将绑定的特性名字转换回驼峰命名，只能用于普通的HTML特性绑定，通常用于绑定用驼峰命名的SVG特性</p>
+<h4 id="v-on"><a href="#v-on" class="headerlink" title="v-on"></a>v-on</h4><p>v-on指令用于绑定事件监听器，事件类型由参数指定，表达死可以是一个方法的名字或一个内联语句，也可以省略。<br>在普通元素上时，只能监听DOM事件，使用在自定义元素组件上时，也可以监听组件触发的自定义事件。<br>在监听原生DOM事件时，如果只定义一个参数，DOM event为事件的唯一参数，如果在内联语句处理器中访问原生DOM事件，则可以用特殊变量$event把它传入方法<br>vue1.0.11之后的版本，内联语句可以访问一个$arguments属性，它是一个数组，包含了传入子组件的$emit回调的参数</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"dothis"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"dothat('hello',$emit)"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>v-on后面不仅可以跟参数，还可以增加修饰符：</p>
+<ul>
+<li>.stop:调用event.stopPropagation()</li>
+<li>.prevent:调用event.preventDefault()</li>
+<li>capture:添加事件侦听器时使用capture模式</li>
+<li>.self:只当事件是从侦听器绑定的元素本身触发时才触发回调<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click.stop</span>=<span class="string">"dothis"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span>  //  停止冒泡</span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click.prevent</span>=<span class="string">"dothis"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span>   //阻止默认表达式</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="v-ref"><a href="#v-ref" class="headerlink" title="v-ref"></a>v-ref</h4><p>在父组件上注册一个子组件的索引，便于直接访问，不需要表达式，必须提供参数id，可以通过父组件的$refs对象访问子组件。<br>当ref和for一起使用时，注册的值将是一个数组，包含所以的子组件，对应于绑定数组，如果v-for使用在一个对象上，注册的值将是一个对象，包含所有的子组件，对应于绑定对象</p>
+<h4 id="v-el"><a href="#v-el" class="headerlink" title="v-el"></a>v-el</h4><p>为DOM元素注册一个索引，方便通过所属实例的$els访问这个元素，可以用v-el：some-el设置this.$els.someEl</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">v-el:msg</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">v-el:other-msg</span>&gt;</span>world<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>通过this.$els获取对应的DOM元素：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">this.$els.msg.textContent //hello</span><br><span class="line">this.$els.othermsg.textContent //world</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="v-pre"><a href="#v-pre" class="headerlink" title="v-pre"></a>v-pre</h4><p>编译时跳过当前元素和它的子元素，用来显示原始Mustache标签，跳过大量没有指令的节点会加快编译</p>
+<h4 id="v-cloak"><a href="#v-cloak" class="headerlink" title="v-cloak"></a>v-cloak</h4><p>v-cloak这个指令保持在元素上直到关联实例结束编译</p>
+<h3 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h3><h4 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h4><p>vue用vue.directive(id,definition)方法注册一个全局自定义指令，它接收两个参数：指令ID与定义对象，也可以用组件dedirectives选项注册一个局部定义指令。<br>  *钩子函数<br>  vue提供了几个钩子函数<br>   *bind：只调用一次，在指令第一次绑定到元素上时调用<br>   *update：在bind之后立即以初始值为参数第一次调用，之后每当绑定值变化时调用，参数为新值和旧值<br>   *unbind：只调用一次，在指令从元素上解绑时调用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">vue.directive(<span class="string">'my-directive'</span>,&#123;</span><br><span class="line">  bind:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">//准备工作</span></span><br><span class="line">  <span class="comment">//例如，添加事件处理器或只需运行一次的高耗任务</span></span><br><span class="line">  &#125;,</span><br><span class="line">  update:<span class="function"><span class="keyword">function</span>(<span class="params">newValue,oldValue</span>)</span>&#123;</span><br><span class="line">  <span class="comment">//值更新时的工作</span></span><br><span class="line">  <span class="comment">//也会以初始值为参数调用一次</span></span><br><span class="line">  &#125;,</span><br><span class="line">  unbind:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">//清理工作</span></span><br><span class="line">  <span class="comment">//例如，删除bind（）添加的事件监听器</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>在注册之后，便可以在vue中这样用（前面要加入v-）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-my-directive</span>=<span class="string">"someValue"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="指令实例属性"><a href="#指令实例属性" class="headerlink" title="指令实例属性"></a>指令实例属性</h4><p>所有的钩子函数都将被复制到实际的指令对象中，在钩子内this指向这个指令对象，这个对象暴露一个有用的属性：</p>
+<ul>
+<li>el：指令绑定元素</li>
+<li>vm：拥有该指令的上下文viewModel</li>
+<li>expression：指令的表达式，不包括参数和过滤器</li>
+<li>arg：指令的参数</li>
+<li>name：指令的名字，不包含前缀</li>
+<li>modifiers：一个对象，包含指令的修饰符</li>
+<li>descriptor：一个对象，包含指令的解析结果</li>
+</ul>
+<h4 id="对象字面量"><a href="#对象字面量" class="headerlink" title="对象字面量"></a>对象字面量</h4><p>如果指令需要多个值，则可以传入一个JavaScript对象字面量，记住，指令可以使用任意合法的JavaScript表达式：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"demo"</span> <span class="attr">v-demo</span>=<span class="string">"&#123;color:'white',text:'hello'&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">vuedirective(<span class="string">'demo'</span>,<span class="function"><span class="keyword">function</span><span class="params">(value)</span></span>&#123;</span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log(value.color)</span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log(value.text)</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="actionscript"><span class="keyword">var</span> demo = =<span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">el:<span class="string">'#demo'</span></span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="字面修饰符"><a href="#字面修饰符" class="headerlink" title="字面修饰符"></a>字面修饰符</h4><p>当指令使用了字面修饰符时，它的值将按普通字符串处理并传递给update方法，update方法将只调用一次，因为普通字符串不能响应数据变化：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"demo"</span> <span class="attr">v-demo.literal</span>=<span class="string">"foo bar baz"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">vue.directive(<span class="string">'demo'</span>,<span class="function"><span class="keyword">function</span><span class="params">(value)</span></span>&#123;</span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.info(value)</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="actionscript"><span class="keyword">var</span> demo = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">el:<span class="string">'#demo'</span></span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="高级选项"><a href="#高级选项" class="headerlink" title="高级选项"></a>高级选项</h3><p>angularjs提供了几种方法能够将指令内部的隔离作用域同指令外部的作用域进行数据绑定，vue也允许注册自定义指令，自定义指令提供一种机制将数据的变化映射为DOM行为</p>
+<ol>
+<li><p>params<br>自定义指令可以接受一个params数组，指定一个特性列表，vue编译器将自动提取绑定元素的这些特性：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">id</span>=<span class="string">"demo"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">my-directive</span> <span class="attr">class</span>=<span class="string">"hello"</span> <span class="attr">name</span>=<span class="string">"hi"</span> <span class="attr">a</span>=<span class="string">"params"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-directive</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">vue.elementDirective(<span class="string">'my-directive'</span>,&#123;</span></span><br><span class="line"><span class="actionscript">params:[<span class="string">'a'</span>],</span></span><br><span class="line"><span class="actionscript">bind:<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log(<span class="keyword">this</span>.params.a)</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>deep<br>如果自定义指令使用在一个对象上，当对象内部属性变化时触发update，则在指令定义对象中指定deep:true</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">id</span>=<span class="string">"demo"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-my-directive</span>=<span class="string">"a"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 
       

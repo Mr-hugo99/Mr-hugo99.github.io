@@ -82,7 +82,7 @@
     
     
     
-    <article id="post-hello-world" class="article article-type-post" itemscope
+    <article id="post-1" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -90,8 +90,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2017/11/19/hello-world/"
-    >java中string和c++里的string</a> 
+  <a class="article-title" href="/2017/11/19/1/"
+    >nodejs基本语法</a> 
 </h2>
  
 
@@ -100,12 +100,12 @@
 
     
     <div class="article-meta">
-      <a href="/2017/11/19/hello-world/" class="article-date">
+      <a href="/2017/11/19/1/" class="article-date">
   <time datetime="2017-11-18T16:00:00.000Z" itemprop="datePublished">2017-11-19</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/java-string/">java string</a>
+    <a class="article-category-link" href="/categories/node-js/">node.js</a>
   </div>
 
       
@@ -122,27 +122,13 @@
       
 
       
-      <p>java中的string类就是和C++中的string类类似，两者的哟个发也是类似<br>java中string类的字符串长度的函数是length（），作用和c++里面的string类是一样的，当然C++中的string类的长度函数也是length<br>对于链接字符串的函数和处理方法就有些不同了。<br>在java中链接两个字符串的方法就是string1.concat（string2）；类似的用法也是差不多，<br>而在c++中的字符串连接，可以是两个string类型的字符串直接相加。<br>以下就是string的一些常用方法：</p>
-<p>最后一点就是一个难点：string类是不可以改变的。下面来解释一下原因<br>例如：<br>String s = “Google”;System.out.println(“s = “ + s);</p>
-<p>s = “Runoob”;System.out.println(“s = “ + s);<br>输出结果为：</p>
-<p>从结果上看是改变了，但为什么门说String对象是不可变的呢？<br>原因在于实例中的 s 只是一个 String 对象的引用，并不是对象本身，当执行 s = “Runoob”; 创建了一个新的对象 “Runoob”，而原来的 “Google” 还存在于内存中。</p>
-<p>虽然现在不明白这一个特性有什么用，但是还是要记住的<br>我在网上查了一下c++中的string类，但是没有说明C++中的string类是不是可以改变类</p>
-<!-- ## Quick Start
-
-### Create a new post
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a> –&gt;</p>
+      <p>一、node.js repl—–交互式解释器<br>定义：类似于window环境下的终端，可以在终端中输入命令，并且接受系统的响应<br>执行的操作：<br>1、读取：读取用户输入，解析输入的JavaScript数据结构并存储在内存中<br>2、执行：执行输入的数据结构<br>3、打印<br>4、循环：循环操作以上的步骤直至用户两次按下ctrl-c</p>
+<p>REPL 命令<br>ctrl + c - 退出当前终端。<br>ctrl + c 按下两次 - 退出 Node REPL。<br>ctrl + d - 退出 Node REPL.<br>向上/向下 键 - 查看输入的历史命令<br>tab 键 - 列出当前命令<br>.help - 列出使用命令<br>.break - 退出多行表达式<br>.clear - 退出多行表达式<br>.save filename - 保存当前的 Node REPL 会话到指定文件<br>.load filename - 载入当前 Node REPL 会话的文件内容。</p>
+<p>二、node.js回调函数<br>nodejs的异步特征就是提现再回调函数上<br>回调函数就是在函数运行完成之后被调用（例如：我们可以一边读取文件，一边执行其他命令，在文件读取完成后，我们将文件内容作为回调函数的参数返回  ）<br>var fs = require(“fs”);</p>
+<p>fs.readFile(‘input.txt’, function (err, data) {<br>    if (err) return console.error(err);<br>    console.log(data.toString());<br>});</p>
+<p>console.log(“程序执行结束!”);<br>上述程序表示：我们不需要等到程序1跑完再跑程序2.而是在跑程序1的同时可以跑程序2如此大大提高了程序的性能<br>这里可以引申两个概念：阻塞和非阻塞，两者的区别就是是否按顺序执行。        </p>
+<p>三、nodejs循环事件<br>Node.js 是单进程单线程应用程序，但是因为 V8 引擎提供的异步执行回调接口，通过这些接口可以处理大量的并发，所以性能非常高。<br>Node.js 几乎每一个 API 都是支持回调函数的。<br>Node.js 基本上所有的事件机制都是用设计模式中观察者模式实现。<br>Node.js 单线程类似进入一个while(true)的事件循环，直到没有事件观察者退出，每个异步事件都生成一个事件观察者，如果有事件发生就调用该回调函数.</p>
+<p>事件驱动程序：<br>Node.js 使用事件驱动模型，当web server接收到请求，就把它关闭然后进行处理，然后去服务下一个web请求。<br>当这个请求完成，它被放回处理队列，当到达队列开头，这个结果被返回给用户。<br>这个模型非常高效可扩展性非常强，因为webserver一直接受请求而不等待任何读写操作。（这也被称之为非阻塞式IO或者事件驱动IO）<br>在事件驱动模型中，会生成一个主循环来监听事件，当检测到事件时触发回调函数。</p>
 
       
       <!-- reward -->
@@ -247,7 +233,7 @@
 
 </article>
     
-    <article id="post-1" class="article article-type-post" itemscope
+    <article id="post-hello-world" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -255,8 +241,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2017/11/19/1/"
-    >nodejs基本语法</a> 
+  <a class="article-title" href="/2017/11/19/hello-world/"
+    >java中string和c++里的string</a> 
 </h2>
  
 
@@ -265,12 +251,12 @@
 
     
     <div class="article-meta">
-      <a href="/2017/11/19/1/" class="article-date">
+      <a href="/2017/11/19/hello-world/" class="article-date">
   <time datetime="2017-11-18T16:00:00.000Z" itemprop="datePublished">2017-11-19</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/node-js/">node.js</a>
+    <a class="article-category-link" href="/categories/java-string/">java string</a>
   </div>
 
       
@@ -287,13 +273,27 @@
       
 
       
-      <p>一、node.js repl—–交互式解释器<br>定义：类似于window环境下的终端，可以在终端中输入命令，并且接受系统的响应<br>执行的操作：<br>1、读取：读取用户输入，解析输入的JavaScript数据结构并存储在内存中<br>2、执行：执行输入的数据结构<br>3、打印<br>4、循环：循环操作以上的步骤直至用户两次按下ctrl-c</p>
-<p>REPL 命令<br>ctrl + c - 退出当前终端。<br>ctrl + c 按下两次 - 退出 Node REPL。<br>ctrl + d - 退出 Node REPL.<br>向上/向下 键 - 查看输入的历史命令<br>tab 键 - 列出当前命令<br>.help - 列出使用命令<br>.break - 退出多行表达式<br>.clear - 退出多行表达式<br>.save filename - 保存当前的 Node REPL 会话到指定文件<br>.load filename - 载入当前 Node REPL 会话的文件内容。</p>
-<p>二、node.js回调函数<br>nodejs的异步特征就是提现再回调函数上<br>回调函数就是在函数运行完成之后被调用（例如：我们可以一边读取文件，一边执行其他命令，在文件读取完成后，我们将文件内容作为回调函数的参数返回  ）<br>var fs = require(“fs”);</p>
-<p>fs.readFile(‘input.txt’, function (err, data) {<br>    if (err) return console.error(err);<br>    console.log(data.toString());<br>});</p>
-<p>console.log(“程序执行结束!”);<br>上述程序表示：我们不需要等到程序1跑完再跑程序2.而是在跑程序1的同时可以跑程序2如此大大提高了程序的性能<br>这里可以引申两个概念：阻塞和非阻塞，两者的区别就是是否按顺序执行。        </p>
-<p>三、nodejs循环事件<br>Node.js 是单进程单线程应用程序，但是因为 V8 引擎提供的异步执行回调接口，通过这些接口可以处理大量的并发，所以性能非常高。<br>Node.js 几乎每一个 API 都是支持回调函数的。<br>Node.js 基本上所有的事件机制都是用设计模式中观察者模式实现。<br>Node.js 单线程类似进入一个while(true)的事件循环，直到没有事件观察者退出，每个异步事件都生成一个事件观察者，如果有事件发生就调用该回调函数.</p>
-<p>事件驱动程序：<br>Node.js 使用事件驱动模型，当web server接收到请求，就把它关闭然后进行处理，然后去服务下一个web请求。<br>当这个请求完成，它被放回处理队列，当到达队列开头，这个结果被返回给用户。<br>这个模型非常高效可扩展性非常强，因为webserver一直接受请求而不等待任何读写操作。（这也被称之为非阻塞式IO或者事件驱动IO）<br>在事件驱动模型中，会生成一个主循环来监听事件，当检测到事件时触发回调函数。</p>
+      <p>java中的string类就是和C++中的string类类似，两者的哟个发也是类似<br>java中string类的字符串长度的函数是length（），作用和c++里面的string类是一样的，当然C++中的string类的长度函数也是length<br>对于链接字符串的函数和处理方法就有些不同了。<br>在java中链接两个字符串的方法就是string1.concat（string2）；类似的用法也是差不多，<br>而在c++中的字符串连接，可以是两个string类型的字符串直接相加。<br>以下就是string的一些常用方法：</p>
+<p>最后一点就是一个难点：string类是不可以改变的。下面来解释一下原因<br>例如：<br>String s = “Google”;System.out.println(“s = “ + s);</p>
+<p>s = “Runoob”;System.out.println(“s = “ + s);<br>输出结果为：</p>
+<p>从结果上看是改变了，但为什么门说String对象是不可变的呢？<br>原因在于实例中的 s 只是一个 String 对象的引用，并不是对象本身，当执行 s = “Runoob”; 创建了一个新的对象 “Runoob”，而原来的 “Google” 还存在于内存中。</p>
+<p>虽然现在不明白这一个特性有什么用，但是还是要记住的<br>我在网上查了一下c++中的string类，但是没有说明C++中的string类是不是可以改变类</p>
+<!-- ## Quick Start
+
+### Create a new post
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a> –&gt;</p>
 
       
       <!-- reward -->
