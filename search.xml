@@ -30,35 +30,6 @@
       </categories>
   </entry>
   <entry>
-    <title>java中string和c++里的string</title>
-    <url>/2017/11/19/hello-world/</url>
-    <content><![CDATA[<p>java中的string类就是和C++中的string类类似，两者的哟个发也是类似<br>java中string类的字符串长度的函数是length（），作用和c++里面的string类是一样的，当然C++中的string类的长度函数也是length<br>对于链接字符串的函数和处理方法就有些不同了。<br>在java中链接两个字符串的方法就是string1.concat（string2）；类似的用法也是差不多，<br>而在c++中的字符串连接，可以是两个string类型的字符串直接相加。<br>以下就是string的一些常用方法：</p>
-<p>最后一点就是一个难点：string类是不可以改变的。下面来解释一下原因<br>例如：<br>String s = “Google”;System.out.println(“s = “ + s);</p>
-<p>s = “Runoob”;System.out.println(“s = “ + s);<br>输出结果为：</p>
-<p>从结果上看是改变了，但为什么门说String对象是不可变的呢？<br>原因在于实例中的 s 只是一个 String 对象的引用，并不是对象本身，当执行 s = “Runoob”; 创建了一个新的对象 “Runoob”，而原来的 “Google” 还存在于内存中。</p>
-<p>虽然现在不明白这一个特性有什么用，但是还是要记住的<br>我在网上查了一下c++中的string类，但是没有说明C++中的string类是不是可以改变类</p>
-<!-- ## Quick Start
-
-### Create a new post
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a> –&gt;</p>
-]]></content>
-      <categories>
-        <category>java string</category>
-      </categories>
-  </entry>
-  <entry>
     <title>nodejs特征</title>
     <url>/2017/12/01/2/</url>
     <content><![CDATA[<p>Nodejs区别于传统应用的特点：</p>
@@ -114,11 +85,33 @@
 ]]></content>
   </entry>
   <entry>
-    <title>vue-slot</title>
-    <url>/2019/12/03/vue-slot/</url>
-    <content><![CDATA[<p>–</p>
-<p>–</p>
+    <title>java中string和c++里的string</title>
+    <url>/2017/11/19/hello-world/</url>
+    <content><![CDATA[<p>java中的string类就是和C++中的string类类似，两者的哟个发也是类似<br>java中string类的字符串长度的函数是length（），作用和c++里面的string类是一样的，当然C++中的string类的长度函数也是length<br>对于链接字符串的函数和处理方法就有些不同了。<br>在java中链接两个字符串的方法就是string1.concat（string2）；类似的用法也是差不多，<br>而在c++中的字符串连接，可以是两个string类型的字符串直接相加。<br>以下就是string的一些常用方法：</p>
+<p>最后一点就是一个难点：string类是不可以改变的。下面来解释一下原因<br>例如：<br>String s = “Google”;System.out.println(“s = “ + s);</p>
+<p>s = “Runoob”;System.out.println(“s = “ + s);<br>输出结果为：</p>
+<p>从结果上看是改变了，但为什么门说String对象是不可变的呢？<br>原因在于实例中的 s 只是一个 String 对象的引用，并不是对象本身，当执行 s = “Runoob”; 创建了一个新的对象 “Runoob”，而原来的 “Google” 还存在于内存中。</p>
+<p>虽然现在不明白这一个特性有什么用，但是还是要记住的<br>我在网上查了一下c++中的string类，但是没有说明C++中的string类是不是可以改变类</p>
+<!-- ## Quick Start
+
+### Create a new post
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a> –&gt;</p>
 ]]></content>
+      <categories>
+        <category>java string</category>
+      </categories>
   </entry>
   <entry>
     <title>typescript基础入门</title>
@@ -146,8 +139,32 @@
       </categories>
   </entry>
   <entry>
+    <title>vue-slot</title>
+    <url>/2019/12/03/vue-slot/</url>
+    <content><![CDATA[<p>–</p>
+<p>–</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>css-3D</title>
+    <url>/2019/11/01/css/css_01/</url>
+    <content><![CDATA[<h3 id="rotate3d（x-y-z-angle）"><a href="#rotate3d（x-y-z-angle）" class="headerlink" title="rotate3d（x,y,z,angle）"></a>rotate3d（x,y,z,angle）</h3><h3 id="景深："><a href="#景深：" class="headerlink" title="景深："></a>景深：</h3><p>作用：让3D场景有近大远小的效果，<br>不能继承，但是能作用于后台元素（不是作用于本身）<br>原理：<br>CSS3中，perspective用于激活一个3D空间<br>属性值就是景深大小（默认none无景深）</p>
+<h3 id="3D属性transform-style"><a href="#3D属性transform-style" class="headerlink" title="3D属性transform-style"></a>3D属性transform-style</h3><p>这个属性指定了子元素如何在空间中展示<br>只有两个属性值：flat（默认）和preserve-3d<br>flat 表示所有子元素在2D平面呈现<br>preserve-3d 表示所有子元素在3D平面呈现<br>（prederve是保护、维持的意思，preserve-3d就是保持三维空间的意思）<br>当然如果我们想要3D的效果，就要使用 transform-style: preserve-3d;</p>
+<p><strong>这个属性只是针对设置属性元素的子元素如何展示</strong></p>
+<p>而对子元素的子元素无效<br>而且对于设置了overflow: hidden;的元素，设置3D效果会失效<br>道理很简单，跳出了父元素平面的子元素无法显示了，结果自然还是2D效果<br>应用于这个属性的元素我们称作“容器”<br>这个属性我们下面通过一个例子再来体会</p>
+<h3 id="背面可见属性backface-visibility"><a href="#背面可见属性backface-visibility" class="headerlink" title="背面可见属性backface-visibility"></a>背面可见属性backface-visibility</h3><p>通过这个元素我们可以指定当元素背对我们时是否可见<br>只有两个属性值visibility（默认）和hidden<br>如果我们希望元素背对我们不可见<br>就这样设置</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">.demo &#123;</span><br><span class="line">    ...</span><br><span class="line">    backface-visibility: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="示例：旋转的三维立方体"><a href="#示例：旋转的三维立方体" class="headerlink" title="示例：旋转的三维立方体"></a>示例：旋转的三维立方体</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"stage"</span>&gt;</span>  <span class="comment">&lt;!--舞台元素，视角所在--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"three-d-box"</span>&gt;</span>   <span class="comment">&lt;!--动画容器，通过它来控制整个立方体--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♑<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  <span class="comment">&lt;!--动画元素，立方体的六个面--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♍<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♌<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♋<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♎<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♓<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">ul &#123;  /*调整ul标签的样式，取消内边距、外边距，和“点”样式*/</span><br><span class="line">    padding: 0;</span><br><span class="line">    margin: 0;</span><br><span class="line">    list-style-type: none;</span><br><span class="line">&#125;</span><br><span class="line">.stage &#123;  /*设置舞台元素在屏幕居中，设置合适的景深大小*/</span><br><span class="line">    position: relative;</span><br><span class="line">    width: 800px;</span><br><span class="line">    height: 800px;</span><br><span class="line">    margin: 100px auto;</span><br><span class="line">    perspective: 800px;</span><br><span class="line">&#125;</span><br><span class="line">@keyframes move &#123; /*设置动画关键帧*/</span><br><span class="line">    0% &#123;</span><br><span class="line">        transform: rotateX(0deg);</span><br><span class="line">    &#125;</span><br><span class="line">    25% &#123;</span><br><span class="line">        transform: rotateX(180deg);</span><br><span class="line">    &#125;</span><br><span class="line">    50% &#123;</span><br><span class="line">        transform: rotateX(360deg) rotateY(0deg);</span><br><span class="line">    &#125;</span><br><span class="line">    75% &#123;</span><br><span class="line">        transform: rotateX(360deg) rotateY(180deg);</span><br><span class="line">    &#125;       </span><br><span class="line">    100% &#123;</span><br><span class="line">        transform: rotateX(360deg) rotateY(360deg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box &#123;  /*动画容器居中在舞台元素中间*/</span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 200px;</span><br><span class="line">    position: absolute;</span><br><span class="line">    left: 50%;</span><br><span class="line">    top: 50%;</span><br><span class="line">    margin: -100px 0 0 -100px;</span><br><span class="line">    transform-style: preserve-3d; /*设置3D属性让子元素三维空间呈现*/</span><br><span class="line">    animation: move 3s linear infinite; /*设置动画*/</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li &#123; /*设置动画子元素公共属性*/</span><br><span class="line">    position: absolute;</span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 200px;</span><br><span class="line">    left: 0;</span><br><span class="line">    top: 0;</span><br><span class="line">    font-size: 50px;</span><br><span class="line">    line-height: 200px;</span><br><span class="line">    text-align: center;</span><br><span class="line">    opacity: 0.5;</span><br><span class="line">&#125;</span><br><span class="line">/*为了保证我们对立方体位置的控制，我们需要让动画容器在立方体的中间位置*/</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(1) &#123;</span><br><span class="line">    background-color: red;</span><br><span class="line">    transform: translateZ(-100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(2) &#123;</span><br><span class="line">    background-color: greenyellow;</span><br><span class="line">    transform: translateZ(100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(3) &#123;</span><br><span class="line">    background-color: cornflowerblue;</span><br><span class="line">    transform: rotateX(90deg) translateZ(100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(4) &#123;</span><br><span class="line">    background-color: orangered;</span><br><span class="line">    transform: rotateX(-90deg) translateZ(100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(5) &#123;</span><br><span class="line">    background-color: deeppink;</span><br><span class="line">    transform: rotateY(90deg) translateZ(100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(6) &#123;</span><br><span class="line">    background-color: lightcoral;</span><br><span class="line">    transform: rotateY(-90deg) translateZ(100px);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>视频</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>javascript-apply、call、bind</title>
-    <url>/2020/02/01/javascript/JavaScript_02/</url>
+    <url>/2020/01/01/javascript/JavaScript_02/</url>
     <content><![CDATA[<h3 id="this、apply、call、bind"><a href="#this、apply、call、bind" class="headerlink" title="this、apply、call、bind"></a>this、apply、call、bind</h3><p>这又是一个面试经典问题也是 ES5中众多坑中的一个，在 ES6 中可能会极大避免 this产生的错误，但是为了一些老代码的维护，最好还是了解一下 this 的指向和 call、apply、bind 三者的区别。</p>
 <p>this 的指向<br>在 ES5 中，其实 this 的指向，始终坚持一个原理：this 永远指向最后调用它的那个对象，来，跟着我朗读三遍：this 永远指向最后调用它的那个对象，this 永远指向最后调用它的那个对象，this 永远指向最后调用它的那个对象。记住这句话，this 你已经了解一半了。</p>
 <p>下面我们来看一个最简单的例子：<br>例 1：</p>
@@ -861,43 +878,6 @@ a.func2()     // this.func1 is not a function</code></pre><p>这个简单一点�
       </tags>
   </entry>
   <entry>
-    <title>vue权威指导笔记-数据绑定</title>
-    <url>/2019/11/01/vue/vue_01/</url>
-    <content><![CDATA[<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><h4 id="插值"><a href="#插值" class="headerlink" title="插值"></a>插值</h4><p>文本插值是最基本的形式：使用双大括号会把里面的值全部当作字符串来处理，如果值是html片段，则可以使用三个大括号来绑定</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>logo:&#123;&#123;&#123;logo&#125;&#125;&#125; <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">logo:'<span class="tag">&lt;<span class="name">span</span>&gt;</span>dd<span class="tag">&lt;/<span class="name">span</span>&gt;</span>'</span><br></pre></td></tr></table></figure>
-<p>双括号标签还可以放在HTML标签内：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-id</span>=<span class="string">'&#123;&#123;id&#125;&#125;'</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h4><p>mustache标签也可以接受表达式形式的值，表达式可由JavaScript表达式和过滤器构成，过滤器可以没有，也可以有多个<br>表达式是各种数值，变量，运算符，的综合体，</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;&#123;cents/<span class="number">100</span>&#125;&#125;</span><br><span class="line">&#123;&#123;<span class="literal">true</span>?<span class="number">1</span>:<span class="number">0</span>&#125;&#125;</span><br><span class="line">&#123;&#123;example | toUpperCase&#125;&#125; <span class="comment">//这里的toupperCase就是一个过滤器，其本质是一个js函数，返回字符串的全大写形式，vue同样允许过滤器串连</span></span><br><span class="line"></span><br><span class="line">&#123;&#123;example | filterA |filterB&#125;&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h4><p>指令是带有v-前缀的特殊性，其值限定为绑定表达式，也就是javascript表达式和过滤器，指令的作用是当表达式的值发生变化时，将这个变化也反映到DOM上</p>
-]]></content>
-      <categories>
-        <category>vue.js</category>
-      </categories>
-      <tags>
-        <tag>书籍</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>css-3D</title>
-    <url>/2019/11/01/css/css_01/</url>
-    <content><![CDATA[<h3 id="rotate3d（x-y-z-angle）"><a href="#rotate3d（x-y-z-angle）" class="headerlink" title="rotate3d（x,y,z,angle）"></a>rotate3d（x,y,z,angle）</h3><h3 id="景深："><a href="#景深：" class="headerlink" title="景深："></a>景深：</h3><p>作用：让3D场景有近大远小的效果，<br>不能继承，但是能作用于后台元素（不是作用于本身）<br>原理：<br>CSS3中，perspective用于激活一个3D空间<br>属性值就是景深大小（默认none无景深）</p>
-<h3 id="3D属性transform-style"><a href="#3D属性transform-style" class="headerlink" title="3D属性transform-style"></a>3D属性transform-style</h3><p>这个属性指定了子元素如何在空间中展示<br>只有两个属性值：flat（默认）和preserve-3d<br>flat 表示所有子元素在2D平面呈现<br>preserve-3d 表示所有子元素在3D平面呈现<br>（prederve是保护、维持的意思，preserve-3d就是保持三维空间的意思）<br>当然如果我们想要3D的效果，就要使用 transform-style: preserve-3d;</p>
-<p><strong>这个属性只是针对设置属性元素的子元素如何展示</strong></p>
-<p>而对子元素的子元素无效<br>而且对于设置了overflow: hidden;的元素，设置3D效果会失效<br>道理很简单，跳出了父元素平面的子元素无法显示了，结果自然还是2D效果<br>应用于这个属性的元素我们称作“容器”<br>这个属性我们下面通过一个例子再来体会</p>
-<h3 id="背面可见属性backface-visibility"><a href="#背面可见属性backface-visibility" class="headerlink" title="背面可见属性backface-visibility"></a>背面可见属性backface-visibility</h3><p>通过这个元素我们可以指定当元素背对我们时是否可见<br>只有两个属性值visibility（默认）和hidden<br>如果我们希望元素背对我们不可见<br>就这样设置</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">.demo &#123;</span><br><span class="line">    ...</span><br><span class="line">    backface-visibility: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="示例：旋转的三维立方体"><a href="#示例：旋转的三维立方体" class="headerlink" title="示例：旋转的三维立方体"></a>示例：旋转的三维立方体</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"stage"</span>&gt;</span>  <span class="comment">&lt;!--舞台元素，视角所在--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"three-d-box"</span>&gt;</span>   <span class="comment">&lt;!--动画容器，通过它来控制整个立方体--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♑<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  <span class="comment">&lt;!--动画元素，立方体的六个面--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♍<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♌<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♋<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♎<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♓<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">ul &#123;  /*调整ul标签的样式，取消内边距、外边距，和“点”样式*/</span><br><span class="line">    padding: 0;</span><br><span class="line">    margin: 0;</span><br><span class="line">    list-style-type: none;</span><br><span class="line">&#125;</span><br><span class="line">.stage &#123;  /*设置舞台元素在屏幕居中，设置合适的景深大小*/</span><br><span class="line">    position: relative;</span><br><span class="line">    width: 800px;</span><br><span class="line">    height: 800px;</span><br><span class="line">    margin: 100px auto;</span><br><span class="line">    perspective: 800px;</span><br><span class="line">&#125;</span><br><span class="line">@keyframes move &#123; /*设置动画关键帧*/</span><br><span class="line">    0% &#123;</span><br><span class="line">        transform: rotateX(0deg);</span><br><span class="line">    &#125;</span><br><span class="line">    25% &#123;</span><br><span class="line">        transform: rotateX(180deg);</span><br><span class="line">    &#125;</span><br><span class="line">    50% &#123;</span><br><span class="line">        transform: rotateX(360deg) rotateY(0deg);</span><br><span class="line">    &#125;</span><br><span class="line">    75% &#123;</span><br><span class="line">        transform: rotateX(360deg) rotateY(180deg);</span><br><span class="line">    &#125;       </span><br><span class="line">    100% &#123;</span><br><span class="line">        transform: rotateX(360deg) rotateY(360deg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box &#123;  /*动画容器居中在舞台元素中间*/</span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 200px;</span><br><span class="line">    position: absolute;</span><br><span class="line">    left: 50%;</span><br><span class="line">    top: 50%;</span><br><span class="line">    margin: -100px 0 0 -100px;</span><br><span class="line">    transform-style: preserve-3d; /*设置3D属性让子元素三维空间呈现*/</span><br><span class="line">    animation: move 3s linear infinite; /*设置动画*/</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li &#123; /*设置动画子元素公共属性*/</span><br><span class="line">    position: absolute;</span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 200px;</span><br><span class="line">    left: 0;</span><br><span class="line">    top: 0;</span><br><span class="line">    font-size: 50px;</span><br><span class="line">    line-height: 200px;</span><br><span class="line">    text-align: center;</span><br><span class="line">    opacity: 0.5;</span><br><span class="line">&#125;</span><br><span class="line">/*为了保证我们对立方体位置的控制，我们需要让动画容器在立方体的中间位置*/</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(1) &#123;</span><br><span class="line">    background-color: red;</span><br><span class="line">    transform: translateZ(-100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(2) &#123;</span><br><span class="line">    background-color: greenyellow;</span><br><span class="line">    transform: translateZ(100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(3) &#123;</span><br><span class="line">    background-color: cornflowerblue;</span><br><span class="line">    transform: rotateX(90deg) translateZ(100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(4) &#123;</span><br><span class="line">    background-color: orangered;</span><br><span class="line">    transform: rotateX(-90deg) translateZ(100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(5) &#123;</span><br><span class="line">    background-color: deeppink;</span><br><span class="line">    transform: rotateY(90deg) translateZ(100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(6) &#123;</span><br><span class="line">    background-color: lightcoral;</span><br><span class="line">    transform: rotateY(-90deg) translateZ(100px);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>css</category>
-      </categories>
-      <tags>
-        <tag>视频</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>javascript-箭头函数、map</title>
     <url>/2020/02/01/javascript/javascript_04/</url>
     <content><![CDATA[<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p>我们知道箭头是es6中的一个概念，<br>但是看上去是对函数的一个缩写，大大减少了代码的书写量<br>如果没有参数，那么可以进一步简化：</p>
@@ -1023,6 +1003,26 @@ a.func2()     // this.func1 is not a function</code></pre><p>这个简单一点�
       </tags>
   </entry>
   <entry>
+    <title>vue权威指导笔记-数据绑定</title>
+    <url>/2019/11/01/vue/vue_01/</url>
+    <content><![CDATA[<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><h4 id="插值"><a href="#插值" class="headerlink" title="插值"></a>插值</h4><p>文本插值是最基本的形式：使用双大括号会把里面的值全部当作字符串来处理，如果值是html片段，则可以使用三个大括号来绑定</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>logo:&#123;&#123;&#123;logo&#125;&#125;&#125; <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">logo:'<span class="tag">&lt;<span class="name">span</span>&gt;</span>dd<span class="tag">&lt;/<span class="name">span</span>&gt;</span>'</span><br></pre></td></tr></table></figure>
+<p>双括号标签还可以放在HTML标签内：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">data-id</span>=<span class="string">'&#123;&#123;id&#125;&#125;'</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h4><p>mustache标签也可以接受表达式形式的值，表达式可由JavaScript表达式和过滤器构成，过滤器可以没有，也可以有多个<br>表达式是各种数值，变量，运算符，的综合体，</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;&#123;cents/<span class="number">100</span>&#125;&#125;</span><br><span class="line">&#123;&#123;<span class="literal">true</span>?<span class="number">1</span>:<span class="number">0</span>&#125;&#125;</span><br><span class="line">&#123;&#123;example | toUpperCase&#125;&#125; <span class="comment">//这里的toupperCase就是一个过滤器，其本质是一个js函数，返回字符串的全大写形式，vue同样允许过滤器串连</span></span><br><span class="line"></span><br><span class="line">&#123;&#123;example | filterA |filterB&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h4><p>指令是带有v-前缀的特殊性，其值限定为绑定表达式，也就是javascript表达式和过滤器，指令的作用是当表达式的值发生变化时，将这个变化也反映到DOM上</p>
+]]></content>
+      <categories>
+        <category>vue.js</category>
+      </categories>
+      <tags>
+        <tag>书籍</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vue权威指导笔记-指令</title>
     <url>/2019/11/01/vue/vue_02/</url>
     <content><![CDATA[<h3 id="内部指令"><a href="#内部指令" class="headerlink" title="内部指令"></a>内部指令</h3><p>v-show v-html v-else v-on v-model v-bind v-repeat(1.0-) v-ref v-for() v-pre v-text v-cloak v-el v-if</p>
@@ -1102,75 +1102,6 @@ a.func2()     // this.func1 is not a function</code></pre><p>这个简单一点�
       </tags>
   </entry>
   <entry>
-    <title>vue权威指导笔记-计算属性</title>
-    <url>/2019/11/01/vue/vue_03/</url>
-    <content><![CDATA[<h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><p>计算属性就是当其依赖属性的值发生变化时，这个属性的值会自动更新，与之相关的DOM部分也会同步自动更新</p>
-<h3 id="计算属性缓存"><a href="#计算属性缓存" class="headerlink" title="计算属性缓存"></a>计算属性缓存</h3><p>在vue0.12.8版本之前，只要读取相应的计算属性，对应的getter就会重新执行，而在vue0.12.8版本中在这方便进行了优化，即只有计算属性依赖的属性值发生了改变时才会重新执行getter：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">data:&#123;</span><br><span class="line">  welcome:<span class="string">'welcome'</span></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">computed:&#123;</span><br><span class="line">  example:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Date</span>.now()+<span class="keyword">this</span>.welcome</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
-<p>每次访问example时都会读取最新的时间而不是缓存的时间，而vue0.12.11版本开始，默认提供了缓存开关，在计算属性中指定cache字段来控制是否开启缓存：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data:&#123;</span><br><span class="line">  welcome:<span class="string">'welcome'</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">compute:&#123;</span><br><span class="line">  example:&#123;</span><br><span class="line">    coche:<span class="literal">false</span></span><br><span class="line">    <span class="keyword">get</span>:function()&#123;</span><br><span class="line">      <span class="keyword">return</span> Data.now() +<span class="keyword">this</span>.welcome</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
-<p>设置cache属性为false关闭缓存之后每次直接访问example时都会重新执行getter方法</p>
-<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><ol>
-<li>计算属性getter不执行的场景<br>当包含计算属性的节点被移除并且模版中的其他地方没有再引用该属性时，那么对应的计算属性的getter方法不会执行<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">'toggleshow'</span>&gt;</span>toggle<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"show"</span>&gt;</span>&#123;&#123;to&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">new vue(&#123;</span><br><span class="line">el:'#example',</span><br><span class="line">data:&#123;</span><br><span class="line">  show:true,</span><br><span class="line">  base:100</span><br><span class="line">&#125;,</span><br><span class="line">computed:&#123;</span><br><span class="line">  to:function()&#123;</span><br><span class="line">    return this.base+1</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">methods:&#123;</span><br><span class="line">  to:function()&#123;</span><br><span class="line">    this.show=!this.show</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>vue.js</category>
-      </categories>
-      <tags>
-        <tag>书籍</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue权威指导笔记-过滤器</title>
-    <url>/2019/11/01/vue/vue_05/</url>
-    <content><![CDATA[<h3 id="内置过滤器"><a href="#内置过滤器" class="headerlink" title="内置过滤器"></a>内置过滤器</h3><h4 id="字符操作"><a href="#字符操作" class="headerlink" title="字符操作"></a>字符操作</h4><ul>
-<li><p>capitalize<br>capitalize过滤器用于将表达式中的首字母转化为大写形式</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;&#123;<span class="string">'ddfe'</span>|capitalize&#125;&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>uppercase<br>用于将表达式中所有的字母转化为大写形式</p>
-</li>
-<li><p>lowercase<br>将所有字母转化为小写形式</p>
-</li>
-</ul>
-<h4 id="json过滤器"><a href="#json过滤器" class="headerlink" title="json过滤器"></a>json过滤器</h4><p>vue中的json本质上是JSON.stringify()的精简缩略版，可以将表达式的值转换为JSON字符串，json可以接受一个类型为Number的参数，用于决定转换之后的json字符串缩进距离，默认是2</p>
-<h4 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h4><p>内置了limitBy、filterBy、orderBy三个过滤器用于处理并返回过滤后的数组，比如与v-for搭配使用。这三个过滤器必须都是数组</p>
-<ul>
-<li><p>limitBy<br>过滤器的作用是限制数组为开始的前N个元素，其中N由传入的第一个参数指定</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"item in items | limitBy 10"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span> //只显示开始的10个元素</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>filterBy<br>其第一个参数可以是字符串或者数组，如果第一个参数是字符串，那么将在每个数组元素中搜索它，并返回包含该字符串的元素组成的数组</p>
-</li>
-<li><p>orderBy<br>作用是放回排序后的数组</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"user in users | orderBy sortKey"</span>&gt;</span></span><br><span class="line">    &#123;&#123;user.lastName&#125;&#125;&#123;&#123;user.firstName&#125;&#125;&#123;&#123;user.age&#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="自定义过滤器"><a href="#自定义过滤器" class="headerlink" title="自定义过滤器"></a>自定义过滤器</h3><ul>
-<li>fillter语法<br>在vue中存在一个全局函数filter用于构造过滤器<br>该函数接受两个参数，其中第一个参数为过滤器id，作为用户自定义过滤器的唯一标识，第二个参数则为具体的过滤器函数，过滤器函数为参数，返回转换后的值</li>
-</ul>
-<ol>
-<li><p>单个参数<br>注册一个名为reverse的过滤器，作用是将字符串反向输出</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.filter('reverse',function(value)&#123;</span><br><span class="line">  return value.split('').reverse().join('')</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>多参数<br>过滤器函数除了以值为参数外，还支持接受任意数量的参数，参数之间以空格分隔：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.filter('wrap',function(value,begin,end)&#123;</span><br><span class="line">  return begin +value+end</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>双向过滤器<br>上面的过滤器函数都是在model数据输出到view层之前进行数据转化，实际上vue还支持把来自视图的值在写回模型前进行转化，即双向过滤器</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.filter(id,&#123;</span><br><span class="line">read:function(val)&#123;&#125;,</span><br><span class="line">write:function(newVal,oldVal)&#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>动态参数<br>filter语法还有一个需要注意的点，动态参数，如果过滤器参数没有用引号包起来，则它会在当前vm作用域内动态计算，此外，过滤器函数的this始终指向调用它的vm，代码实例：</p>
-</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"userInput"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;msg |cocat userInput&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"></span><br><span class="line">vue.filter('concat',function(value,input)&#123;</span><br><span class="line">return value+input</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>vue.js</category>
-      </categories>
-      <tags>
-        <tag>书籍</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vue权威指导笔记-表单控件绑定</title>
     <url>/2019/11/01/vue/vue_04/</url>
     <content><![CDATA[<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><h4 id="1-text"><a href="#1-text" class="headerlink" title="1.text"></a>1.text</h4><p>设置文本框v-model为name：</p>
@@ -1202,11 +1133,18 @@ a.func2()     // this.func1 is not a function</code></pre><p>这个简单一点�
       </tags>
   </entry>
   <entry>
-    <title>vue权威指导笔记-class与style绑定</title>
-    <url>/2019/11/01/vue/vue_06/</url>
-    <content><![CDATA[<h3 id="绑定HTTML-class"><a href="#绑定HTTML-class" class="headerlink" title="绑定HTTML class"></a>绑定HTTML class</h3><p>对于数据绑定，一个常见的需求是操作元素的class列表和它的内联样式，因为它们都是attribute，我们可以用v-bind处理它们：只需要计算出表达式最终的字符串，不过，字符串拼接麻烦又易错，因此，在v-bind用于class和style时，vue专门增加了它，表达式的结果类型除了字符串以外，还可以是对象或数组</p>
-<h4 id="对象语法"><a href="#对象语法" class="headerlink" title="对象语法"></a>对象语法</h4><p>我们可以传给v-bind：class一个对象，以动态的切换class，注意v-bind：class指令可以与普通的class特性共存</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'example'</span> <span class="attr">class</span>=<span class="string">"static"</span> <span class="attr">v-bind:class</span>=<span class="string">"&#123;'didi-orange':isRipe,'didi-green':isNotRipe&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">var vm=new vue(&#123;</span><br><span class="line">  el:'example'</span><br><span class="line">  data:&#123;</span><br><span class="line">    isRipe:true,</span><br><span class="line">    isNotRipe:false</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
+    <title>vue权威指导笔记-计算属性</title>
+    <url>/2019/11/01/vue/vue_03/</url>
+    <content><![CDATA[<h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><p>计算属性就是当其依赖属性的值发生变化时，这个属性的值会自动更新，与之相关的DOM部分也会同步自动更新</p>
+<h3 id="计算属性缓存"><a href="#计算属性缓存" class="headerlink" title="计算属性缓存"></a>计算属性缓存</h3><p>在vue0.12.8版本之前，只要读取相应的计算属性，对应的getter就会重新执行，而在vue0.12.8版本中在这方便进行了优化，即只有计算属性依赖的属性值发生了改变时才会重新执行getter：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">data:&#123;</span><br><span class="line">  welcome:<span class="string">'welcome'</span></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">computed:&#123;</span><br><span class="line">  example:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Date</span>.now()+<span class="keyword">this</span>.welcome</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
+<p>每次访问example时都会读取最新的时间而不是缓存的时间，而vue0.12.11版本开始，默认提供了缓存开关，在计算属性中指定cache字段来控制是否开启缓存：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data:&#123;</span><br><span class="line">  welcome:<span class="string">'welcome'</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">compute:&#123;</span><br><span class="line">  example:&#123;</span><br><span class="line">    coche:<span class="literal">false</span></span><br><span class="line">    <span class="keyword">get</span>:function()&#123;</span><br><span class="line">      <span class="keyword">return</span> Data.now() +<span class="keyword">this</span>.welcome</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
+<p>设置cache属性为false关闭缓存之后每次直接访问example时都会重新执行getter方法</p>
+<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><ol>
+<li>计算属性getter不执行的场景<br>当包含计算属性的节点被移除并且模版中的其他地方没有再引用该属性时，那么对应的计算属性的getter方法不会执行<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">'toggleshow'</span>&gt;</span>toggle<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"show"</span>&gt;</span>&#123;&#123;to&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">new vue(&#123;</span><br><span class="line">el:'#example',</span><br><span class="line">data:&#123;</span><br><span class="line">  show:true,</span><br><span class="line">  base:100</span><br><span class="line">&#125;,</span><br><span class="line">computed:&#123;</span><br><span class="line">  to:function()&#123;</span><br><span class="line">    return this.base+1</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">methods:&#123;</span><br><span class="line">  to:function()&#123;</span><br><span class="line">    this.show=!this.show</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
       <categories>
         <category>vue.js</category>
       </categories>
@@ -1248,6 +1186,19 @@ a.func2()     // this.func1 is not a function</code></pre><p>这个简单一点�
 
 <h4 id="self"><a href="#self" class="headerlink" title="self"></a>self</h4><p>.self事件修饰符，表示只当事件在该元素本身（而不是子元素）触发时触发回调：</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on:click.self</span>=<span class="string">"doThat"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>vue.js</category>
+      </categories>
+      <tags>
+        <tag>书籍</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue权威指导笔记-class与style绑定</title>
+    <url>/2019/11/01/vue/vue_06/</url>
+    <content><![CDATA[<h3 id="绑定HTTML-class"><a href="#绑定HTTML-class" class="headerlink" title="绑定HTTML class"></a>绑定HTTML class</h3><p>对于数据绑定，一个常见的需求是操作元素的class列表和它的内联样式，因为它们都是attribute，我们可以用v-bind处理它们：只需要计算出表达式最终的字符串，不过，字符串拼接麻烦又易错，因此，在v-bind用于class和style时，vue专门增加了它，表达式的结果类型除了字符串以外，还可以是对象或数组</p>
+<h4 id="对象语法"><a href="#对象语法" class="headerlink" title="对象语法"></a>对象语法</h4><p>我们可以传给v-bind：class一个对象，以动态的切换class，注意v-bind：class指令可以与普通的class特性共存</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'example'</span> <span class="attr">class</span>=<span class="string">"static"</span> <span class="attr">v-bind:class</span>=<span class="string">"&#123;'didi-orange':isRipe,'didi-green':isNotRipe&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">var vm=new vue(&#123;</span><br><span class="line">  el:'example'</span><br><span class="line">  data:&#123;</span><br><span class="line">    isRipe:true,</span><br><span class="line">    isNotRipe:false</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>vue.js</category>
       </categories>
@@ -1380,78 +1331,47 @@ a.func2()     // this.func1 is not a function</code></pre><p>这个简单一点�
       </tags>
   </entry>
   <entry>
-    <title>vue权威指导笔记-路由</title>
-    <url>/2019/11/01/vue/vue_11/</url>
-    <content><![CDATA[<h3 id="视图部分"><a href="#视图部分" class="headerlink" title="视图部分"></a>视图部分</h3><h4 id="v-link"><a href="#v-link" class="headerlink" title="v-link"></a>v-link</h4><p>在原生的html中，我们使用<a>标签的href属性来导航，在vue-router应用中，我们还是使用<a>标签，不同的是，我们使用v-link属性不是href属性</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-link</span> = <span class="string">"&#123;path:'/join/DDFE'&#125;"</span>&gt;</span>join DDFE<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>当用户在页面上点击join DDFE时，vue-router会在路由映射中匹配path为/join/DDFE的路由规则，如果成功匹配到，则会将对应路由组件的模版内容渲染到router-view区域中<br>v-link是一个vue指令，它的值是一个JavaScript表达式，可以接受一个表示path的字符串或者包含name或path属性的对象。如果属性值既不是字符串也不是对象字面量，则会被当作对应组件的数据属性来解析<br>当v-link解析后的值是对象时，该对象可以有以下属性</p>
-<ol>
-<li>params<br>包含路由中的动态片段和全匹配片段的健值对，</li>
-<li>query<br>包含路由中添加到路径path后的健值对：<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-link</span>=<span class="string">"&#123;path:'/home',query:&#123;isAuthed:true&#125;&#125;"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-当该path被匹配时，地址栏url为：/home？isAuthed=true</li>
-<li>replace<br>默认值为false，当该值为true时，此次导航不会产生历史记录</li>
-<li>append<br>默认值为false，当该值为true时，如果此次导航的目的的path为相对路径，则实际url中的路径是当前path后拼接目的的path<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">//不加append属性，目的url路径为/b</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-link</span>=<span class="string">"&#123;path:'b'&#125;"</span>&gt;</span>b<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">//append为true，目的url路径为/a/b</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-link</span>=<span class="string">"&#123;path:'b',append:true&#125;"</span>&gt;</span>/a/b<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li>activeClass<br>默认值为v-link-active，指带有v-link指令的a元素处于激活状态时的class名称，该值也可以在创建路由器实例通过选项的linkActiveClass属性来进行全局设置</li>
-</ol>
-<h4 id="router-view"><a href="#router-view" class="headerlink" title="router-view"></a>router-view</h4><p>视图部分用来展示匹配路由的模版内容，在vue-router中使用router-view来渲染匹配的组件。router-view是一个vue组件，具有以下特性<br>通过props传递数据<br>支持v-transition和transition-mode<br>支持v-ref，被渲染的组件会注册到父组件的this.$对象中<br>支持slot，router-view中的html内容会被插入到相应路由组件模版的slot中</p>
-]]></content>
-      <categories>
-        <category>vue.js</category>
-      </categories>
-      <tags>
-        <tag>书籍</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue权威指导笔记-服务端通信</title>
-    <url>/2019/11/01/vue/vue_10/</url>
-    <content><![CDATA[<h3 id="参数配置"><a href="#参数配置" class="headerlink" title="参数配置"></a>参数配置</h3><p>vue-resource将请求配置分为全局配置、组件实例配置会调用配置三部分，这三部分的优先级一次增高，优先级高的配置会覆盖优先级低的配置。</p>
-<ol>
-<li>全局配置<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.http.options.root = '/root'</span><br></pre></td></tr></table></figure></li>
-<li>组件实例配置<br>在实例化组件时可以传入http选项来进行配置，代码示例如下<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">new vue(&#123;</span><br><span class="line">  http:&#123;</span><br><span class="line">    root:'/root',</span><br><span class="line">    headers:&#123;</span><br><span class="line">      authorization:'basic Yxsdlfjui'</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li>方法调用时配置<br>在调用vue-resource请求方法时传入选项对象，代码示例如下<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">new vue(&#123;</span><br><span class="line">  ready:function()&#123;</span><br><span class="line">    this.$http.get(&#123;url:'/someUrl',headers:&#123;authorization:'B.then(function(response)&#123;</span><br><span class="line">    //请求成功回调</span><br><span class="line">    &#125;，function(response)&#123;</span><br><span class="line">    //请求失败回调</span><br><span class="line">    &#125;)'&#125;&#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="headers配置"><a href="#headers配置" class="headerlink" title="headers配置"></a>headers配置</h3>我们了解可以通过headers属性来配置请求头，合并策略遵循参数配置合并策略，除了参数配置headers属性可以设置请求头外，在vue-resource中也提供了全局默认的headers配置。<br>vue.http.headers健值可以是http方法名，common、custom三种类型，这三种类型的配置会进行合并，优先级从低到高是：common、custom、http方法名。<br>其中common对应的请求会在所有的请求头中设置，dustom对应请求头在非跨域时设置，http方法名对应的请求头只有在请求的method匹配方法名时才会被设置。</li>
-</ol>
-<h3 id="基本调用http"><a href="#基本调用http" class="headerlink" title="基本调用http"></a>基本调用http</h3><p>get、post、，实际上时执行增删改查是前后端开发人员共同约定的并非通过http的请求方法如get代表获取数据、put代表写入数据、post代表更新数据。后者为restful调用。</p>
-<ol>
-<li><p>底层方法<br>全局vue.http方法和vue组件的实例方法this.$http都属于底层方法，它们根据所传option参数的methos属性来判断请求方式是get还是post，抑或是其他的http的合格方法<br>全局调用</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.http(option)</span><br></pre></td></tr></table></figure>
-<p>组件实例调用</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">this.$http(option)</span><br></pre></td></tr></table></figure>
-<p>以上两种调用方式接受相同的option参数，都返回promise对象。不同的是，全局调用方式回调中的this指向window，而组件实例调用方式回调指向组件实例</p>
+    <title>vue权威指导笔记-过滤器</title>
+    <url>/2019/11/01/vue/vue_05/</url>
+    <content><![CDATA[<h3 id="内置过滤器"><a href="#内置过滤器" class="headerlink" title="内置过滤器"></a>内置过滤器</h3><h4 id="字符操作"><a href="#字符操作" class="headerlink" title="字符操作"></a>字符操作</h4><ul>
+<li><p>capitalize<br>capitalize过滤器用于将表达式中的首字母转化为大写形式</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;&#123;<span class="string">'ddfe'</span>|capitalize&#125;&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>便捷调用<br>不同于底层方法，便捷方法是对底层方法的封装，在调用时可以省去选项option中的method属性，以下为vue-resource提供的便捷方法：<br>get(url,[data],[option])<br>post(url,[data],[option])<br>put(url,[data],[option])<br>patch(url,[data],[option])<br>delete(url,[data],[option])<br>jsonp(url,[data],[option])<br>便捷方法接受三个参数：<br>url：请求地址，可被option对象中的url属性覆盖<br>data：要发送的数据，可被option对象中的data属性覆盖<br>option：</p>
+<li><p>uppercase<br>用于将表达式中所有的字母转化为大写形式</p>
 </li>
-</ol>
-<h3 id="请求选项对象"><a href="#请求选项对象" class="headerlink" title="请求选项对象"></a>请求选项对象</h3><p>在调用http请求方法时，可以传入选项对象来控制请求，例如：vue.http(option)<br>url：请求地址<br>method：默认值为get，请求的http方法（get、post等）<br>data：默认值为，需要发送给服务器的数据，注意，打他属性的值对于method为post、put、delete等请求会作为请求体来传送，对于get、jsonp等方式的请求将会拼接在url查询参数中<br>params：默认值为{}，用来替换url中的模版变量，模版变量中未匹配到的属性添加在url地址后边作为查询参数。<br>headers：默认值为{}，设置http请求头<br>xhr：默认值为null，该对象中的属性都会应用到原生xhr实例对象上。<br>upload：默认值为null，该对象的属性都会应用到原生xhr实例对象的upload属性上。<br>jsonp：默认值是callback，jsonp请求中回调函数的名字<br>timeout：默认为0，单位为ms，表示请求超过时间。<br>beforesend：默认为null，该函数接受请求选项对象作为参数，该函数在发送请求之前执行，vue-resource内部在拦截器的最前端调用该方法，源码定义如下：</p>
-<h3 id="restful调用"><a href="#restful调用" class="headerlink" title="restful调用"></a>restful调用</h3><p>restful调用方式就是客户端通过http动词来表示增删改查实现对服务器端数据操作的一种架构模式<br>vue-resource提供全局调用vue-resource或者在组件实例上调用this.$resource，这两种调用方式接受相同的参数</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">resource(url,[params],[actions],[options])</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>url<br>请求地址，可以包含占位符，它会被params对象中的同名属性的值替换</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">this.$resource('/books/&#123;cat&#125;',&#123;cat:'1'&#125;)</span><br></pre></td></tr></table></figure>
-<p>最终实际url为/books/1</p>
+<li><p>lowercase<br>将所有字母转化为小写形式</p>
 </li>
-<li><p>params<br>参数对象，可用来替换url中的占位符，多出来的属性会拼接成url的查询参数</p>
+</ul>
+<h4 id="json过滤器"><a href="#json过滤器" class="headerlink" title="json过滤器"></a>json过滤器</h4><p>vue中的json本质上是JSON.stringify()的精简缩略版，可以将表达式的值转换为JSON字符串，json可以接受一个类型为Number的参数，用于决定转换之后的json字符串缩进距离，默认是2</p>
+<h4 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h4><p>内置了limitBy、filterBy、orderBy三个过滤器用于处理并返回过滤后的数组，比如与v-for搭配使用。这三个过滤器必须都是数组</p>
+<ul>
+<li><p>limitBy<br>过滤器的作用是限制数组为开始的前N个元素，其中N由传入的第一个参数指定</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"item in items | limitBy 10"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span> //只显示开始的10个元素</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>actions<br>用来对已有的action进行配置，也可以用来定义新的action</p>
+<li><p>filterBy<br>其第一个参数可以是字符串或者数组，如果第一个参数是字符串，那么将在每个数组元素中搜索它，并返回包含该字符串的元素组成的数组</p>
 </li>
-<li><p>options<br>resource方法执行后返回一个包含所有action方法名的对象，其包含自定义的action方法，这些方法会返回promise对象</p>
-</li>
-</ol>
-<h3 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h3><p>可以全局进行拦截器设置，拦截器可以在请求发送或响应返回时做一些特殊的处理</p>
-<ol>
-<li>拦截器的注册<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.http.interceptors.pash(&#123;</span><br><span class="line">  request:function(request)&#123;</span><br><span class="line">    request.method = 'POST'</span><br><span class="line">    return request</span><br><span class="line">  &#125;,</span><br><span class="line">  requese:function(response)&#123;</span><br><span class="line">  //修改返回数据</span><br><span class="line">    response.data = [&#123;</span><br><span class="line">      custom:'custom'</span><br><span class="line">    &#125;]</span><br><span class="line">    return response</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li>工厂函数注册<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.http.interceptors.push(function()&#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    request:function(request)&#123;</span><br><span class="line">      return request</span><br><span class="line">    &#125;,</span><br><span class="line">    response:function(response)&#123;</span><br><span class="line">      return response</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<li><p>orderBy<br>作用是放回排序后的数组</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"user in users | orderBy sortKey"</span>&gt;</span></span><br><span class="line">    &#123;&#123;user.lastName&#125;&#125;&#123;&#123;user.firstName&#125;&#125;&#123;&#123;user.age&#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 </li>
+</ul>
+<h3 id="自定义过滤器"><a href="#自定义过滤器" class="headerlink" title="自定义过滤器"></a>自定义过滤器</h3><ul>
+<li>fillter语法<br>在vue中存在一个全局函数filter用于构造过滤器<br>该函数接受两个参数，其中第一个参数为过滤器id，作为用户自定义过滤器的唯一标识，第二个参数则为具体的过滤器函数，过滤器函数为参数，返回转换后的值</li>
+</ul>
+<ol>
+<li><p>单个参数<br>注册一个名为reverse的过滤器，作用是将字符串反向输出</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.filter('reverse',function(value)&#123;</span><br><span class="line">  return value.split('').reverse().join('')</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多参数<br>过滤器函数除了以值为参数外，还支持接受任意数量的参数，参数之间以空格分隔：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.filter('wrap',function(value,begin,end)&#123;</span><br><span class="line">  return begin +value+end</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>双向过滤器<br>上面的过滤器函数都是在model数据输出到view层之前进行数据转化，实际上vue还支持把来自视图的值在写回模型前进行转化，即双向过滤器</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.filter(id,&#123;</span><br><span class="line">read:function(val)&#123;&#125;,</span><br><span class="line">write:function(newVal,oldVal)&#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>动态参数<br>filter语法还有一个需要注意的点，动态参数，如果过滤器参数没有用引号包起来，则它会在当前vm作用域内动态计算，此外，过滤器函数的this始终指向调用它的vm，代码实例：</p>
+</li>
 </ol>
-<h3 id="跨域AJAX"><a href="#跨域AJAX" class="headerlink" title="跨域AJAX"></a>跨域AJAX</h3><p>vue-resource中用到的cors特性，以及XMLHttpRequest2的替代品XDomainRequest<br>1.XMLHttpRwquest2 CORS<br>在提交AJAX跨域请求时，首先我们需要知道当前浏览器是否支持XMLHttpRequest2，在支持的情况下，还需要服务端启用CORS支持<br>假如我么想从<a href="http://example.com域中提交请求到http://crossdomain.com域，那么需要在crossdomain.com域中添加如下响应头：" target="_blank" rel="noopener">http://example.com域中提交请求到http://crossdomain.com域，那么需要在crossdomain.com域中添加如下响应头：</a><br>Access-Control-Allow-Origin：<a href="http://example.com" target="_blank" rel="noopener">http://example.com</a><br>如果crossdomain.com要允许所有异域都可以AJAX请求该域资源，则添加如下响应头：<br>Access-Control-Allow-Origin：*<br>代码如下：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">var xhr = new XMLHttpRequest()</span><br><span class="line">xhr.open('get','http://wwww.crossdomain.com/hello.json')</span><br><span class="line">xhr.onload = function(e)&#123;</span><br><span class="line">  var data = JSON.parse(this.response)</span><br><span class="line">&#125;</span><br><span class="line">xhr.send()</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>XDomainRequset</li>
-</ol>
-<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><p>vue-resource基本http调用和restful调用action方法执行后都会返回一个Promise对象，该Promise对象提供了then、catch、finally等常用方法来注册回调函数。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">var promise = this.$http.post(</span><br><span class="line">  'http://example.com/book/create',</span><br><span class="line">  &#123;</span><br><span class="line">    cat:'1',</span><br><span class="line">    name:'newbook'</span><br><span class="line">  &#125;,&#123;</span><br><span class="line">    'headers':&#123;</span><br><span class="line">      'content-type':'x-www-form-urlencoded'</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line">promise.then(function(response)&#123;</span><br><span class="line">  console.log(response.data)</span><br><span class="line">&#125;,function(response)&#123;</span><br><span class="line">  </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"userInput"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;msg |cocat userInput&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"></span><br><span class="line">vue.filter('concat',function(value,input)&#123;</span><br><span class="line">return value+input</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>vue.js</category>
       </categories>
@@ -1521,6 +1441,86 @@ vuex<br>当非父子组件之间通信较多时，用eventBus很容易逻辑混�
 </ol>
 <p>模块通信<br>eventBus<br>eventBus的原理是引入一个新的vue实例，然后通过分别调用这个实例的事件触发和监听来实现通信和参数传递。<br>eventBus.js 一般会直接用公共一个文件来存放vue实例</p>
 <h3 id="组件生命周期"><a href="#组件生命周期" class="headerlink" title="组件生命周期"></a>组件生命周期</h3><p>三个阶段：创建、编译、销毁<br>created和mounted区别</p>
+]]></content>
+      <categories>
+        <category>vue.js</category>
+      </categories>
+      <tags>
+        <tag>书籍</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue权威指导笔记-服务端通信</title>
+    <url>/2019/11/01/vue/vue_10/</url>
+    <content><![CDATA[<h3 id="参数配置"><a href="#参数配置" class="headerlink" title="参数配置"></a>参数配置</h3><p>vue-resource将请求配置分为全局配置、组件实例配置会调用配置三部分，这三部分的优先级一次增高，优先级高的配置会覆盖优先级低的配置。</p>
+<ol>
+<li>全局配置<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.http.options.root = '/root'</span><br></pre></td></tr></table></figure></li>
+<li>组件实例配置<br>在实例化组件时可以传入http选项来进行配置，代码示例如下<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">new vue(&#123;</span><br><span class="line">  http:&#123;</span><br><span class="line">    root:'/root',</span><br><span class="line">    headers:&#123;</span><br><span class="line">      authorization:'basic Yxsdlfjui'</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>方法调用时配置<br>在调用vue-resource请求方法时传入选项对象，代码示例如下<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">new vue(&#123;</span><br><span class="line">  ready:function()&#123;</span><br><span class="line">    this.$http.get(&#123;url:'/someUrl',headers:&#123;authorization:'B.then(function(response)&#123;</span><br><span class="line">    //请求成功回调</span><br><span class="line">    &#125;，function(response)&#123;</span><br><span class="line">    //请求失败回调</span><br><span class="line">    &#125;)'&#125;&#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="headers配置"><a href="#headers配置" class="headerlink" title="headers配置"></a>headers配置</h3>我们了解可以通过headers属性来配置请求头，合并策略遵循参数配置合并策略，除了参数配置headers属性可以设置请求头外，在vue-resource中也提供了全局默认的headers配置。<br>vue.http.headers健值可以是http方法名，common、custom三种类型，这三种类型的配置会进行合并，优先级从低到高是：common、custom、http方法名。<br>其中common对应的请求会在所有的请求头中设置，dustom对应请求头在非跨域时设置，http方法名对应的请求头只有在请求的method匹配方法名时才会被设置。</li>
+</ol>
+<h3 id="基本调用http"><a href="#基本调用http" class="headerlink" title="基本调用http"></a>基本调用http</h3><p>get、post、，实际上时执行增删改查是前后端开发人员共同约定的并非通过http的请求方法如get代表获取数据、put代表写入数据、post代表更新数据。后者为restful调用。</p>
+<ol>
+<li><p>底层方法<br>全局vue.http方法和vue组件的实例方法this.$http都属于底层方法，它们根据所传option参数的methos属性来判断请求方式是get还是post，抑或是其他的http的合格方法<br>全局调用</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.http(option)</span><br></pre></td></tr></table></figure>
+<p>组件实例调用</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">this.$http(option)</span><br></pre></td></tr></table></figure>
+<p>以上两种调用方式接受相同的option参数，都返回promise对象。不同的是，全局调用方式回调中的this指向window，而组件实例调用方式回调指向组件实例</p>
+</li>
+<li><p>便捷调用<br>不同于底层方法，便捷方法是对底层方法的封装，在调用时可以省去选项option中的method属性，以下为vue-resource提供的便捷方法：<br>get(url,[data],[option])<br>post(url,[data],[option])<br>put(url,[data],[option])<br>patch(url,[data],[option])<br>delete(url,[data],[option])<br>jsonp(url,[data],[option])<br>便捷方法接受三个参数：<br>url：请求地址，可被option对象中的url属性覆盖<br>data：要发送的数据，可被option对象中的data属性覆盖<br>option：</p>
+</li>
+</ol>
+<h3 id="请求选项对象"><a href="#请求选项对象" class="headerlink" title="请求选项对象"></a>请求选项对象</h3><p>在调用http请求方法时，可以传入选项对象来控制请求，例如：vue.http(option)<br>url：请求地址<br>method：默认值为get，请求的http方法（get、post等）<br>data：默认值为，需要发送给服务器的数据，注意，打他属性的值对于method为post、put、delete等请求会作为请求体来传送，对于get、jsonp等方式的请求将会拼接在url查询参数中<br>params：默认值为{}，用来替换url中的模版变量，模版变量中未匹配到的属性添加在url地址后边作为查询参数。<br>headers：默认值为{}，设置http请求头<br>xhr：默认值为null，该对象中的属性都会应用到原生xhr实例对象上。<br>upload：默认值为null，该对象的属性都会应用到原生xhr实例对象的upload属性上。<br>jsonp：默认值是callback，jsonp请求中回调函数的名字<br>timeout：默认为0，单位为ms，表示请求超过时间。<br>beforesend：默认为null，该函数接受请求选项对象作为参数，该函数在发送请求之前执行，vue-resource内部在拦截器的最前端调用该方法，源码定义如下：</p>
+<h3 id="restful调用"><a href="#restful调用" class="headerlink" title="restful调用"></a>restful调用</h3><p>restful调用方式就是客户端通过http动词来表示增删改查实现对服务器端数据操作的一种架构模式<br>vue-resource提供全局调用vue-resource或者在组件实例上调用this.$resource，这两种调用方式接受相同的参数</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">resource(url,[params],[actions],[options])</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>url<br>请求地址，可以包含占位符，它会被params对象中的同名属性的值替换</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">this.$resource('/books/&#123;cat&#125;',&#123;cat:'1'&#125;)</span><br></pre></td></tr></table></figure>
+<p>最终实际url为/books/1</p>
+</li>
+<li><p>params<br>参数对象，可用来替换url中的占位符，多出来的属性会拼接成url的查询参数</p>
+</li>
+<li><p>actions<br>用来对已有的action进行配置，也可以用来定义新的action</p>
+</li>
+<li><p>options<br>resource方法执行后返回一个包含所有action方法名的对象，其包含自定义的action方法，这些方法会返回promise对象</p>
+</li>
+</ol>
+<h3 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h3><p>可以全局进行拦截器设置，拦截器可以在请求发送或响应返回时做一些特殊的处理</p>
+<ol>
+<li>拦截器的注册<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.http.interceptors.pash(&#123;</span><br><span class="line">  request:function(request)&#123;</span><br><span class="line">    request.method = 'POST'</span><br><span class="line">    return request</span><br><span class="line">  &#125;,</span><br><span class="line">  requese:function(response)&#123;</span><br><span class="line">  //修改返回数据</span><br><span class="line">    response.data = [&#123;</span><br><span class="line">      custom:'custom'</span><br><span class="line">    &#125;]</span><br><span class="line">    return response</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>工厂函数注册<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.http.interceptors.push(function()&#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    request:function(request)&#123;</span><br><span class="line">      return request</span><br><span class="line">    &#125;,</span><br><span class="line">    response:function(response)&#123;</span><br><span class="line">      return response</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="跨域AJAX"><a href="#跨域AJAX" class="headerlink" title="跨域AJAX"></a>跨域AJAX</h3><p>vue-resource中用到的cors特性，以及XMLHttpRequest2的替代品XDomainRequest<br>1.XMLHttpRwquest2 CORS<br>在提交AJAX跨域请求时，首先我们需要知道当前浏览器是否支持XMLHttpRequest2，在支持的情况下，还需要服务端启用CORS支持<br>假如我么想从<a href="http://example.com域中提交请求到http://crossdomain.com域，那么需要在crossdomain.com域中添加如下响应头：" target="_blank" rel="noopener">http://example.com域中提交请求到http://crossdomain.com域，那么需要在crossdomain.com域中添加如下响应头：</a><br>Access-Control-Allow-Origin：<a href="http://example.com" target="_blank" rel="noopener">http://example.com</a><br>如果crossdomain.com要允许所有异域都可以AJAX请求该域资源，则添加如下响应头：<br>Access-Control-Allow-Origin：*<br>代码如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">var xhr = new XMLHttpRequest()</span><br><span class="line">xhr.open('get','http://wwww.crossdomain.com/hello.json')</span><br><span class="line">xhr.onload = function(e)&#123;</span><br><span class="line">  var data = JSON.parse(this.response)</span><br><span class="line">&#125;</span><br><span class="line">xhr.send()</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>XDomainRequset</li>
+</ol>
+<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><p>vue-resource基本http调用和restful调用action方法执行后都会返回一个Promise对象，该Promise对象提供了then、catch、finally等常用方法来注册回调函数。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">var promise = this.$http.post(</span><br><span class="line">  'http://example.com/book/create',</span><br><span class="line">  &#123;</span><br><span class="line">    cat:'1',</span><br><span class="line">    name:'newbook'</span><br><span class="line">  &#125;,&#123;</span><br><span class="line">    'headers':&#123;</span><br><span class="line">      'content-type':'x-www-form-urlencoded'</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line">promise.then(function(response)&#123;</span><br><span class="line">  console.log(response.data)</span><br><span class="line">&#125;,function(response)&#123;</span><br><span class="line">  </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>vue.js</category>
+      </categories>
+      <tags>
+        <tag>书籍</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue权威指导笔记-路由</title>
+    <url>/2019/11/01/vue/vue_11/</url>
+    <content><![CDATA[<h3 id="视图部分"><a href="#视图部分" class="headerlink" title="视图部分"></a>视图部分</h3><h4 id="v-link"><a href="#v-link" class="headerlink" title="v-link"></a>v-link</h4><p>在原生的html中，我们使用<a>标签的href属性来导航，在vue-router应用中，我们还是使用<a>标签，不同的是，我们使用v-link属性不是href属性</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-link</span> = <span class="string">"&#123;path:'/join/DDFE'&#125;"</span>&gt;</span>join DDFE<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当用户在页面上点击join DDFE时，vue-router会在路由映射中匹配path为/join/DDFE的路由规则，如果成功匹配到，则会将对应路由组件的模版内容渲染到router-view区域中<br>v-link是一个vue指令，它的值是一个JavaScript表达式，可以接受一个表示path的字符串或者包含name或path属性的对象。如果属性值既不是字符串也不是对象字面量，则会被当作对应组件的数据属性来解析<br>当v-link解析后的值是对象时，该对象可以有以下属性</p>
+<ol>
+<li>params<br>包含路由中的动态片段和全匹配片段的健值对，</li>
+<li>query<br>包含路由中添加到路径path后的健值对：<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-link</span>=<span class="string">"&#123;path:'/home',query:&#123;isAuthed:true&#125;&#125;"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+当该path被匹配时，地址栏url为：/home？isAuthed=true</li>
+<li>replace<br>默认值为false，当该值为true时，此次导航不会产生历史记录</li>
+<li>append<br>默认值为false，当该值为true时，如果此次导航的目的的path为相对路径，则实际url中的路径是当前path后拼接目的的path<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">//不加append属性，目的url路径为/b</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-link</span>=<span class="string">"&#123;path:'b'&#125;"</span>&gt;</span>b<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">//append为true，目的url路径为/a/b</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-link</span>=<span class="string">"&#123;path:'b',append:true&#125;"</span>&gt;</span>/a/b<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>activeClass<br>默认值为v-link-active，指带有v-link指令的a元素处于激活状态时的class名称，该值也可以在创建路由器实例通过选项的linkActiveClass属性来进行全局设置</li>
+</ol>
+<h4 id="router-view"><a href="#router-view" class="headerlink" title="router-view"></a>router-view</h4><p>视图部分用来展示匹配路由的模版内容，在vue-router中使用router-view来渲染匹配的组件。router-view是一个vue组件，具有以下特性<br>通过props传递数据<br>支持v-transition和transition-mode<br>支持v-ref，被渲染的组件会注册到父组件的this.$对象中<br>支持slot，router-view中的html内容会被插入到相应路由组件模版的slot中</p>
 ]]></content>
       <categories>
         <category>vue.js</category>
