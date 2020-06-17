@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    vue权威指导笔记-实例方法 |  Hugo
+    图片优化 |  Hugo
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -42,7 +42,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-vue/vue_08" class="article article-type-post" itemscope
+  <article id="post-picture" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -50,7 +50,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  vue权威指导笔记-实例方法
+  图片优化
 </h1>
  
 
@@ -59,12 +59,12 @@
 
     
     <div class="article-meta">
-      <a href="/2019/11/01/vue/vue_08/" class="article-date">
-  <time datetime="2019-11-01T00:00:00.000Z" itemprop="datePublished">2019-11-01</time>
+      <a href="/2020/01/01/picture/" class="article-date">
+  <time datetime="2020-01-01T00:00:00.000Z" itemprop="datePublished">2020-01-01</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/vue-js/">vue.js</a>
+    <a class="article-category-link" href="/categories/%E4%BC%98%E5%8C%96/">优化</a>
   </div>
 
       
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">1k</span>
+            <span class="post-count">921</span>
         </span>
     </span>
 
@@ -108,120 +108,26 @@
       
 
       
-      <h3 id="实例属性"><a href="#实例属性" class="headerlink" title="实例属性"></a>实例属性</h3><p>vue实例属性</p>
-<ul>
-<li>组件树访问：$parent、$root、$children、$refs</li>
-<li>DOM访问：$el、$els</li>
-<li>数据访问：$data、$options</li>
-</ul>
-<h4 id="组件树访问"><a href="#组件树访问" class="headerlink" title="组件树访问"></a>组件树访问</h4><ol>
-<li>$parent<br>用来访问当前组件实例的父实例</li>
-<li>$root<br>用来访问当前组件树的根实例，如果当前组件没有父实例，$root表示当前组件实例本身</li>
-<li>$children<br>用来访问当前组件实例的直接子组件实例</li>
-<li>$refs<br>用来访问使用v-ref指令的子组件</li>
+      <h3 id="图片预加载"><a href="#图片预加载" class="headerlink" title="图片预加载"></a>图片预加载</h3><ol>
+<li>img标签 如上面所列举的那些情况，就可以利用，比如用img标签与dom的background-image 来达到预加载的效果。在展示前就可以保证图片资源已经加载完成。</li>
+<li>js Image对象</li>
 </ol>
-<h4 id="DOM访问"><a href="#DOM访问" class="headerlink" title="DOM访问"></a>DOM访问</h4><ol>
-<li>$el<br>用来访问挂载当前组件实例的DOM元素</li>
-<li>$els<br>用来访问$el元素中使用了v-el指令的DOM元素</li>
-</ol>
-<h4 id="数据访问"><a href="#数据访问" class="headerlink" title="数据访问"></a>数据访问</h4><ol>
-<li>$data<br>用来访问组件实例观察的数据对象，该对象引用组件实例化时选项中的data属性</li>
-<li>$options<br>用来访问组件实例化时的初始化选项对象</li>
-</ol>
-<h3 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h3><h4 id="实例DOM方法的使用"><a href="#实例DOM方法的使用" class="headerlink" title="实例DOM方法的使用"></a>实例DOM方法的使用</h4><p>vue实例DOM方法</p>
-<ul>
-<li>内部插入：$appendTo()</li>
-<li>同级插入：$after $before</li>
-<li>删除：$remove</li>
-<li>延时：$nextTick</li>
-</ul>
-<ol>
-<li>$appendTo()<br>用来将el所指的DOM元素或片段插入到目标元素中<br>该方法接受两个参数：</li>
-</ol>
-<ul>
-<li>elementOrSelector（字符串或DOM元素），该参数可以是一个选择器字符串或者DOM元素</li>
-<li>callback（可选）回调函数，该回调函数会在el元素被插入到目标元素后被触发</li>
-</ul>
-<ol start="2">
-<li>$before()<br>用于将el所指的DOM元素或片段插入到目标元素之前<br>该方法接受两个参数：</li>
-</ol>
-<ul>
-<li>elementOrSelector（字符串或DOM元素）该参数可以是一个选择器字符串或者DOM元素</li>
-<li>callback（可选）回调函数，该回调函数会在el元素被插入到目标元素后被触发</li>
-</ul>
-<ol start="3">
-<li>$after<br>用于将el所指的DOM元素片段插入到目标元素之后<br>该方法接受两个参数：</li>
-</ol>
-<ul>
-<li>elementOrSelector（字符串或DOM元素）该参数可以是一个选择器字符串或者DOM元素</li>
-<li>callback（可选）回调函数，该回调函数会在el元素被插入到目标元素后被触发</li>
-</ul>
-<ol start="4">
-<li>$remove<br>用于将el所指的DOM元素或片段从DOM中删除<br>该方法接受两个参数：</li>
-</ol>
-<ul>
-<li>elementOrSelector（字符串或DOM元素）该参数可以是一个选择器字符串或者DOM元素</li>
-<li>callback（可选）回调函数，该回调函数会在el元素被插入到目标元素后被触发</li>
-</ul>
-<ol start="5">
-<li>$nextTick()<br>用来在下次DOM更新循环后执行指定的回调函数，该方法可以保证DOM中的内容已经与最新数据保持同步<br>该方法接受一个参数：</li>
-</ol>
-<ul>
-<li>callback回调函数，该回调函数会在下次DOM更新循环后被执行，</li>
-</ul>
-<p>####实例Event方法的使用<br>vm实例事件</p>
-<ul>
-<li>触发：$dispatch $broadcast $emit</li>
-<li>监听：$on $once</li>
-<li>删除：$off</li>
-</ul>
-<ol>
-<li><p>$on()<br>用于监听实例上的自定义事件<br>该方法接受两个参数：</p>
-<ul>
-<li>event，该参数可以是一个事件名称</li>
-<li>callback，回调函数，该函数会在$emit $broadcast $dispatch后触发</li>
-</ul>
-</li>
-<li><p>$once（）<br>用来监听实例上的自定义事件，但只触发一次<br>该方法接受两个参数：</p>
-</li>
-</ol>
-<ul>
-<li>event，该参数可以是一个事件名称</li>
-<li>callback，回调函数，该函数会在$emit $broadcast $dispatch后触发</li>
-</ul>
-<ol start="3">
-<li>$emit()<br>用来触发事件<br>该方法接受两个参数</li>
-</ol>
-<ul>
-<li>event，该参数可以是一个事件名称<ul>
-<li>arg，传入给监听函数的参数</li>
-</ul>
-</li>
-</ul>
-<ol start="4">
-<li>$dispatch()<br>用来派发事件，即先在当前实例触发，再沿着父链一层一层向上，如果对应的监听函数返回false<br>该方法接受两个参数：</li>
-</ol>
-<ul>
-<li>event，该参数可以是一个事件名称<ul>
-<li>arg，传递给监听函数的参数</li>
-</ul>
-</li>
-</ul>
-<ol start="5">
-<li>$broadcast()<br>用来广播事件，即遍历当前实例的$children，如果对应的监听函数返回false就停止<br>该方法接受两个参数：</li>
-</ol>
-<ul>
-<li>event，该参数可以是一个事件名称</li>
-<li>arg，传递给监听函数的参数</li>
-</ul>
-<ol start="6">
-<li>$off<br>用于删除事件监听<br>该方法接受两个参数：</li>
-</ol>
-<ul>
-<li>event，该参数可以是一个事件名称</li>
-<li>arg，传递给监听函数的参数</li>
-</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> preloadImg = <span class="function">(<span class="params">url</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">        <span class="keyword">if</span>(img.complete) &#123;</span><br><span class="line">            <span class="comment">//图片已经加载过了，可以使用图片</span></span><br><span class="line">            <span class="comment">//do something here</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="comment">//图片首次加载完成，可以使用图片</span></span><br><span class="line">                <span class="comment">//do something here</span></span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        img.src = url;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>注意，最好是先定义onload，再赋值src，不然会出现资源返回，但是onload还没有挂载的情况。<br>在实际的项目我遇到过的，就是需要在某些图片加载完成再做下一步，那么这个时候，我们就需要知道某些图片序列确定是预加载完成，同样还是使用preloadImg，结合一下promise，有多个图片资源，可以用promise.all。就可以保证所有的图片加载完成再进行下一步</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promiseAll = imgData.map(<span class="function"><span class="keyword">function</span> (<span class="params">item, index</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">      img.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        img.onload = <span class="literal">null</span>;</span><br><span class="line">        resolve(img);</span><br><span class="line">      &#125;;</span><br><span class="line">      img.error = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        reject(<span class="string">'图片加载失败'</span>);</span><br><span class="line">      &#125;;</span><br><span class="line">      img.src = item;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="built_in">Promise</span>.all(promiseAll).then(</span><br><span class="line">    <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="comment">// 图片全部加载完成，进行下一步</span></span><br><span class="line">      <span class="comment">// todo</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(err);</span><br><span class="line">    &#125;</span><br><span class="line">  );</span><br></pre></td></tr></table></figure>
 
+<h3 id="图片懒加载"><a href="#图片懒加载" class="headerlink" title="图片懒加载"></a>图片懒加载</h3><p>所谓图片懒加载，就是延迟加载图片资源，是对网页性能的一种优化方式，比如当我们打开一个网页的时候，优先展示的图片，比如首屏图片，就先加载，而其他的图片，当需要展示的时候，再去请求图片资源，避免了首次打开时，一次性加载过多图片资源。</p>
+<h4 id="最简单的图片懒加载"><a href="#最简单的图片懒加载" class="headerlink" title="最简单的图片懒加载"></a>最简单的图片懒加载</h4><p>同样地，我们再回顾一下文章开始讲的，如果是img标签，浏览器解析到img的src有值，就会去发起请求，那么我们就可以借助这个操作，在懒加载的图片，先不赋值，等到需要展示的时候，再赋值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;img class&#x3D;&quot;show-img&quot; data-src&#x3D;&quot;&#x2F;&#x2F;static&#x2F;show.jpg&quot; &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">const src &#x3D; $(&#39;.show-img&#39;).attr(&#39;data-src&#39;);</span><br><span class="line">$(&#39;.show-img&#39;).attr(src, src);</span><br></pre></td></tr></table></figure>
+
+<h4 id="在距离可视区域一定距离的时候加载图片"><a href="#在距离可视区域一定距离的时候加载图片" class="headerlink" title="在距离可视区域一定距离的时候加载图片"></a>在距离可视区域一定距离的时候加载图片</h4><p>一般实际中，我们不会在需要展示的时候，才发起图片请求，不然就不会有图片预加载的需求了，那么如何判断图片在何时需要展示呢？在下拉流之类的网页中，我们一般是在图片距离可视区域的一定距离，比如50px，就开始请求图片资源</p>
+<p><strong>如何判断图片是否在可视区域中？</strong></p>
+<p>原生js判断元素是否在可视区域内，这里的可视区域的距离都是以垂直距离为准</p>
+<ul>
+<li>方法一：<br>A: document.documentElement.clientHeight 可视窗口的高度<br>B: element.offsetTop dom相对于文档顶部的距离<br>C: document.documentElement.scrollTop 滚动条滚动的距离<br>B - C &lt; A 即说明元素在可视区域内</li>
+<li>方法二：getBoundingClientRect<br>const domObj = element.getBoundingClientRect();<br>domObj.top：元素上边到视窗上边的距离;<br> domObj.right：元素右边到视窗左边的距离;<br> domObj.bottom：元素下边到视窗上边的距离;<br> domObj.left：元素左边到视窗左边的距离;<br>const clientHeight = window.innerHeight;<br>当 domObj.top &lt; clientHeight 表示dom在可视区域内了</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> preImages = $(<span class="string">'img[data-src]'</span>).not(<span class="string">'.pred-img'</span>);</span><br><span class="line"><span class="built_in">Array</span>.from(preImages).forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (isPreLoad(item)) &#123;</span><br><span class="line">        loadImg(item);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> loadImg = <span class="function">(<span class="params">img</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!img.src) &#123;</span><br><span class="line">        img.src = img.attr(<span class="string">'data-src'</span>).addClass(<span class="string">'pred-img'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> isPreLoad = () &#123;</span><br><span class="line">    <span class="keyword">const</span> preObj = getBoundingClientRect();</span><br><span class="line">    <span class="keyword">const</span> cH = $(<span class="built_in">window</span>).height();</span><br><span class="line">    <span class="keyword">return</span> preObj &lt;= cH + <span class="number">100</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
       <!-- reward -->
       
@@ -275,14 +181,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2019/11/01/vue/vue_08/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/01/01/picture/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B9%A6%E7%B1%8D/" rel="tag">书籍</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%96%87%E7%AB%A0/" rel="tag">文章</a></li></ul>
 
 
     </footer>
@@ -293,19 +199,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2019/11/01/vue/vue_07/" class="article-nav-link">
+      <a href="/2020/02/01/javascript/JavaScript_03/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            vue权威指导笔记-method
+            javascript-cookie、localStorage和sessionStorage 三者之间的区别以及存储、获取、删除等使用方式
           
         </div>
       </a>
     
     
-      <a href="/2019/11/01/vue/vue_04/" class="article-nav-link">
+      <a href="/2020/01/01/javascript/JavaScript_02/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">vue权威指导笔记-表单控件绑定</div>
+        <div class="article-nav-title">javascript-apply、call、bind</div>
       </a>
     
   </nav>

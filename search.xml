@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>nodejs基本语法</title>
-    <url>/2017/11/19/1/</url>
-    <content><![CDATA[<p>一、node.js repl—–交互式解释器<br>定义：类似于window环境下的终端，可以在终端中输入命令，并且接受系统的响应<br>执行的操作：<br>1、读取：读取用户输入，解析输入的JavaScript数据结构并存储在内存中<br>2、执行：执行输入的数据结构<br>3、打印<br>4、循环：循环操作以上的步骤直至用户两次按下ctrl-c</p>
-<p>REPL 命令<br>ctrl + c - 退出当前终端。<br>ctrl + c 按下两次 - 退出 Node REPL。<br>ctrl + d - 退出 Node REPL.<br>向上/向下 键 - 查看输入的历史命令<br>tab 键 - 列出当前命令<br>.help - 列出使用命令<br>.break - 退出多行表达式<br>.clear - 退出多行表达式<br>.save filename - 保存当前的 Node REPL 会话到指定文件<br>.load filename - 载入当前 Node REPL 会话的文件内容。</p>
-<p>二、node.js回调函数<br>nodejs的异步特征就是提现再回调函数上<br>回调函数就是在函数运行完成之后被调用（例如：我们可以一边读取文件，一边执行其他命令，在文件读取完成后，我们将文件内容作为回调函数的参数返回  ）<br>var fs = require(“fs”);</p>
-<p>fs.readFile(‘input.txt’, function (err, data) {<br>    if (err) return console.error(err);<br>    console.log(data.toString());<br>});</p>
-<p>console.log(“程序执行结束!”);<br>上述程序表示：我们不需要等到程序1跑完再跑程序2.而是在跑程序1的同时可以跑程序2如此大大提高了程序的性能<br>这里可以引申两个概念：阻塞和非阻塞，两者的区别就是是否按顺序执行。        </p>
-<p>三、nodejs循环事件<br>Node.js 是单进程单线程应用程序，但是因为 V8 引擎提供的异步执行回调接口，通过这些接口可以处理大量的并发，所以性能非常高。<br>Node.js 几乎每一个 API 都是支持回调函数的。<br>Node.js 基本上所有的事件机制都是用设计模式中观察者模式实现。<br>Node.js 单线程类似进入一个while(true)的事件循环，直到没有事件观察者退出，每个异步事件都生成一个事件观察者，如果有事件发生就调用该回调函数.</p>
-<p>事件驱动程序：<br>Node.js 使用事件驱动模型，当web server接收到请求，就把它关闭然后进行处理，然后去服务下一个web请求。<br>当这个请求完成，它被放回处理队列，当到达队列开头，这个结果被返回给用户。<br>这个模型非常高效可扩展性非常强，因为webserver一直接受请求而不等待任何读写操作。（这也被称之为非阻塞式IO或者事件驱动IO）<br>在事件驱动模型中，会生成一个主循环来监听事件，当检测到事件时触发回调函数。</p>
+    <title>java中string和c++里的string</title>
+    <url>/2017/11/19/hello-world/</url>
+    <content><![CDATA[<p>java中的string类就是和C++中的string类类似，两者的哟个发也是类似<br>java中string类的字符串长度的函数是length（），作用和c++里面的string类是一样的，当然C++中的string类的长度函数也是length<br>对于链接字符串的函数和处理方法就有些不同了。<br>在java中链接两个字符串的方法就是string1.concat（string2）；类似的用法也是差不多，<br>而在c++中的字符串连接，可以是两个string类型的字符串直接相加。<br>以下就是string的一些常用方法：</p>
+<p>最后一点就是一个难点：string类是不可以改变的。下面来解释一下原因<br>例如：<br>String s = “Google”;System.out.println(“s = “ + s);</p>
+<p>s = “Runoob”;System.out.println(“s = “ + s);<br>输出结果为：</p>
+<p>从结果上看是改变了，但为什么门说String对象是不可变的呢？<br>原因在于实例中的 s 只是一个 String 对象的引用，并不是对象本身，当执行 s = “Runoob”; 创建了一个新的对象 “Runoob”，而原来的 “Google” 还存在于内存中。</p>
+<p>虽然现在不明白这一个特性有什么用，但是还是要记住的<br>我在网上查了一下c++中的string类，但是没有说明C++中的string类是不是可以改变类</p>
+<!-- ## Quick Start
+
+### Create a new post
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a> –&gt;</p>
 ]]></content>
       <categories>
-        <category>node.js</category>
+        <category>java string</category>
       </categories>
   </entry>
   <entry>
@@ -28,6 +42,51 @@
       <categories>
         <category>Angular</category>
       </categories>
+  </entry>
+  <entry>
+    <title>nodejs基本语法</title>
+    <url>/2017/11/19/1/</url>
+    <content><![CDATA[<p>一、node.js repl—–交互式解释器<br>定义：类似于window环境下的终端，可以在终端中输入命令，并且接受系统的响应<br>执行的操作：<br>1、读取：读取用户输入，解析输入的JavaScript数据结构并存储在内存中<br>2、执行：执行输入的数据结构<br>3、打印<br>4、循环：循环操作以上的步骤直至用户两次按下ctrl-c</p>
+<p>REPL 命令<br>ctrl + c - 退出当前终端。<br>ctrl + c 按下两次 - 退出 Node REPL。<br>ctrl + d - 退出 Node REPL.<br>向上/向下 键 - 查看输入的历史命令<br>tab 键 - 列出当前命令<br>.help - 列出使用命令<br>.break - 退出多行表达式<br>.clear - 退出多行表达式<br>.save filename - 保存当前的 Node REPL 会话到指定文件<br>.load filename - 载入当前 Node REPL 会话的文件内容。</p>
+<p>二、node.js回调函数<br>nodejs的异步特征就是提现再回调函数上<br>回调函数就是在函数运行完成之后被调用（例如：我们可以一边读取文件，一边执行其他命令，在文件读取完成后，我们将文件内容作为回调函数的参数返回  ）<br>var fs = require(“fs”);</p>
+<p>fs.readFile(‘input.txt’, function (err, data) {<br>    if (err) return console.error(err);<br>    console.log(data.toString());<br>});</p>
+<p>console.log(“程序执行结束!”);<br>上述程序表示：我们不需要等到程序1跑完再跑程序2.而是在跑程序1的同时可以跑程序2如此大大提高了程序的性能<br>这里可以引申两个概念：阻塞和非阻塞，两者的区别就是是否按顺序执行。        </p>
+<p>三、nodejs循环事件<br>Node.js 是单进程单线程应用程序，但是因为 V8 引擎提供的异步执行回调接口，通过这些接口可以处理大量的并发，所以性能非常高。<br>Node.js 几乎每一个 API 都是支持回调函数的。<br>Node.js 基本上所有的事件机制都是用设计模式中观察者模式实现。<br>Node.js 单线程类似进入一个while(true)的事件循环，直到没有事件观察者退出，每个异步事件都生成一个事件观察者，如果有事件发生就调用该回调函数.</p>
+<p>事件驱动程序：<br>Node.js 使用事件驱动模型，当web server接收到请求，就把它关闭然后进行处理，然后去服务下一个web请求。<br>当这个请求完成，它被放回处理队列，当到达队列开头，这个结果被返回给用户。<br>这个模型非常高效可扩展性非常强，因为webserver一直接受请求而不等待任何读写操作。（这也被称之为非阻塞式IO或者事件驱动IO）<br>在事件驱动模型中，会生成一个主循环来监听事件，当检测到事件时触发回调函数。</p>
+]]></content>
+      <categories>
+        <category>node.js</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>图片优化</title>
+    <url>/2020/01/01/picture/</url>
+    <content><![CDATA[<h3 id="图片预加载"><a href="#图片预加载" class="headerlink" title="图片预加载"></a>图片预加载</h3><ol>
+<li>img标签 如上面所列举的那些情况，就可以利用，比如用img标签与dom的background-image 来达到预加载的效果。在展示前就可以保证图片资源已经加载完成。</li>
+<li>js Image对象</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> preloadImg = <span class="function">(<span class="params">url</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">        <span class="keyword">if</span>(img.complete) &#123;</span><br><span class="line">            <span class="comment">//图片已经加载过了，可以使用图片</span></span><br><span class="line">            <span class="comment">//do something here</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="comment">//图片首次加载完成，可以使用图片</span></span><br><span class="line">                <span class="comment">//do something here</span></span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        img.src = url;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>注意，最好是先定义onload，再赋值src，不然会出现资源返回，但是onload还没有挂载的情况。<br>在实际的项目我遇到过的，就是需要在某些图片加载完成再做下一步，那么这个时候，我们就需要知道某些图片序列确定是预加载完成，同样还是使用preloadImg，结合一下promise，有多个图片资源，可以用promise.all。就可以保证所有的图片加载完成再进行下一步</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> promiseAll = imgData.map(<span class="function"><span class="keyword">function</span> (<span class="params">item, index</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">      img.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        img.onload = <span class="literal">null</span>;</span><br><span class="line">        resolve(img);</span><br><span class="line">      &#125;;</span><br><span class="line">      img.error = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        reject(<span class="string">'图片加载失败'</span>);</span><br><span class="line">      &#125;;</span><br><span class="line">      img.src = item;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="built_in">Promise</span>.all(promiseAll).then(</span><br><span class="line">    <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="comment">// 图片全部加载完成，进行下一步</span></span><br><span class="line">      <span class="comment">// todo</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(err);</span><br><span class="line">    &#125;</span><br><span class="line">  );</span><br></pre></td></tr></table></figure>
+
+<h3 id="图片懒加载"><a href="#图片懒加载" class="headerlink" title="图片懒加载"></a>图片懒加载</h3><p>所谓图片懒加载，就是延迟加载图片资源，是对网页性能的一种优化方式，比如当我们打开一个网页的时候，优先展示的图片，比如首屏图片，就先加载，而其他的图片，当需要展示的时候，再去请求图片资源，避免了首次打开时，一次性加载过多图片资源。</p>
+<h4 id="最简单的图片懒加载"><a href="#最简单的图片懒加载" class="headerlink" title="最简单的图片懒加载"></a>最简单的图片懒加载</h4><p>同样地，我们再回顾一下文章开始讲的，如果是img标签，浏览器解析到img的src有值，就会去发起请求，那么我们就可以借助这个操作，在懒加载的图片，先不赋值，等到需要展示的时候，再赋值</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;img class&#x3D;&quot;show-img&quot; data-src&#x3D;&quot;&#x2F;&#x2F;static&#x2F;show.jpg&quot; &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">const src &#x3D; $(&#39;.show-img&#39;).attr(&#39;data-src&#39;);</span><br><span class="line">$(&#39;.show-img&#39;).attr(src, src);</span><br></pre></td></tr></table></figure>
+
+<h4 id="在距离可视区域一定距离的时候加载图片"><a href="#在距离可视区域一定距离的时候加载图片" class="headerlink" title="在距离可视区域一定距离的时候加载图片"></a>在距离可视区域一定距离的时候加载图片</h4><p>一般实际中，我们不会在需要展示的时候，才发起图片请求，不然就不会有图片预加载的需求了，那么如何判断图片在何时需要展示呢？在下拉流之类的网页中，我们一般是在图片距离可视区域的一定距离，比如50px，就开始请求图片资源</p>
+<p><strong>如何判断图片是否在可视区域中？</strong></p>
+<p>原生js判断元素是否在可视区域内，这里的可视区域的距离都是以垂直距离为准</p>
+<ul>
+<li>方法一：<br>A: document.documentElement.clientHeight 可视窗口的高度<br>B: element.offsetTop dom相对于文档顶部的距离<br>C: document.documentElement.scrollTop 滚动条滚动的距离<br>B - C &lt; A 即说明元素在可视区域内</li>
+<li>方法二：getBoundingClientRect<br>const domObj = element.getBoundingClientRect();<br>domObj.top：元素上边到视窗上边的距离;<br> domObj.right：元素右边到视窗左边的距离;<br> domObj.bottom：元素下边到视窗上边的距离;<br> domObj.left：元素左边到视窗左边的距离;<br>const clientHeight = window.innerHeight;<br>当 domObj.top &lt; clientHeight 表示dom在可视区域内了</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> preImages = $(<span class="string">'img[data-src]'</span>).not(<span class="string">'.pred-img'</span>);</span><br><span class="line"><span class="built_in">Array</span>.from(preImages).forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (isPreLoad(item)) &#123;</span><br><span class="line">        loadImg(item);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> loadImg = <span class="function">(<span class="params">img</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!img.src) &#123;</span><br><span class="line">        img.src = img.attr(<span class="string">'data-src'</span>).addClass(<span class="string">'pred-img'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> isPreLoad = () &#123;</span><br><span class="line">    <span class="keyword">const</span> preObj = getBoundingClientRect();</span><br><span class="line">    <span class="keyword">const</span> cH = $(<span class="built_in">window</span>).height();</span><br><span class="line">    <span class="keyword">return</span> preObj &lt;= cH + <span class="number">100</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>优化</category>
+      </categories>
+      <tags>
+        <tag>文章</tag>
+      </tags>
   </entry>
   <entry>
     <title>nodejs特征</title>
@@ -85,35 +144,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>java中string和c++里的string</title>
-    <url>/2017/11/19/hello-world/</url>
-    <content><![CDATA[<p>java中的string类就是和C++中的string类类似，两者的哟个发也是类似<br>java中string类的字符串长度的函数是length（），作用和c++里面的string类是一样的，当然C++中的string类的长度函数也是length<br>对于链接字符串的函数和处理方法就有些不同了。<br>在java中链接两个字符串的方法就是string1.concat（string2）；类似的用法也是差不多，<br>而在c++中的字符串连接，可以是两个string类型的字符串直接相加。<br>以下就是string的一些常用方法：</p>
-<p>最后一点就是一个难点：string类是不可以改变的。下面来解释一下原因<br>例如：<br>String s = “Google”;System.out.println(“s = “ + s);</p>
-<p>s = “Runoob”;System.out.println(“s = “ + s);<br>输出结果为：</p>
-<p>从结果上看是改变了，但为什么门说String对象是不可变的呢？<br>原因在于实例中的 s 只是一个 String 对象的引用，并不是对象本身，当执行 s = “Runoob”; 创建了一个新的对象 “Runoob”，而原来的 “Google” 还存在于内存中。</p>
-<p>虽然现在不明白这一个特性有什么用，但是还是要记住的<br>我在网上查了一下c++中的string类，但是没有说明C++中的string类是不是可以改变类</p>
-<!-- ## Quick Start
-
-### Create a new post
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a> –&gt;</p>
-]]></content>
-      <categories>
-        <category>java string</category>
-      </categories>
-  </entry>
-  <entry>
     <title>typescript基础入门</title>
     <url>/2019/11/19/typescript/</url>
     <content><![CDATA[<p>JavaScript和typescript的区别：<br>typescript是JavaScript的超集，拓展了JavaScript的语法，因此现有的JavaScript代码可能与typescript一起工作无需任何修改，typescript通过类型注解的静态类型检查</p>
@@ -157,376 +187,6 @@
 <h3 id="示例：旋转的三维立方体"><a href="#示例：旋转的三维立方体" class="headerlink" title="示例：旋转的三维立方体"></a>示例：旋转的三维立方体</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"stage"</span>&gt;</span>  <span class="comment">&lt;!--舞台元素，视角所在--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"three-d-box"</span>&gt;</span>   <span class="comment">&lt;!--动画容器，通过它来控制整个立方体--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♑<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  <span class="comment">&lt;!--动画元素，立方体的六个面--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♍<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♌<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♋<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♎<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>♓<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">ul &#123;  /*调整ul标签的样式，取消内边距、外边距，和“点”样式*/</span><br><span class="line">    padding: 0;</span><br><span class="line">    margin: 0;</span><br><span class="line">    list-style-type: none;</span><br><span class="line">&#125;</span><br><span class="line">.stage &#123;  /*设置舞台元素在屏幕居中，设置合适的景深大小*/</span><br><span class="line">    position: relative;</span><br><span class="line">    width: 800px;</span><br><span class="line">    height: 800px;</span><br><span class="line">    margin: 100px auto;</span><br><span class="line">    perspective: 800px;</span><br><span class="line">&#125;</span><br><span class="line">@keyframes move &#123; /*设置动画关键帧*/</span><br><span class="line">    0% &#123;</span><br><span class="line">        transform: rotateX(0deg);</span><br><span class="line">    &#125;</span><br><span class="line">    25% &#123;</span><br><span class="line">        transform: rotateX(180deg);</span><br><span class="line">    &#125;</span><br><span class="line">    50% &#123;</span><br><span class="line">        transform: rotateX(360deg) rotateY(0deg);</span><br><span class="line">    &#125;</span><br><span class="line">    75% &#123;</span><br><span class="line">        transform: rotateX(360deg) rotateY(180deg);</span><br><span class="line">    &#125;       </span><br><span class="line">    100% &#123;</span><br><span class="line">        transform: rotateX(360deg) rotateY(360deg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box &#123;  /*动画容器居中在舞台元素中间*/</span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 200px;</span><br><span class="line">    position: absolute;</span><br><span class="line">    left: 50%;</span><br><span class="line">    top: 50%;</span><br><span class="line">    margin: -100px 0 0 -100px;</span><br><span class="line">    transform-style: preserve-3d; /*设置3D属性让子元素三维空间呈现*/</span><br><span class="line">    animation: move 3s linear infinite; /*设置动画*/</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li &#123; /*设置动画子元素公共属性*/</span><br><span class="line">    position: absolute;</span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 200px;</span><br><span class="line">    left: 0;</span><br><span class="line">    top: 0;</span><br><span class="line">    font-size: 50px;</span><br><span class="line">    line-height: 200px;</span><br><span class="line">    text-align: center;</span><br><span class="line">    opacity: 0.5;</span><br><span class="line">&#125;</span><br><span class="line">/*为了保证我们对立方体位置的控制，我们需要让动画容器在立方体的中间位置*/</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(1) &#123;</span><br><span class="line">    background-color: red;</span><br><span class="line">    transform: translateZ(-100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(2) &#123;</span><br><span class="line">    background-color: greenyellow;</span><br><span class="line">    transform: translateZ(100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(3) &#123;</span><br><span class="line">    background-color: cornflowerblue;</span><br><span class="line">    transform: rotateX(90deg) translateZ(100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(4) &#123;</span><br><span class="line">    background-color: orangered;</span><br><span class="line">    transform: rotateX(-90deg) translateZ(100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(5) &#123;</span><br><span class="line">    background-color: deeppink;</span><br><span class="line">    transform: rotateY(90deg) translateZ(100px);</span><br><span class="line">&#125;</span><br><span class="line">.stage .three-d-box&gt;li:nth-child(6) &#123;</span><br><span class="line">    background-color: lightcoral;</span><br><span class="line">    transform: rotateY(-90deg) translateZ(100px);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>css</category>
-      </categories>
-      <tags>
-        <tag>视频</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>javascript-apply、call、bind</title>
-    <url>/2020/01/01/javascript/JavaScript_02/</url>
-    <content><![CDATA[<h3 id="this、apply、call、bind"><a href="#this、apply、call、bind" class="headerlink" title="this、apply、call、bind"></a>this、apply、call、bind</h3><p>这又是一个面试经典问题也是 ES5中众多坑中的一个，在 ES6 中可能会极大避免 this产生的错误，但是为了一些老代码的维护，最好还是了解一下 this 的指向和 call、apply、bind 三者的区别。</p>
-<p>this 的指向<br>在 ES5 中，其实 this 的指向，始终坚持一个原理：this 永远指向最后调用它的那个对象，来，跟着我朗读三遍：this 永远指向最后调用它的那个对象，this 永远指向最后调用它的那个对象，this 永远指向最后调用它的那个对象。记住这句话，this 你已经了解一半了。</p>
-<p>下面我们来看一个最简单的例子：<br>例 1：</p>
-<pre><code>var name = &quot;windowsName&quot;;
-function a() {
-    var name = &quot;Cherry&quot;;
-
-    console.log(this.name);          // windowsName
-
-    console.log(&quot;inner:&quot; + this);    // inner: Window
-}
-a();
-console.log(&quot;outer:&quot; + this)         // outer: Window</code></pre><p>这个相信大家都知道为什么 log 的是 windowsName，因为根据刚刚的那句话“this 永远指向最后调用它的那个对象”，我们看最后调用 a 的地方 a();，前面没有调用的对象那么就是全局对象 window，这就相当于是 window.a()；注意，这里我们没有使用严格模式，如果使用严格模式的话，全局对象就是 undefined，那么就会报错 Uncaught TypeError: Cannot read property ‘name’ of undefined。</p>
-<p>再看下这个例子：<br>例 2：</p>
-<pre><code>var name = &quot;windowsName&quot;;
-var a = {
-    name: &quot;Cherry&quot;,
-    fn : function () {
-        console.log(this.name);      // Cherry
-    }
-}
-a.fn();</code></pre><p>在这个例子中，函数 fn 是对象 a 调用的，所以打印的值就是 a 中的 name 的值。是不是有一点清晰了呢~</p>
-<p>我们做一个小小的改动：<br>例 3：</p>
-<p>var name = “windowsName”;<br>    var a = {<br>        name: “Cherry”,<br>        fn : function () {<br>            console.log(this.name);      // Cherry<br>        }<br>    }<br>    window.a.fn();</p>
-<p>这里打印 Cherry 的原因也是因为刚刚那句话“this 永远指向最后调用它的那个对象”，最后调用它的对象仍然是对象 a。</p>
-<p>我们再来看一下这个例子：<br>例 4：</p>
-<pre><code>var name = &quot;windowsName&quot;;
-var a = {
-    // name: &quot;Cherry&quot;,
-    fn : function () {
-        console.log(this.name);      // undefined
-    }
-}
-window.a.fn();</code></pre><p>这里为什么会打印 undefined 呢？这是因为正如刚刚所描述的那样，调用 fn 的是 a 对象，也就是说 fn 的内部的 this 是对象 a，而对象 a 中并没有对 name 进行定义，所以 log 的 this.name 的值是 undefined。</p>
-<p>这个例子还是说明了：this 永远指向最后调用它的那个对象，因为最后调用 fn 的对象是 a，所以就算 a 中没有 name 这个属性，也不会继续向上一个对象寻找 this.name，而是直接输出 undefined。</p>
-<p>再来看一个比较坑的例子：<br>例 5：</p>
-<pre><code>var name = &quot;windowsName&quot;;
-var a = {
-    name : null,
-    // name: &quot;Cherry&quot;,
-    fn : function () {
-        console.log(this.name);      // windowsName
-    }
-}
-
-var f = a.fn;
-f();</code></pre><p>这里你可能会有疑问，为什么不是 Cherry，这是因为虽然将 a 对象的 fn 方法赋值给变量 f 了，但是没有调用，再接着跟我念这一句话：“this 永远指向最后调用它的那个对象”，由于刚刚的 f 并没有调用，所以 fn() 最后仍然是被 window 调用的。所以 this 指向的也就是 window。</p>
-<p>由以上五个例子我们可以看出，this 的指向并不是在创建的时候就可以确定的，在 es5 中，永远是this 永远指向最后调用它的那个对象。</p>
-<p>再来看一个例子：<br>例 6：</p>
-<pre><code>var name = &quot;windowsName&quot;;
-
-function fn() {
-    var name = &apos;Cherry&apos;;
-    innerFunction();
-    function innerFunction() {
-        console.log(this.name);      // windowsName
-    }
-}
-
-fn()</code></pre><p>读到现在了应该能够理解这是为什么了吧(oﾟ▽ﾟ)o。</p>
-<p>怎么改变 this 的指向<br>改变 this 的指向我总结有以下几种方法：</p>
-<p>使用 ES6 的箭头函数<br>在函数内部使用 _this = this<br>使用 apply、call、bind<br>new 实例化一个对象<br>例 7：</p>
-<pre><code>var name = &quot;windowsName&quot;;
-
-var a = {
-    name : &quot;Cherry&quot;,
-
-    func1: function () {
-        console.log(this.name)     
-    },
-
-    func2: function () {
-        setTimeout(  function () {
-            this.func1()
-        },100);
-    }
-
-};
-
-a.func2()     // this.func1 is not a function</code></pre><p>在不使用箭头函数的情况下，是会报错的，因为最后调用 setTimeout 的对象是 window，但是在 window 中并没有 func1 函数。</p>
-<p>我们在改变 this 指向这一节将把这个例子作为 demo 进行改造。</p>
-<p>箭头函数<br>众所周知，ES6 的箭头函数是可以避免 ES5 中使用 this 的坑的。箭头函数的 this 始终指向函数定义时的 this，而非执行时。，箭头函数需要记着这句话：“箭头函数中没有 this 绑定，必须通过查找作用域链来决定其值，如果箭头函数被非箭头函数包含，则 this 绑定的是最近一层非箭头函数的 this，否则，this 为 undefined”。</p>
-<p>例 8 ：</p>
-<pre><code>var name = &quot;windowsName&quot;;
-
-var a = {
-    name : &quot;Cherry&quot;,
-
-    func1: function () {
-        console.log(this.name)     
-    },
-
-    func2: function () {
-        setTimeout( () =&gt; {
-            this.func1()
-        },100);
-    }
-
-};
-
-a.func2()     // Cherry</code></pre><p>在函数内部使用 _this = this<br>如果不使用 ES6，那么这种方式应该是最简单的不会出错的方式了，我们是先将调用这个函数的对象保存在变量 _this 中，然后在函数中都使用这个 _this，这样 _this 就不会改变了。<br>例 9：</p>
-<pre><code>var name = &quot;windowsName&quot;;
-
-var a = {
-
-    name : &quot;Cherry&quot;,
-
-    func1: function () {
-        console.log(this.name)     
-    },
-
-    func2: function () {
-        var _this = this;
-        setTimeout( function() {
-            _this.func1()
-        },100);
-    }
-
-};
-
-a.func2()       // Cherry</code></pre><p>这个例子中，在 func2 中，首先设置 var _this = this;，这里的 this 是调用 func2 的对象 a，为了防止在 func2 中的 setTimeout 被 window 调用而导致的在 setTimeout 中的 this 为 window。我们将 this(指向变量 a) 赋值给一个变量 _this，这样，在 func2 中我们使用 _this 就是指向对象 a 了。</p>
-<p>使用 apply、call、bind<br>使用 apply、call、bind 函数也是可以改变 this 的指向的，原理稍后再讲，我们先来看一下是怎么实现的：</p>
-<p>使用 apply<br>例 10：</p>
-<pre><code>var a = {
-    name : &quot;Cherry&quot;,
-
-    func1: function () {
-        console.log(this.name)
-    },
-
-    func2: function () {
-        setTimeout(  function () {
-            this.func1()
-        }.apply(a),100);
-    }
-
-};
-
-a.func2()            // Cherry</code></pre><p>使用 call<br>例 11：</p>
-<pre><code>var a = {
-    name : &quot;Cherry&quot;,
-
-    func1: function () {
-        console.log(this.name)
-    },
-
-    func2: function () {
-        setTimeout(  function () {
-            this.func1()
-        }.call(a),100);
-    }
-
-};
-
-a.func2()            // Cherry</code></pre><p>使用 bind<br>例 12：</p>
-<pre><code>var a = {
-    name : &quot;Cherry&quot;,
-
-    func1: function () {
-        console.log(this.name)
-    },
-
-    func2: function () {
-        setTimeout(  function () {
-            this.func1()
-        }.bind(a)(),100);
-    }
-
-};
-
-a.func2()            // Cherry</code></pre><p>###apply、call、bind 区别<br>刚刚我们已经介绍了 apply、call、bind 都是可以改变 this 的指向的，但是这三个函数稍有不同。</p>
-<p>在 MDN 中定义 apply 如下；</p>
-<p>apply() 方法调用一个函数, 其具有一个指定的this值，以及作为一个数组（或类似数组的对象）提供的参数</p>
-<p>语法：</p>
-<p>fun.apply(thisArg, [argsArray])</p>
-<p>thisArg：在 fun 函数运行时指定的 this 值。需要注意的是，指定的 this 值并不一定是该函数执行时真正的 this 值，如果这个函数处于非严格模式下，则指定为 null 或 undefined 时会自动指向全局对象（浏览器中就是window对象），同时值为原始值（数字，字符串，布尔值）的 this 会指向该原始值的自动包装对象。<br>argsArray：一个数组或者类数组对象，其中的数组元素将作为单独的参数传给 fun 函数。如果该参数的值为null 或 undefined，则表示不需要传入任何参数。从ECMAScript 5 开始可以使用类数组对象。浏览器兼容性请参阅本文底部内容。<br>apply 和 call 的区别<br>其实 apply 和 call 基本类似，他们的区别只是传入的参数不同。</p>
-<p>call 的语法为：</p>
-<p>fun.call(thisArg[, arg1[, arg2[, …]]])<br>所以 apply 和 call 的区别是 call 方法接受的是若干个参数列表，而 apply 接收的是一个包含多个参数的数组。</p>
-<p>例 13：</p>
-<pre><code>var a ={
-    name : &quot;Cherry&quot;,
-    fn : function (a,b) {
-        console.log( a + b)
-    }
-}
-
-var b = a.fn;
-b.apply(a,[1,2])     // 3</code></pre><p>例 14：</p>
-<pre><code>var a ={
-    name : &quot;Cherry&quot;,
-    fn : function (a,b) {
-        console.log( a + b)
-    }
-}
-
-var b = a.fn;
-b.call(a,1,2)       // 3</code></pre><p>bind 和 apply、call 区别<br>我们先来将刚刚的例子使用 bind 试一下</p>
-<pre><code>var a ={
-    name : &quot;Cherry&quot;,
-    fn : function (a,b) {
-        console.log( a + b)
-    }
-}
-
-var b = a.fn;
-b.bind(a,1,2)</code></pre><p>我们会发现并没有输出，这是为什么呢，我们来看一下 MDN 上的文档说明：</p>
-<p>bind()方法创建一个新的函数, 当被调用时，将其this关键字设置为提供的值，在调用新函数时，在任何提供之前提供一个给定的参数序列。</p>
-<p>所以我们可以看出，bind 是创建一个新的函数，我们必须要手动去调用：</p>
-<pre><code>var a ={
-    name : &quot;Cherry&quot;,
-    fn : function (a,b) {
-        console.log( a + b)
-    }
-}
-
-var b = a.fn;
-b.bind(a,1,2)()           // 3</code></pre><p>JS 中的函数调用<br>看到留言说，很多童靴不理解为什么 例 6 的 innerFunction 和 例 7 的 this 是指向 window 的，所以我就来补充一下 JS 中的函数调用。<br>例 6：</p>
-<pre><code>var name = &quot;windowsName&quot;;
-
-function fn() {
-    var name = &apos;Cherry&apos;;
-    innerFunction();
-    function innerFunction() {
-        console.log(this.name);      // windowsName
-    }
-}
-
-fn()</code></pre><p>例 7：</p>
-<pre><code>var name = &quot;windowsName&quot;;
-
-var a = {
-    name : &quot;Cherry&quot;,
-
-    func1: function () {
-        console.log(this.name)     
-    },
-
-    func2: function () {
-        setTimeout(  function () {
-            this.func1()
-        },100);
-    }
-
-};
-
-a.func2()     // this.func1 is not a function</code></pre><p>函数调用的方法一共有 4 种</p>
-<p>作为一个函数调用<br>函数作为方法调用<br>使用构造函数调用函数<br>作为函数方法调用函数（call、apply）<br>作为一个函数调用<br>比如上面的 例 1：<br>例 1：</p>
-<pre><code>var name = &quot;windowsName&quot;;
-function a() {
-    var name = &quot;Cherry&quot;;
-
-    console.log(this.name);          // windowsName
-
-    console.log(&quot;inner:&quot; + this);    // inner: Window
-}
-a();
-console.log(&quot;outer:&quot; + this)         // outer: Window</code></pre><p>这样一个最简单的函数，不属于任何一个对象，就是一个函数，这样的情况在 JavaScript 的在浏览器中的非严格模式默认是属于全局对象 window 的，在严格模式，就是 undefined。</p>
-<p>但这是一个全局的函数，很容易产生命名冲突，所以不建议这样使用。</p>
-<p>函数作为方法调用<br>所以说更多的情况是将函数作为对象的方法使用。比如例 2：<br>例 2：</p>
-<pre><code>var name = &quot;windowsName&quot;;
-var a = {
-    name: &quot;Cherry&quot;,
-    fn : function () {
-        console.log(this.name);      // Cherry
-    }
-}
-a.fn();</code></pre><p>这里定义一个对象 a，对象 a 有一个属性（name）和一个方法（fn）。</p>
-<p>然后对象 a 通过 . 方法调用了其中的 fn 方法。</p>
-<p>然后我们一直记住的那句话“this 永远指向最后调用它的那个对象”，所以在 fn 中的 this 就是指向 a 的。</p>
-<p>使用构造函数调用函数<br>如果函数调用前使用了 new 关键字, 则是调用了构造函数。<br>这看起来就像创建了新的函数，但实际上 JavaScript 函数是重新创建的对象：</p>
-<p>// 构造函数:<br>function myFunction(arg1, arg2) {<br>    this.firstName = arg1;<br>    this.lastName  = arg2;<br>}</p>
-<p>// This    creates a new object<br>var a = new myFunction(“Li”,”Cherry”);<br>a.lastName;                             // 返回 “Cherry”<br>这就有要说另一个面试经典问题：new 的过程了，(ಥ_ಥ)<br>这里就简单的来看一下 new 的过程吧：<br>伪代码表示：</p>
-<p>var a = new myFunction(“Li”,”Cherry”);</p>
-<p>new myFunction{<br>    var obj = {};<br>    obj.<strong>proto</strong> = myFunction.prototype;<br>    var result = myFunction.call(obj,”Li”,”Cherry”);<br>    return typeof result === ‘obj’? result : obj;<br>}<br>创建一个空对象 obj;<br>将新创建的空对象的隐式原型指向其构造函数的显示原型。<br>使用 call 改变 this 的指向<br>如果无返回值或者返回一个非对象值，则将 obj 返回作为新对象；如果返回值是一个新对象的话那么直接直接返回该对象。<br>所以我们可以看到，在 new 的过程中，我们是使用 call 改变了 this 的指向。</p>
-<p>作为函数方法调用函数<br>在 JavaScript 中, 函数是对象。</p>
-<p>JavaScript 函数有它的属性和方法。<br>call() 和 apply() 是预定义的函数方法。 两个方法可用于调用函数，两个方法的第一个参数必须是对象本身</p>
-<p>在 JavaScript 严格模式(strict mode)下, 在调用函数时第一个参数会成为 this 的值， 即使该参数不是一个对象。<br>在 JavaScript 非严格模式(non-strict mode)下, 如果第一个参数的值是 null 或 undefined, 它将使用全局对象替代。</p>
-<p>这个时候我们再来看例 6：<br>例 6：</p>
-<pre><code>var name = &quot;windowsName&quot;;
-
-function fn() {
-    var name = &apos;Cherry&apos;;
-    innerFunction();
-    function innerFunction() {
-        console.log(this.name);      // windowsName
-    }
-}
-
-fn()</code></pre><p>这里的 innerFunction() 的调用是不是属于第一种调用方式：作为一个函数调用（它就是作为一个函数调用的，没有挂载在任何对象上，所以对于没有挂载在任何对象上的函数，在非严格模式下 this 就是指向 window 的）</p>
-<p>然后再看一下 例 7：<br>例 7：</p>
-<pre><code>var name = &quot;windowsName&quot;;
-
-var a = {
-    name : &quot;Cherry&quot;,
-
-    func1: function () {
-        console.log(this.name)     
-    },
-
-    func2: function () {
-        setTimeout(  function () {
-            this.func1()
-        },100 );
-    }
-
-};
-
-a.func2()     // this.func1 is not a function</code></pre><p>这个简单一点的理解可以理解为“匿名函数的 this 永远指向 window”，你可以这样想，还是那句话this 永远指向最后调用它的那个对象，那么我们就来找最后调用匿名函数的对象，这就很尴尬了，因为匿名函数名字啊，笑哭，所以我们是没有办法被其他对象调用匿名函数的。所以说 匿名函数的 this 永远指向 window。</p>
-<p>如果这个时候你要问，那匿名函数都是怎么定义的，首先，我们通常写的匿名函数都是自执行的，就是在匿名函数后面加 () 让其自执行。其次就是虽然匿名函数不能被其他对象调用，但是可以被其他函数调用啊，比如例 7 中的 setTimeout。</p>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>视频</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>javascript-cookie、localStorage和sessionStorage 三者之间的区别以及存储、获取、删除等使用方式</title>
-    <url>/2020/02/01/javascript/JavaScript_03/</url>
-    <content><![CDATA[<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><p>Cookie 是小甜饼的意思。顾名思义，cookie 确实非常小，它的大小限制为4KB左右，是网景公司的前雇员 Lou Montulli 在1993年3月的发明。它的主要用途有保存登录信息，比如你登录某个网站市场可以看到“记住密码”，这通常就是通过在 Cookie 中存入一段辨别用户身份的数据来实现的。<br>####localStorage<br>localStorage 是 HTML5 标准中新加入的技术，它并不是什么划时代的新东西。早在 IE 6 时代，就有一个叫 userData 的东西用于本地存储，而当时考虑到浏览器兼容性，更通用的方案是使用 Flash。而如今，localStorage 被大多数浏览器所支持，如果你的网站需要支持 IE6+，那以 userData 作为你的 polyfill 的方案是种不错的选择。</p>
-<h4 id="sessionStorage"><a href="#sessionStorage" class="headerlink" title="sessionStorage"></a>sessionStorage</h4><p>sessionStorage 与 localStorage 的接口类似，但保存数据的生命周期与 localStorage 不同。做过后端开发的同学应该知道 Session 这个词的意思，直译过来是“会话”。而 sessionStorage 是一个前端的概念，它只是可以将一部分数据在当前会话中保存下来，刷新页面数据依旧存在。但当页面关闭后，sessionStorage 中的数据就会被清空。</p>
-<h3 id="三者的异同"><a href="#三者的异同" class="headerlink" title="三者的异同"></a>三者的异同</h3><table>
-<thead>
-<tr>
-<th>特性</th>
-<th>Cookie</th>
-<th>localStorage</th>
-<th>sessionStorage</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>数据的生命期</td>
-<td>可设置失效时间，默认是关闭浏览器后失效</td>
-<td>除非被清除，否则永久保存</td>
-<td>仅在当前会话下有效，关闭页面或浏览器后被清除</td>
-</tr>
-<tr>
-<td>存放数据大小</td>
-<td>4K左右</td>
-<td>一般为5MB</td>
-<td>一般为5MB</td>
-</tr>
-<tr>
-<td>与服务器端通信</td>
-<td>每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题</td>
-<td>仅在客户端（即浏览器）中保存，不参与和服务器的通信</td>
-<td>仅在客户端（即浏览器）中保存，不参与和服务器的通信</td>
-</tr>
-<tr>
-<td>易用性</td>
-<td>需要程序员自己封装，源生的Cookie接口不友好</td>
-<td>源生接口可以接受，亦可再次封装来对Object和Array有更好的支持</td>
-<td>源生接口可以接受，亦可再次封装来对Object和Array有更好的支持</td>
-</tr>
-</tbody></table>
-<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>有了对上面这些差别的直观理解，我们就可以讨论三者的应用场景了。</p>
-<p>因为考虑到每个 HTTP 请求都会带着 Cookie 的信息，所以 Cookie 当然是能精简就精简啦，比较常用的一个应用场景就是判断用户是否登录。<strong>针对登录过的用户</strong>，服务器端会在他登录时往 Cookie 中插入一段加密过的唯一辨识单一用户的辨识码，下次只要读取这个值就可以判断当前用户是否登录啦。曾经还使用 Cookie 来保存用户在电商网站的购物车信息，如今有了 localStorage，似乎在这个方面也可以给 Cookie 放个假了~</p>
-<p>而另一方面 localStorage 接替了 Cookie 管理购物车的工作，同时也能胜任其他一些工作。比如HTML5游戏通常会产生一些本地数据，localStorage 也是非常适用的。如果遇到一些内容特别多的表单，为了优化用户体验，我们可能要把表单页面拆分成多个子页面，然后按步骤引导用户填写。这时候 sessionStorage 的作用就发挥出来了。</p>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
       </categories>
       <tags>
         <tag>视频</tag>
@@ -878,53 +538,318 @@ a.func2()     // this.func1 is not a function</code></pre><p>这个简单一点�
       </tags>
   </entry>
   <entry>
-    <title>javascript-箭头函数、map</title>
-    <url>/2020/02/01/javascript/javascript_04/</url>
-    <content><![CDATA[<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p>我们知道箭头是es6中的一个概念，<br>但是看上去是对函数的一个缩写，大大减少了代码的书写量<br>如果没有参数，那么可以进一步简化：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">() =&gt; &#123;</span><br><span class="line">    statements;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>如果只有一个参数，可以省略括号:</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">parameters =&gt; &#123;</span><br><span class="line">    statements;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>如果返回值仅仅只有一个表达式(expression), 还可以省略大括号：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">parameters =&gt; expression</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等价于:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> (<span class="params">parameters</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> expression;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="没有局部this的绑定"><a href="#没有局部this的绑定" class="headerlink" title="没有局部this的绑定"></a>没有局部this的绑定</h4><p>和一般的函数不同，箭头函数不会绑定this。 或者说箭头函数不会改变this本来的绑定。 我们用一个例子来说明：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Counter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.num = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Counter();</span><br></pre></td></tr></table></figure>
-<p>因为使用了关键字new构造，Count()函数中的this绑定到一个新的对象，并且赋值给a。通过console.log打印a.num，会输出 0。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a.num);</span><br><span class="line"><span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
-<p>如果我们想每过一秒将a.num的值加 1，该如何实现呢？可以使用setInterval()函数。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Counter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.num = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">this</span>.timer = setInterval(<span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.num++;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.num);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们来看一下输出结果：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> Counter();</span><br><span class="line"><span class="comment">// NaN</span></span><br><span class="line"><span class="comment">// NaN</span></span><br><span class="line"><span class="comment">// NaN</span></span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
-<p>你会发现，每隔一秒都会有一个NaN打印出来，而不是累加的数字。到底哪里错了呢？ 首先使用如下语句停止setInterval函数的连续执行：clearInterval(b.timer)</p>
-<p>我们来尝试理解为什么出错：根据上一篇博客讲解的规则，首先函数setInterval没有被某个声明的对象调用，也没有使用new关键字，再之没有使用bind, call和apply。setInterval只是一个普通的函数。实际上setInterval里面的this绑定到全局对象的。我们可以通过将this打印出来验证这一点：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Counter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.num = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">this</span>.timer = setInterval(<span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> Counter();</span><br></pre></td></tr></table></figure>
-<p>回到之前的函数，之所以打印NaN，是因为this.num绑定到window对象的num，而window.num未定义。</p>
-<p><strong>那么，我们如何解决这个问题呢？使用箭头函数！使用箭头函数就不会导致this被绑定到全局对象。</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Counter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.num = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">this</span>.timer = setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.num++;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.num);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> Counter();</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+    <title>javascript-apply、call、bind</title>
+    <url>/2020/01/01/javascript/JavaScript_02/</url>
+    <content><![CDATA[<h3 id="this、apply、call、bind"><a href="#this、apply、call、bind" class="headerlink" title="this、apply、call、bind"></a>this、apply、call、bind</h3><p>这又是一个面试经典问题也是 ES5中众多坑中的一个，在 ES6 中可能会极大避免 this产生的错误，但是为了一些老代码的维护，最好还是了解一下 this 的指向和 call、apply、bind 三者的区别。</p>
+<p>this 的指向<br>在 ES5 中，其实 this 的指向，始终坚持一个原理：this 永远指向最后调用它的那个对象，来，跟着我朗读三遍：this 永远指向最后调用它的那个对象，this 永远指向最后调用它的那个对象，this 永远指向最后调用它的那个对象。记住这句话，this 你已经了解一半了。</p>
+<p>下面我们来看一个最简单的例子：<br>例 1：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+function a() {
+    var name = &quot;Cherry&quot;;
 
-<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>js中的map是数组上的一个原型</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//所有的数组实例都可以调用它</span></span><br><span class="line"><span class="built_in">Array</span>.prototype.map === [].map;</span><br></pre></td></tr></table></figure>
-<p>map函数语法：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">*params:</span></span><br><span class="line"><span class="comment">*   callback生成新数组元素的函数，使用三个参数：</span></span><br><span class="line"><span class="comment">*       currentValue：callback 中正在处理的当前元素。</span></span><br><span class="line"><span class="comment">*       index：callback 数组中正在处理的当前元素的索引。(可选)</span></span><br><span class="line"><span class="comment">*       array: map 方法调用的数组。（可选）</span></span><br><span class="line"><span class="comment">*   return 返回值是回调函数的结果组成了新数组的每一个元素</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">var</span> new_array = arr.map(<span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params">currentValue, index, array</span>) </span>&#123;</span><br><span class="line"> <span class="comment">// Return element for new_array </span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>map() 方法的作用是遍历调用它数组的每一个元素，根据每个元素都调用一次提供的函数后的返回值组成一个新的数组。下面给出一个简单的实例代码:</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> array1 = [<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// pass a function to map</span></span><br><span class="line"><span class="keyword">const</span> map1 = array1.map(<span class="function"><span class="params">x</span> =&gt;</span> x * <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(map1);</span><br><span class="line"><span class="comment">// expected output: Array [2, 8, 18, 32]</span></span><br></pre></td></tr></table></figure>
+    console.log(this.name);          // windowsName
 
-<h4 id="下面是map和parelit-函数"><a href="#下面是map和parelit-函数" class="headerlink" title="下面是map和parelit()函数"></a>下面是map和parelit()函数</h4><p><strong>window下的parseInt（）函数理解</strong><br>parseInt(string, radix) 将一个字符串 string 转换为 radix 进制的整数， radix 为介于2-36之间的数。</p>
-<ol>
-<li>parseInt是window下的一个方法，所以再js中可以直接调用</li>
-<li>parseInt的语法</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">*params :</span></span><br><span class="line"><span class="comment">*   string：要被解析的值。如果参数不是一个字符串，则将其转换为字符串(使用  ToString 抽象操作)。字符串开头的空白符将会被忽略。</span></span><br><span class="line"><span class="comment">*   radix(可选)：从 2 到 36，代表该进位系统的数字。例如说指定 10 就等于指定十进位。请注意，通常预设值不是 10 进位！</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="built_in">parseInt</span>(string, radix);</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>radix参数详解</li>
-<li>如果 radix 是 undefined、0或未指定的，JavaScript会假定以下情况：<ul>
-<li>如果输入的 string以”0x”或”0x”（一个0，后面是小写或大写的X）开头，那么radix被假定为16，字符串的其余部分被解析为十六进制数。</li>
-<li>如果输入的 string以”0”（0）开头，radix被假定为8（八进制）或10（十进制）。具体选择哪一个radix取决于实现。ECMAScript5澄清了应该使用10(十进制)，但不是所有的浏览器都支持。因此，在使用 parseInt 时，一定要指定一个 radix。</li>
-<li>如果输入的 string以任何其他值开头，radix是10(十进制)。如果第一个字符不能转换为数字，parseInt会返回 NaN。</li>
-</ul>
-</li>
-<li>radix 小于 2 或大于 36（0除外） ，或第一个非空格字符不能转换为数字。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let arr &#x3D; [1, 2, 3, 4];</span><br><span class="line">arr &#x3D; arr.map(parseInt);</span><br><span class="line">console.log(arr);&#x2F;&#x2F;&#x3D;&gt; 1,NAN,NAN,NAN</span><br></pre></td></tr></table></figure>]]></content>
+    console.log(&quot;inner:&quot; + this);    // inner: Window
+}
+a();
+console.log(&quot;outer:&quot; + this)         // outer: Window</code></pre><p>这个相信大家都知道为什么 log 的是 windowsName，因为根据刚刚的那句话“this 永远指向最后调用它的那个对象”，我们看最后调用 a 的地方 a();，前面没有调用的对象那么就是全局对象 window，这就相当于是 window.a()；注意，这里我们没有使用严格模式，如果使用严格模式的话，全局对象就是 undefined，那么就会报错 Uncaught TypeError: Cannot read property ‘name’ of undefined。</p>
+<p>再看下这个例子：<br>例 2：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+var a = {
+    name: &quot;Cherry&quot;,
+    fn : function () {
+        console.log(this.name);      // Cherry
+    }
+}
+a.fn();</code></pre><p>在这个例子中，函数 fn 是对象 a 调用的，所以打印的值就是 a 中的 name 的值。是不是有一点清晰了呢~</p>
+<p>我们做一个小小的改动：<br>例 3：</p>
+<p>var name = “windowsName”;<br>    var a = {<br>        name: “Cherry”,<br>        fn : function () {<br>            console.log(this.name);      // Cherry<br>        }<br>    }<br>    window.a.fn();</p>
+<p>这里打印 Cherry 的原因也是因为刚刚那句话“this 永远指向最后调用它的那个对象”，最后调用它的对象仍然是对象 a。</p>
+<p>我们再来看一下这个例子：<br>例 4：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+var a = {
+    // name: &quot;Cherry&quot;,
+    fn : function () {
+        console.log(this.name);      // undefined
+    }
+}
+window.a.fn();</code></pre><p>这里为什么会打印 undefined 呢？这是因为正如刚刚所描述的那样，调用 fn 的是 a 对象，也就是说 fn 的内部的 this 是对象 a，而对象 a 中并没有对 name 进行定义，所以 log 的 this.name 的值是 undefined。</p>
+<p>这个例子还是说明了：this 永远指向最后调用它的那个对象，因为最后调用 fn 的对象是 a，所以就算 a 中没有 name 这个属性，也不会继续向上一个对象寻找 this.name，而是直接输出 undefined。</p>
+<p>再来看一个比较坑的例子：<br>例 5：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+var a = {
+    name : null,
+    // name: &quot;Cherry&quot;,
+    fn : function () {
+        console.log(this.name);      // windowsName
+    }
+}
+
+var f = a.fn;
+f();</code></pre><p>这里你可能会有疑问，为什么不是 Cherry，这是因为虽然将 a 对象的 fn 方法赋值给变量 f 了，但是没有调用，再接着跟我念这一句话：“this 永远指向最后调用它的那个对象”，由于刚刚的 f 并没有调用，所以 fn() 最后仍然是被 window 调用的。所以 this 指向的也就是 window。</p>
+<p>由以上五个例子我们可以看出，this 的指向并不是在创建的时候就可以确定的，在 es5 中，永远是this 永远指向最后调用它的那个对象。</p>
+<p>再来看一个例子：<br>例 6：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+
+function fn() {
+    var name = &apos;Cherry&apos;;
+    innerFunction();
+    function innerFunction() {
+        console.log(this.name);      // windowsName
+    }
+}
+
+fn()</code></pre><p>读到现在了应该能够理解这是为什么了吧(oﾟ▽ﾟ)o。</p>
+<p>怎么改变 this 的指向<br>改变 this 的指向我总结有以下几种方法：</p>
+<p>使用 ES6 的箭头函数<br>在函数内部使用 _this = this<br>使用 apply、call、bind<br>new 实例化一个对象<br>例 7：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+
+var a = {
+    name : &quot;Cherry&quot;,
+
+    func1: function () {
+        console.log(this.name)     
+    },
+
+    func2: function () {
+        setTimeout(  function () {
+            this.func1()
+        },100);
+    }
+
+};
+
+a.func2()     // this.func1 is not a function</code></pre><p>在不使用箭头函数的情况下，是会报错的，因为最后调用 setTimeout 的对象是 window，但是在 window 中并没有 func1 函数。</p>
+<p>我们在改变 this 指向这一节将把这个例子作为 demo 进行改造。</p>
+<p>箭头函数<br>众所周知，ES6 的箭头函数是可以避免 ES5 中使用 this 的坑的。箭头函数的 this 始终指向函数定义时的 this，而非执行时。，箭头函数需要记着这句话：“箭头函数中没有 this 绑定，必须通过查找作用域链来决定其值，如果箭头函数被非箭头函数包含，则 this 绑定的是最近一层非箭头函数的 this，否则，this 为 undefined”。</p>
+<p>例 8 ：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+
+var a = {
+    name : &quot;Cherry&quot;,
+
+    func1: function () {
+        console.log(this.name)     
+    },
+
+    func2: function () {
+        setTimeout( () =&gt; {
+            this.func1()
+        },100);
+    }
+
+};
+
+a.func2()     // Cherry</code></pre><p>在函数内部使用 _this = this<br>如果不使用 ES6，那么这种方式应该是最简单的不会出错的方式了，我们是先将调用这个函数的对象保存在变量 _this 中，然后在函数中都使用这个 _this，这样 _this 就不会改变了。<br>例 9：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+
+var a = {
+
+    name : &quot;Cherry&quot;,
+
+    func1: function () {
+        console.log(this.name)     
+    },
+
+    func2: function () {
+        var _this = this;
+        setTimeout( function() {
+            _this.func1()
+        },100);
+    }
+
+};
+
+a.func2()       // Cherry</code></pre><p>这个例子中，在 func2 中，首先设置 var _this = this;，这里的 this 是调用 func2 的对象 a，为了防止在 func2 中的 setTimeout 被 window 调用而导致的在 setTimeout 中的 this 为 window。我们将 this(指向变量 a) 赋值给一个变量 _this，这样，在 func2 中我们使用 _this 就是指向对象 a 了。</p>
+<p>使用 apply、call、bind<br>使用 apply、call、bind 函数也是可以改变 this 的指向的，原理稍后再讲，我们先来看一下是怎么实现的：</p>
+<p>使用 apply<br>例 10：</p>
+<pre><code>var a = {
+    name : &quot;Cherry&quot;,
+
+    func1: function () {
+        console.log(this.name)
+    },
+
+    func2: function () {
+        setTimeout(  function () {
+            this.func1()
+        }.apply(a),100);
+    }
+
+};
+
+a.func2()            // Cherry</code></pre><p>使用 call<br>例 11：</p>
+<pre><code>var a = {
+    name : &quot;Cherry&quot;,
+
+    func1: function () {
+        console.log(this.name)
+    },
+
+    func2: function () {
+        setTimeout(  function () {
+            this.func1()
+        }.call(a),100);
+    }
+
+};
+
+a.func2()            // Cherry</code></pre><p>使用 bind<br>例 12：</p>
+<pre><code>var a = {
+    name : &quot;Cherry&quot;,
+
+    func1: function () {
+        console.log(this.name)
+    },
+
+    func2: function () {
+        setTimeout(  function () {
+            this.func1()
+        }.bind(a)(),100);
+    }
+
+};
+
+a.func2()            // Cherry</code></pre><p>###apply、call、bind 区别<br>刚刚我们已经介绍了 apply、call、bind 都是可以改变 this 的指向的，但是这三个函数稍有不同。</p>
+<p>在 MDN 中定义 apply 如下；</p>
+<p>apply() 方法调用一个函数, 其具有一个指定的this值，以及作为一个数组（或类似数组的对象）提供的参数</p>
+<p>语法：</p>
+<p>fun.apply(thisArg, [argsArray])</p>
+<p>thisArg：在 fun 函数运行时指定的 this 值。需要注意的是，指定的 this 值并不一定是该函数执行时真正的 this 值，如果这个函数处于非严格模式下，则指定为 null 或 undefined 时会自动指向全局对象（浏览器中就是window对象），同时值为原始值（数字，字符串，布尔值）的 this 会指向该原始值的自动包装对象。<br>argsArray：一个数组或者类数组对象，其中的数组元素将作为单独的参数传给 fun 函数。如果该参数的值为null 或 undefined，则表示不需要传入任何参数。从ECMAScript 5 开始可以使用类数组对象。浏览器兼容性请参阅本文底部内容。<br>apply 和 call 的区别<br>其实 apply 和 call 基本类似，他们的区别只是传入的参数不同。</p>
+<p>call 的语法为：</p>
+<p>fun.call(thisArg[, arg1[, arg2[, …]]])<br>所以 apply 和 call 的区别是 call 方法接受的是若干个参数列表，而 apply 接收的是一个包含多个参数的数组。</p>
+<p>例 13：</p>
+<pre><code>var a ={
+    name : &quot;Cherry&quot;,
+    fn : function (a,b) {
+        console.log( a + b)
+    }
+}
+
+var b = a.fn;
+b.apply(a,[1,2])     // 3</code></pre><p>例 14：</p>
+<pre><code>var a ={
+    name : &quot;Cherry&quot;,
+    fn : function (a,b) {
+        console.log( a + b)
+    }
+}
+
+var b = a.fn;
+b.call(a,1,2)       // 3</code></pre><p>bind 和 apply、call 区别<br>我们先来将刚刚的例子使用 bind 试一下</p>
+<pre><code>var a ={
+    name : &quot;Cherry&quot;,
+    fn : function (a,b) {
+        console.log( a + b)
+    }
+}
+
+var b = a.fn;
+b.bind(a,1,2)</code></pre><p>我们会发现并没有输出，这是为什么呢，我们来看一下 MDN 上的文档说明：</p>
+<p>bind()方法创建一个新的函数, 当被调用时，将其this关键字设置为提供的值，在调用新函数时，在任何提供之前提供一个给定的参数序列。</p>
+<p>所以我们可以看出，bind 是创建一个新的函数，我们必须要手动去调用：</p>
+<pre><code>var a ={
+    name : &quot;Cherry&quot;,
+    fn : function (a,b) {
+        console.log( a + b)
+    }
+}
+
+var b = a.fn;
+b.bind(a,1,2)()           // 3</code></pre><p>JS 中的函数调用<br>看到留言说，很多童靴不理解为什么 例 6 的 innerFunction 和 例 7 的 this 是指向 window 的，所以我就来补充一下 JS 中的函数调用。<br>例 6：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+
+function fn() {
+    var name = &apos;Cherry&apos;;
+    innerFunction();
+    function innerFunction() {
+        console.log(this.name);      // windowsName
+    }
+}
+
+fn()</code></pre><p>例 7：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+
+var a = {
+    name : &quot;Cherry&quot;,
+
+    func1: function () {
+        console.log(this.name)     
+    },
+
+    func2: function () {
+        setTimeout(  function () {
+            this.func1()
+        },100);
+    }
+
+};
+
+a.func2()     // this.func1 is not a function</code></pre><p>函数调用的方法一共有 4 种</p>
+<p>作为一个函数调用<br>函数作为方法调用<br>使用构造函数调用函数<br>作为函数方法调用函数（call、apply）<br>作为一个函数调用<br>比如上面的 例 1：<br>例 1：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+function a() {
+    var name = &quot;Cherry&quot;;
+
+    console.log(this.name);          // windowsName
+
+    console.log(&quot;inner:&quot; + this);    // inner: Window
+}
+a();
+console.log(&quot;outer:&quot; + this)         // outer: Window</code></pre><p>这样一个最简单的函数，不属于任何一个对象，就是一个函数，这样的情况在 JavaScript 的在浏览器中的非严格模式默认是属于全局对象 window 的，在严格模式，就是 undefined。</p>
+<p>但这是一个全局的函数，很容易产生命名冲突，所以不建议这样使用。</p>
+<p>函数作为方法调用<br>所以说更多的情况是将函数作为对象的方法使用。比如例 2：<br>例 2：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+var a = {
+    name: &quot;Cherry&quot;,
+    fn : function () {
+        console.log(this.name);      // Cherry
+    }
+}
+a.fn();</code></pre><p>这里定义一个对象 a，对象 a 有一个属性（name）和一个方法（fn）。</p>
+<p>然后对象 a 通过 . 方法调用了其中的 fn 方法。</p>
+<p>然后我们一直记住的那句话“this 永远指向最后调用它的那个对象”，所以在 fn 中的 this 就是指向 a 的。</p>
+<p>使用构造函数调用函数<br>如果函数调用前使用了 new 关键字, 则是调用了构造函数。<br>这看起来就像创建了新的函数，但实际上 JavaScript 函数是重新创建的对象：</p>
+<p>// 构造函数:<br>function myFunction(arg1, arg2) {<br>    this.firstName = arg1;<br>    this.lastName  = arg2;<br>}</p>
+<p>// This    creates a new object<br>var a = new myFunction(“Li”,”Cherry”);<br>a.lastName;                             // 返回 “Cherry”<br>这就有要说另一个面试经典问题：new 的过程了，(ಥ_ಥ)<br>这里就简单的来看一下 new 的过程吧：<br>伪代码表示：</p>
+<p>var a = new myFunction(“Li”,”Cherry”);</p>
+<p>new myFunction{<br>    var obj = {};<br>    obj.<strong>proto</strong> = myFunction.prototype;<br>    var result = myFunction.call(obj,”Li”,”Cherry”);<br>    return typeof result === ‘obj’? result : obj;<br>}<br>创建一个空对象 obj;<br>将新创建的空对象的隐式原型指向其构造函数的显示原型。<br>使用 call 改变 this 的指向<br>如果无返回值或者返回一个非对象值，则将 obj 返回作为新对象；如果返回值是一个新对象的话那么直接直接返回该对象。<br>所以我们可以看到，在 new 的过程中，我们是使用 call 改变了 this 的指向。</p>
+<p>作为函数方法调用函数<br>在 JavaScript 中, 函数是对象。</p>
+<p>JavaScript 函数有它的属性和方法。<br>call() 和 apply() 是预定义的函数方法。 两个方法可用于调用函数，两个方法的第一个参数必须是对象本身</p>
+<p>在 JavaScript 严格模式(strict mode)下, 在调用函数时第一个参数会成为 this 的值， 即使该参数不是一个对象。<br>在 JavaScript 非严格模式(non-strict mode)下, 如果第一个参数的值是 null 或 undefined, 它将使用全局对象替代。</p>
+<p>这个时候我们再来看例 6：<br>例 6：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+
+function fn() {
+    var name = &apos;Cherry&apos;;
+    innerFunction();
+    function innerFunction() {
+        console.log(this.name);      // windowsName
+    }
+}
+
+fn()</code></pre><p>这里的 innerFunction() 的调用是不是属于第一种调用方式：作为一个函数调用（它就是作为一个函数调用的，没有挂载在任何对象上，所以对于没有挂载在任何对象上的函数，在非严格模式下 this 就是指向 window 的）</p>
+<p>然后再看一下 例 7：<br>例 7：</p>
+<pre><code>var name = &quot;windowsName&quot;;
+
+var a = {
+    name : &quot;Cherry&quot;,
+
+    func1: function () {
+        console.log(this.name)     
+    },
+
+    func2: function () {
+        setTimeout(  function () {
+            this.func1()
+        },100 );
+    }
+
+};
+
+a.func2()     // this.func1 is not a function</code></pre><p>这个简单一点的理解可以理解为“匿名函数的 this 永远指向 window”，你可以这样想，还是那句话this 永远指向最后调用它的那个对象，那么我们就来找最后调用匿名函数的对象，这就很尴尬了，因为匿名函数名字啊，笑哭，所以我们是没有办法被其他对象调用匿名函数的。所以说 匿名函数的 this 永远指向 window。</p>
+<p>如果这个时候你要问，那匿名函数都是怎么定义的，首先，我们通常写的匿名函数都是自执行的，就是在匿名函数后面加 () 让其自执行。其次就是虽然匿名函数不能被其他对象调用，但是可以被其他函数调用啊，比如例 7 中的 setTimeout。</p>
+]]></content>
       <categories>
         <category>JavaScript</category>
       </categories>
@@ -995,6 +920,61 @@ a.func2()     // this.func1 is not a function</code></pre><p>这个简单一点�
 <p>通常按照这三个步骤，你就能够应对绝大部分的异步处理场景。用熟之后，再去研究 Promise 各个函数更深层次的原理以及使用方式即可。<br>看到这里之后，我们便能回答上面的问题 4 和问题 5了。</p>
 <h3 id="Promsie-与事件循环"><a href="#Promsie-与事件循环" class="headerlink" title="Promsie 与事件循环"></a>Promsie 与事件循环</h3><p>Promise在初始化时，传入的函数是同步执行的，然后注册 then 回调。注册完之后，继续往下执行同步代码，在这之前，then 中回调不会执行。同步代码块执行完毕后，才会在事件循环中检测是否有可用的 promise 回调，如果有，那么执行，如果没有，继续下一个事件循环。<br>关于 Promise 在事件循环中还有一个 微任务的概念（microtask），感兴趣的话可以看我这篇关于nodejs 时间循环的文章 剖析nodejs的事件循环，虽然和浏览器端有些不同，但是Promise 微任务的执行时机相差不大。</p>
 ]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>视频</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>javascript-箭头函数、map</title>
+    <url>/2020/02/01/javascript/javascript_04/</url>
+    <content><![CDATA[<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p>我们知道箭头是es6中的一个概念，<br>但是看上去是对函数的一个缩写，大大减少了代码的书写量<br>如果没有参数，那么可以进一步简化：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">() =&gt; &#123;</span><br><span class="line">    statements;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果只有一个参数，可以省略括号:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">parameters =&gt; &#123;</span><br><span class="line">    statements;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果返回值仅仅只有一个表达式(expression), 还可以省略大括号：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">parameters =&gt; expression</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等价于:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> (<span class="params">parameters</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> expression;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="没有局部this的绑定"><a href="#没有局部this的绑定" class="headerlink" title="没有局部this的绑定"></a>没有局部this的绑定</h4><p>和一般的函数不同，箭头函数不会绑定this。 或者说箭头函数不会改变this本来的绑定。 我们用一个例子来说明：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Counter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.num = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Counter();</span><br></pre></td></tr></table></figure>
+<p>因为使用了关键字new构造，Count()函数中的this绑定到一个新的对象，并且赋值给a。通过console.log打印a.num，会输出 0。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a.num);</span><br><span class="line"><span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+<p>如果我们想每过一秒将a.num的值加 1，该如何实现呢？可以使用setInterval()函数。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Counter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.num = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">this</span>.timer = setInterval(<span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.num++;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.num);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们来看一下输出结果：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> Counter();</span><br><span class="line"><span class="comment">// NaN</span></span><br><span class="line"><span class="comment">// NaN</span></span><br><span class="line"><span class="comment">// NaN</span></span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+<p>你会发现，每隔一秒都会有一个NaN打印出来，而不是累加的数字。到底哪里错了呢？ 首先使用如下语句停止setInterval函数的连续执行：clearInterval(b.timer)</p>
+<p>我们来尝试理解为什么出错：根据上一篇博客讲解的规则，首先函数setInterval没有被某个声明的对象调用，也没有使用new关键字，再之没有使用bind, call和apply。setInterval只是一个普通的函数。实际上setInterval里面的this绑定到全局对象的。我们可以通过将this打印出来验证这一点：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Counter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.num = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">this</span>.timer = setInterval(<span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> Counter();</span><br></pre></td></tr></table></figure>
+<p>回到之前的函数，之所以打印NaN，是因为this.num绑定到window对象的num，而window.num未定义。</p>
+<p><strong>那么，我们如何解决这个问题呢？使用箭头函数！使用箭头函数就不会导致this被绑定到全局对象。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Counter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.num = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">this</span>.timer = setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.num++;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.num);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> Counter();</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>js中的map是数组上的一个原型</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//所有的数组实例都可以调用它</span></span><br><span class="line"><span class="built_in">Array</span>.prototype.map === [].map;</span><br></pre></td></tr></table></figure>
+<p>map函数语法：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">*params:</span></span><br><span class="line"><span class="comment">*   callback生成新数组元素的函数，使用三个参数：</span></span><br><span class="line"><span class="comment">*       currentValue：callback 中正在处理的当前元素。</span></span><br><span class="line"><span class="comment">*       index：callback 数组中正在处理的当前元素的索引。(可选)</span></span><br><span class="line"><span class="comment">*       array: map 方法调用的数组。（可选）</span></span><br><span class="line"><span class="comment">*   return 返回值是回调函数的结果组成了新数组的每一个元素</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">var</span> new_array = arr.map(<span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params">currentValue, index, array</span>) </span>&#123;</span><br><span class="line"> <span class="comment">// Return element for new_array </span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>map() 方法的作用是遍历调用它数组的每一个元素，根据每个元素都调用一次提供的函数后的返回值组成一个新的数组。下面给出一个简单的实例代码:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> array1 = [<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// pass a function to map</span></span><br><span class="line"><span class="keyword">const</span> map1 = array1.map(<span class="function"><span class="params">x</span> =&gt;</span> x * <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(map1);</span><br><span class="line"><span class="comment">// expected output: Array [2, 8, 18, 32]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="下面是map和parelit-函数"><a href="#下面是map和parelit-函数" class="headerlink" title="下面是map和parelit()函数"></a>下面是map和parelit()函数</h4><p><strong>window下的parseInt（）函数理解</strong><br>parseInt(string, radix) 将一个字符串 string 转换为 radix 进制的整数， radix 为介于2-36之间的数。</p>
+<ol>
+<li>parseInt是window下的一个方法，所以再js中可以直接调用</li>
+<li>parseInt的语法</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">*params :</span></span><br><span class="line"><span class="comment">*   string：要被解析的值。如果参数不是一个字符串，则将其转换为字符串(使用  ToString 抽象操作)。字符串开头的空白符将会被忽略。</span></span><br><span class="line"><span class="comment">*   radix(可选)：从 2 到 36，代表该进位系统的数字。例如说指定 10 就等于指定十进位。请注意，通常预设值不是 10 进位！</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="built_in">parseInt</span>(string, radix);</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>radix参数详解</li>
+<li>如果 radix 是 undefined、0或未指定的，JavaScript会假定以下情况：<ul>
+<li>如果输入的 string以”0x”或”0x”（一个0，后面是小写或大写的X）开头，那么radix被假定为16，字符串的其余部分被解析为十六进制数。</li>
+<li>如果输入的 string以”0”（0）开头，radix被假定为8（八进制）或10（十进制）。具体选择哪一个radix取决于实现。ECMAScript5澄清了应该使用10(十进制)，但不是所有的浏览器都支持。因此，在使用 parseInt 时，一定要指定一个 radix。</li>
+<li>如果输入的 string以任何其他值开头，radix是10(十进制)。如果第一个字符不能转换为数字，parseInt会返回 NaN。</li>
+</ul>
+</li>
+<li>radix 小于 2 或大于 36（0除外） ，或第一个非空格字符不能转换为数字。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let arr &#x3D; [1, 2, 3, 4];</span><br><span class="line">arr &#x3D; arr.map(parseInt);</span><br><span class="line">console.log(arr);&#x2F;&#x2F;&#x3D;&gt; 1,NAN,NAN,NAN</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>JavaScript</category>
       </categories>
@@ -1102,37 +1082,6 @@ a.func2()     // this.func1 is not a function</code></pre><p>这个简单一点�
       </tags>
   </entry>
   <entry>
-    <title>vue权威指导笔记-表单控件绑定</title>
-    <url>/2019/11/01/vue/vue_04/</url>
-    <content><![CDATA[<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><h4 id="1-text"><a href="#1-text" class="headerlink" title="1.text"></a>1.text</h4><p>设置文本框v-model为name：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>welcome&#123;&#123;name&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"name"</span> <span class="attr">placeholder</span>=<span class="string">"join DDfe"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>当用户操作文本框时，vm.name会自动更新为用户输入的值，同时，span内的内容也会随着改变</p>
-<h4 id="2-checkbox"><a href="#2-checkbox" class="headerlink" title="2.checkbox"></a>2.checkbox</h4><p>复选框checkbox在表单中会经常使用</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">id</span>=<span class="string">"checkbox"</span> <span class="attr">v-model</span>=<span class="string">"checked"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"checkbox"</span>&gt;</span>&#123;&#123;checked&#125;&#125;<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>当用户勾选了checkbox时，vm.checked=true，label中的值也会随之改变</p>
-<h4 id="3-select"><a href="#3-select" class="headerlink" title="3.select"></a>3.select</h4><p>因为select控件分为单选和多选，所以v-model在select控件的单选和多选上有不同的表现</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">v-model</span> = <span class="string">"bizline"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">selected</span> <span class="attr">value</span>=<span class="string">"flash"</span>&gt;</span>快车<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;bizline&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>对于多选select控件，被选中的值会放入一个数组中。</p>
-<h4 id="值绑定"><a href="#值绑定" class="headerlink" title="值绑定"></a>值绑定</h4><h4 id="v-model修饰指令"><a href="#v-model修饰指令" class="headerlink" title="v-model修饰指令"></a>v-model修饰指令</h4><p>v-model用来在视图与model之间同步数据，但是有时候需要控制同步发生的时机，或者在数据同步到model之前将数据转换为number类型</p>
-<ul>
-<li><p>lazy<br>在默认情况下，v-model在input事件中同步输入框的值和数据，可以添加一个lazy特性，从而改到change事件中去同步。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model.lazy</span>=<span class="string">"content"</span> <span class="attr">placeholder</span>=<span class="string">"请输入"</span> <span class="attr">value</span>=<span class="string">"初始值"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>输入框：&#123;&#123;content&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">var app = new Vue(&#123;</span><br><span class="line">	el: '#app',</span><br><span class="line">	data: &#123;</span><br><span class="line">		content: ''</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>使用 .lazy 懒加载修饰符之后，只有在输入框失去焦点或者按回车键时才会更新 content 值。</p>
-</li>
-<li><p>number<br>当传给后端字段必须是数值的时候，我们可以在v-model所在的控件上使用number指令，该指令会在用户输入被同步到model中时将其转换为数值，如果转换结果为NaN，则对应的model值还是用户输入的原始值</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app2"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">v-model.number</span>=<span class="string">"content"</span> <span class="attr">placeholder</span>=<span class="string">"请输入"</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>输入值：&#123;&#123;content&#125;&#125;，输入类型：&#123;&#123;typeof content&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">var app2 = new Vue(&#123;</span><br><span class="line">	el: '#app2',</span><br><span class="line">	data: &#123;</span><br><span class="line">		content: 1</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
-<li><p>trim<br>使用 ·.trim` 修饰符可以自动过滤掉输入框的首尾空格。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app3"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model.trim</span>=<span class="string">"content"</span> <span class="attr">placeholder</span>=<span class="string">"请输入"</span> <span class="attr">value</span>=<span class="string">"初始值"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>输入框：&#123;&#123;content&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">var app3 = new Vue(&#123;</span><br><span class="line">	el: '#app3',</span><br><span class="line">	data: &#123;</span><br><span class="line">		content: ''</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <categories>
-        <category>vue.js</category>
-      </categories>
-      <tags>
-        <tag>书籍</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vue权威指导笔记-计算属性</title>
     <url>/2019/11/01/vue/vue_03/</url>
     <content><![CDATA[<h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><p>计算属性就是当其依赖属性的值发生变化时，这个属性的值会自动更新，与之相关的DOM部分也会同步自动更新</p>
@@ -1150,6 +1099,118 @@ a.func2()     // this.func1 is not a function</code></pre><p>这个简单一点�
       </categories>
       <tags>
         <tag>书籍</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue权威指导笔记-过滤器</title>
+    <url>/2019/11/01/vue/vue_05/</url>
+    <content><![CDATA[<h3 id="内置过滤器"><a href="#内置过滤器" class="headerlink" title="内置过滤器"></a>内置过滤器</h3><h4 id="字符操作"><a href="#字符操作" class="headerlink" title="字符操作"></a>字符操作</h4><ul>
+<li><p>capitalize<br>capitalize过滤器用于将表达式中的首字母转化为大写形式</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;&#123;<span class="string">'ddfe'</span>|capitalize&#125;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>uppercase<br>用于将表达式中所有的字母转化为大写形式</p>
+</li>
+<li><p>lowercase<br>将所有字母转化为小写形式</p>
+</li>
+</ul>
+<h4 id="json过滤器"><a href="#json过滤器" class="headerlink" title="json过滤器"></a>json过滤器</h4><p>vue中的json本质上是JSON.stringify()的精简缩略版，可以将表达式的值转换为JSON字符串，json可以接受一个类型为Number的参数，用于决定转换之后的json字符串缩进距离，默认是2</p>
+<h4 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h4><p>内置了limitBy、filterBy、orderBy三个过滤器用于处理并返回过滤后的数组，比如与v-for搭配使用。这三个过滤器必须都是数组</p>
+<ul>
+<li><p>limitBy<br>过滤器的作用是限制数组为开始的前N个元素，其中N由传入的第一个参数指定</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"item in items | limitBy 10"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span> //只显示开始的10个元素</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>filterBy<br>其第一个参数可以是字符串或者数组，如果第一个参数是字符串，那么将在每个数组元素中搜索它，并返回包含该字符串的元素组成的数组</p>
+</li>
+<li><p>orderBy<br>作用是放回排序后的数组</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"user in users | orderBy sortKey"</span>&gt;</span></span><br><span class="line">    &#123;&#123;user.lastName&#125;&#125;&#123;&#123;user.firstName&#125;&#125;&#123;&#123;user.age&#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="自定义过滤器"><a href="#自定义过滤器" class="headerlink" title="自定义过滤器"></a>自定义过滤器</h3><ul>
+<li>fillter语法<br>在vue中存在一个全局函数filter用于构造过滤器<br>该函数接受两个参数，其中第一个参数为过滤器id，作为用户自定义过滤器的唯一标识，第二个参数则为具体的过滤器函数，过滤器函数为参数，返回转换后的值</li>
+</ul>
+<ol>
+<li><p>单个参数<br>注册一个名为reverse的过滤器，作用是将字符串反向输出</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.filter('reverse',function(value)&#123;</span><br><span class="line">  return value.split('').reverse().join('')</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多参数<br>过滤器函数除了以值为参数外，还支持接受任意数量的参数，参数之间以空格分隔：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.filter('wrap',function(value,begin,end)&#123;</span><br><span class="line">  return begin +value+end</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>双向过滤器<br>上面的过滤器函数都是在model数据输出到view层之前进行数据转化，实际上vue还支持把来自视图的值在写回模型前进行转化，即双向过滤器</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.filter(id,&#123;</span><br><span class="line">read:function(val)&#123;&#125;,</span><br><span class="line">write:function(newVal,oldVal)&#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>动态参数<br>filter语法还有一个需要注意的点，动态参数，如果过滤器参数没有用引号包起来，则它会在当前vm作用域内动态计算，此外，过滤器函数的this始终指向调用它的vm，代码实例：</p>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"userInput"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;msg |cocat userInput&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"></span><br><span class="line">vue.filter('concat',function(value,input)&#123;</span><br><span class="line">return value+input</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>vue.js</category>
+      </categories>
+      <tags>
+        <tag>书籍</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue权威指导笔记-class与style绑定</title>
+    <url>/2019/11/01/vue/vue_06/</url>
+    <content><![CDATA[<h3 id="绑定HTTML-class"><a href="#绑定HTTML-class" class="headerlink" title="绑定HTTML class"></a>绑定HTTML class</h3><p>对于数据绑定，一个常见的需求是操作元素的class列表和它的内联样式，因为它们都是attribute，我们可以用v-bind处理它们：只需要计算出表达式最终的字符串，不过，字符串拼接麻烦又易错，因此，在v-bind用于class和style时，vue专门增加了它，表达式的结果类型除了字符串以外，还可以是对象或数组</p>
+<h4 id="对象语法"><a href="#对象语法" class="headerlink" title="对象语法"></a>对象语法</h4><p>我们可以传给v-bind：class一个对象，以动态的切换class，注意v-bind：class指令可以与普通的class特性共存</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'example'</span> <span class="attr">class</span>=<span class="string">"static"</span> <span class="attr">v-bind:class</span>=<span class="string">"&#123;'didi-orange':isRipe,'didi-green':isNotRipe&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">var vm=new vue(&#123;</span><br><span class="line">  el:'example'</span><br><span class="line">  data:&#123;</span><br><span class="line">    isRipe:true,</span><br><span class="line">    isNotRipe:false</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>vue.js</category>
+      </categories>
+      <tags>
+        <tag>书籍</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>javascript-cookie、localStorage和sessionStorage 三者之间的区别以及存储、获取、删除等使用方式</title>
+    <url>/2020/02/01/javascript/JavaScript_03/</url>
+    <content><![CDATA[<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><p>Cookie 是小甜饼的意思。顾名思义，cookie 确实非常小，它的大小限制为4KB左右，是网景公司的前雇员 Lou Montulli 在1993年3月的发明。它的主要用途有保存登录信息，比如你登录某个网站市场可以看到“记住密码”，这通常就是通过在 Cookie 中存入一段辨别用户身份的数据来实现的。<br>####localStorage<br>localStorage 是 HTML5 标准中新加入的技术，它并不是什么划时代的新东西。早在 IE 6 时代，就有一个叫 userData 的东西用于本地存储，而当时考虑到浏览器兼容性，更通用的方案是使用 Flash。而如今，localStorage 被大多数浏览器所支持，如果你的网站需要支持 IE6+，那以 userData 作为你的 polyfill 的方案是种不错的选择。</p>
+<h4 id="sessionStorage"><a href="#sessionStorage" class="headerlink" title="sessionStorage"></a>sessionStorage</h4><p>sessionStorage 与 localStorage 的接口类似，但保存数据的生命周期与 localStorage 不同。做过后端开发的同学应该知道 Session 这个词的意思，直译过来是“会话”。而 sessionStorage 是一个前端的概念，它只是可以将一部分数据在当前会话中保存下来，刷新页面数据依旧存在。但当页面关闭后，sessionStorage 中的数据就会被清空。</p>
+<h3 id="三者的异同"><a href="#三者的异同" class="headerlink" title="三者的异同"></a>三者的异同</h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Cookie</th>
+<th>localStorage</th>
+<th>sessionStorage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据的生命期</td>
+<td>可设置失效时间，默认是关闭浏览器后失效</td>
+<td>除非被清除，否则永久保存</td>
+<td>仅在当前会话下有效，关闭页面或浏览器后被清除</td>
+</tr>
+<tr>
+<td>存放数据大小</td>
+<td>4K左右</td>
+<td>一般为5MB</td>
+<td>一般为5MB</td>
+</tr>
+<tr>
+<td>与服务器端通信</td>
+<td>每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题</td>
+<td>仅在客户端（即浏览器）中保存，不参与和服务器的通信</td>
+<td>仅在客户端（即浏览器）中保存，不参与和服务器的通信</td>
+</tr>
+<tr>
+<td>易用性</td>
+<td>需要程序员自己封装，源生的Cookie接口不友好</td>
+<td>源生接口可以接受，亦可再次封装来对Object和Array有更好的支持</td>
+<td>源生接口可以接受，亦可再次封装来对Object和Array有更好的支持</td>
+</tr>
+</tbody></table>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>有了对上面这些差别的直观理解，我们就可以讨论三者的应用场景了。</p>
+<p>因为考虑到每个 HTTP 请求都会带着 Cookie 的信息，所以 Cookie 当然是能精简就精简啦，比较常用的一个应用场景就是判断用户是否登录。<strong>针对登录过的用户</strong>，服务器端会在他登录时往 Cookie 中插入一段加密过的唯一辨识单一用户的辨识码，下次只要读取这个值就可以判断当前用户是否登录啦。曾经还使用 Cookie 来保存用户在电商网站的购物车信息，如今有了 localStorage，似乎在这个方面也可以给 Cookie 放个假了~</p>
+<p>而另一方面 localStorage 接替了 Cookie 管理购物车的工作，同时也能胜任其他一些工作。比如HTML5游戏通常会产生一些本地数据，localStorage 也是非常适用的。如果遇到一些内容特别多的表单，为了优化用户体验，我们可能要把表单页面拆分成多个子页面，然后按步骤引导用户填写。这时候 sessionStorage 的作用就发挥出来了。</p>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>视频</tag>
       </tags>
   </entry>
   <entry>
@@ -1186,19 +1247,6 @@ a.func2()     // this.func1 is not a function</code></pre><p>这个简单一点�
 
 <h4 id="self"><a href="#self" class="headerlink" title="self"></a>self</h4><p>.self事件修饰符，表示只当事件在该元素本身（而不是子元素）触发时触发回调：</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on:click.self</span>=<span class="string">"doThat"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>vue.js</category>
-      </categories>
-      <tags>
-        <tag>书籍</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue权威指导笔记-class与style绑定</title>
-    <url>/2019/11/01/vue/vue_06/</url>
-    <content><![CDATA[<h3 id="绑定HTTML-class"><a href="#绑定HTTML-class" class="headerlink" title="绑定HTTML class"></a>绑定HTTML class</h3><p>对于数据绑定，一个常见的需求是操作元素的class列表和它的内联样式，因为它们都是attribute，我们可以用v-bind处理它们：只需要计算出表达式最终的字符串，不过，字符串拼接麻烦又易错，因此，在v-bind用于class和style时，vue专门增加了它，表达式的结果类型除了字符串以外，还可以是对象或数组</p>
-<h4 id="对象语法"><a href="#对象语法" class="headerlink" title="对象语法"></a>对象语法</h4><p>我们可以传给v-bind：class一个对象，以动态的切换class，注意v-bind：class指令可以与普通的class特性共存</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'example'</span> <span class="attr">class</span>=<span class="string">"static"</span> <span class="attr">v-bind:class</span>=<span class="string">"&#123;'didi-orange':isRipe,'didi-green':isNotRipe&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">var vm=new vue(&#123;</span><br><span class="line">  el:'example'</span><br><span class="line">  data:&#123;</span><br><span class="line">    isRipe:true,</span><br><span class="line">    isNotRipe:false</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>vue.js</category>
       </categories>
@@ -1331,47 +1379,109 @@ a.func2()     // this.func1 is not a function</code></pre><p>这个简单一点�
       </tags>
   </entry>
   <entry>
-    <title>vue权威指导笔记-过滤器</title>
-    <url>/2019/11/01/vue/vue_05/</url>
-    <content><![CDATA[<h3 id="内置过滤器"><a href="#内置过滤器" class="headerlink" title="内置过滤器"></a>内置过滤器</h3><h4 id="字符操作"><a href="#字符操作" class="headerlink" title="字符操作"></a>字符操作</h4><ul>
-<li><p>capitalize<br>capitalize过滤器用于将表达式中的首字母转化为大写形式</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;&#123;<span class="string">'ddfe'</span>|capitalize&#125;&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>uppercase<br>用于将表达式中所有的字母转化为大写形式</p>
-</li>
-<li><p>lowercase<br>将所有字母转化为小写形式</p>
-</li>
-</ul>
-<h4 id="json过滤器"><a href="#json过滤器" class="headerlink" title="json过滤器"></a>json过滤器</h4><p>vue中的json本质上是JSON.stringify()的精简缩略版，可以将表达式的值转换为JSON字符串，json可以接受一个类型为Number的参数，用于决定转换之后的json字符串缩进距离，默认是2</p>
-<h4 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h4><p>内置了limitBy、filterBy、orderBy三个过滤器用于处理并返回过滤后的数组，比如与v-for搭配使用。这三个过滤器必须都是数组</p>
+    <title>vue权威指导笔记-表单控件绑定</title>
+    <url>/2019/11/01/vue/vue_04/</url>
+    <content><![CDATA[<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><h4 id="1-text"><a href="#1-text" class="headerlink" title="1.text"></a>1.text</h4><p>设置文本框v-model为name：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>welcome&#123;&#123;name&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"name"</span> <span class="attr">placeholder</span>=<span class="string">"join DDfe"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当用户操作文本框时，vm.name会自动更新为用户输入的值，同时，span内的内容也会随着改变</p>
+<h4 id="2-checkbox"><a href="#2-checkbox" class="headerlink" title="2.checkbox"></a>2.checkbox</h4><p>复选框checkbox在表单中会经常使用</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">id</span>=<span class="string">"checkbox"</span> <span class="attr">v-model</span>=<span class="string">"checked"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"checkbox"</span>&gt;</span>&#123;&#123;checked&#125;&#125;<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当用户勾选了checkbox时，vm.checked=true，label中的值也会随之改变</p>
+<h4 id="3-select"><a href="#3-select" class="headerlink" title="3.select"></a>3.select</h4><p>因为select控件分为单选和多选，所以v-model在select控件的单选和多选上有不同的表现</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">v-model</span> = <span class="string">"bizline"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">selected</span> <span class="attr">value</span>=<span class="string">"flash"</span>&gt;</span>快车<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;bizline&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>对于多选select控件，被选中的值会放入一个数组中。</p>
+<h4 id="值绑定"><a href="#值绑定" class="headerlink" title="值绑定"></a>值绑定</h4><h4 id="v-model修饰指令"><a href="#v-model修饰指令" class="headerlink" title="v-model修饰指令"></a>v-model修饰指令</h4><p>v-model用来在视图与model之间同步数据，但是有时候需要控制同步发生的时机，或者在数据同步到model之前将数据转换为number类型</p>
 <ul>
-<li><p>limitBy<br>过滤器的作用是限制数组为开始的前N个元素，其中N由传入的第一个参数指定</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"item in items | limitBy 10"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span> //只显示开始的10个元素</span><br></pre></td></tr></table></figure>
+<li><p>lazy<br>在默认情况下，v-model在input事件中同步输入框的值和数据，可以添加一个lazy特性，从而改到change事件中去同步。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model.lazy</span>=<span class="string">"content"</span> <span class="attr">placeholder</span>=<span class="string">"请输入"</span> <span class="attr">value</span>=<span class="string">"初始值"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>输入框：&#123;&#123;content&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">var app = new Vue(&#123;</span><br><span class="line">	el: '#app',</span><br><span class="line">	data: &#123;</span><br><span class="line">		content: ''</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>使用 .lazy 懒加载修饰符之后，只有在输入框失去焦点或者按回车键时才会更新 content 值。</p>
 </li>
-<li><p>filterBy<br>其第一个参数可以是字符串或者数组，如果第一个参数是字符串，那么将在每个数组元素中搜索它，并返回包含该字符串的元素组成的数组</p>
-</li>
-<li><p>orderBy<br>作用是放回排序后的数组</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"user in users | orderBy sortKey"</span>&gt;</span></span><br><span class="line">    &#123;&#123;user.lastName&#125;&#125;&#123;&#123;user.firstName&#125;&#125;&#123;&#123;user.age&#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-</li>
+<li><p>number<br>当传给后端字段必须是数值的时候，我们可以在v-model所在的控件上使用number指令，该指令会在用户输入被同步到model中时将其转换为数值，如果转换结果为NaN，则对应的model值还是用户输入的原始值</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app2"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">v-model.number</span>=<span class="string">"content"</span> <span class="attr">placeholder</span>=<span class="string">"请输入"</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>输入值：&#123;&#123;content&#125;&#125;，输入类型：&#123;&#123;typeof content&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">var app2 = new Vue(&#123;</span><br><span class="line">	el: '#app2',</span><br><span class="line">	data: &#123;</span><br><span class="line">		content: 1</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+<li><p>trim<br>使用 ·.trim` 修饰符可以自动过滤掉输入框的首尾空格。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app3"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model.trim</span>=<span class="string">"content"</span> <span class="attr">placeholder</span>=<span class="string">"请输入"</span> <span class="attr">value</span>=<span class="string">"初始值"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>输入框：&#123;&#123;content&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">var app3 = new Vue(&#123;</span><br><span class="line">	el: '#app3',</span><br><span class="line">	data: &#123;</span><br><span class="line">		content: ''</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="自定义过滤器"><a href="#自定义过滤器" class="headerlink" title="自定义过滤器"></a>自定义过滤器</h3><ul>
-<li>fillter语法<br>在vue中存在一个全局函数filter用于构造过滤器<br>该函数接受两个参数，其中第一个参数为过滤器id，作为用户自定义过滤器的唯一标识，第二个参数则为具体的过滤器函数，过滤器函数为参数，返回转换后的值</li>
-</ul>
+]]></content>
+      <categories>
+        <category>vue.js</category>
+      </categories>
+      <tags>
+        <tag>书籍</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue权威指导笔记-路由</title>
+    <url>/2019/11/01/vue/vue_11/</url>
+    <content><![CDATA[<h3 id="视图部分"><a href="#视图部分" class="headerlink" title="视图部分"></a>视图部分</h3><h4 id="v-link"><a href="#v-link" class="headerlink" title="v-link"></a>v-link</h4><p>在原生的html中，我们使用<a>标签的href属性来导航，在vue-router应用中，我们还是使用<a>标签，不同的是，我们使用v-link属性不是href属性</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-link</span> = <span class="string">"&#123;path:'/join/DDFE'&#125;"</span>&gt;</span>join DDFE<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当用户在页面上点击join DDFE时，vue-router会在路由映射中匹配path为/join/DDFE的路由规则，如果成功匹配到，则会将对应路由组件的模版内容渲染到router-view区域中<br>v-link是一个vue指令，它的值是一个JavaScript表达式，可以接受一个表示path的字符串或者包含name或path属性的对象。如果属性值既不是字符串也不是对象字面量，则会被当作对应组件的数据属性来解析<br>当v-link解析后的值是对象时，该对象可以有以下属性</p>
 <ol>
-<li><p>单个参数<br>注册一个名为reverse的过滤器，作用是将字符串反向输出</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.filter('reverse',function(value)&#123;</span><br><span class="line">  return value.split('').reverse().join('')</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<li>params<br>包含路由中的动态片段和全匹配片段的健值对，</li>
+<li>query<br>包含路由中添加到路径path后的健值对：<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-link</span>=<span class="string">"&#123;path:'/home',query:&#123;isAuthed:true&#125;&#125;"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+当该path被匹配时，地址栏url为：/home？isAuthed=true</li>
+<li>replace<br>默认值为false，当该值为true时，此次导航不会产生历史记录</li>
+<li>append<br>默认值为false，当该值为true时，如果此次导航的目的的path为相对路径，则实际url中的路径是当前path后拼接目的的path<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">//不加append属性，目的url路径为/b</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-link</span>=<span class="string">"&#123;path:'b'&#125;"</span>&gt;</span>b<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">//append为true，目的url路径为/a/b</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-link</span>=<span class="string">"&#123;path:'b',append:true&#125;"</span>&gt;</span>/a/b<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>activeClass<br>默认值为v-link-active，指带有v-link指令的a元素处于激活状态时的class名称，该值也可以在创建路由器实例通过选项的linkActiveClass属性来进行全局设置</li>
+</ol>
+<h4 id="router-view"><a href="#router-view" class="headerlink" title="router-view"></a>router-view</h4><p>视图部分用来展示匹配路由的模版内容，在vue-router中使用router-view来渲染匹配的组件。router-view是一个vue组件，具有以下特性<br>通过props传递数据<br>支持v-transition和transition-mode<br>支持v-ref，被渲染的组件会注册到父组件的this.$对象中<br>支持slot，router-view中的html内容会被插入到相应路由组件模版的slot中</p>
+]]></content>
+      <categories>
+        <category>vue.js</category>
+      </categories>
+      <tags>
+        <tag>书籍</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue权威指导笔记-服务端通信</title>
+    <url>/2019/11/01/vue/vue_10/</url>
+    <content><![CDATA[<h3 id="参数配置"><a href="#参数配置" class="headerlink" title="参数配置"></a>参数配置</h3><p>vue-resource将请求配置分为全局配置、组件实例配置会调用配置三部分，这三部分的优先级一次增高，优先级高的配置会覆盖优先级低的配置。</p>
+<ol>
+<li>全局配置<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.http.options.root = '/root'</span><br></pre></td></tr></table></figure></li>
+<li>组件实例配置<br>在实例化组件时可以传入http选项来进行配置，代码示例如下<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">new vue(&#123;</span><br><span class="line">  http:&#123;</span><br><span class="line">    root:'/root',</span><br><span class="line">    headers:&#123;</span><br><span class="line">      authorization:'basic Yxsdlfjui'</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>方法调用时配置<br>在调用vue-resource请求方法时传入选项对象，代码示例如下<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">new vue(&#123;</span><br><span class="line">  ready:function()&#123;</span><br><span class="line">    this.$http.get(&#123;url:'/someUrl',headers:&#123;authorization:'B.then(function(response)&#123;</span><br><span class="line">    //请求成功回调</span><br><span class="line">    &#125;，function(response)&#123;</span><br><span class="line">    //请求失败回调</span><br><span class="line">    &#125;)'&#125;&#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="headers配置"><a href="#headers配置" class="headerlink" title="headers配置"></a>headers配置</h3>我们了解可以通过headers属性来配置请求头，合并策略遵循参数配置合并策略，除了参数配置headers属性可以设置请求头外，在vue-resource中也提供了全局默认的headers配置。<br>vue.http.headers健值可以是http方法名，common、custom三种类型，这三种类型的配置会进行合并，优先级从低到高是：common、custom、http方法名。<br>其中common对应的请求会在所有的请求头中设置，dustom对应请求头在非跨域时设置，http方法名对应的请求头只有在请求的method匹配方法名时才会被设置。</li>
+</ol>
+<h3 id="基本调用http"><a href="#基本调用http" class="headerlink" title="基本调用http"></a>基本调用http</h3><p>get、post、，实际上时执行增删改查是前后端开发人员共同约定的并非通过http的请求方法如get代表获取数据、put代表写入数据、post代表更新数据。后者为restful调用。</p>
+<ol>
+<li><p>底层方法<br>全局vue.http方法和vue组件的实例方法this.$http都属于底层方法，它们根据所传option参数的methos属性来判断请求方式是get还是post，抑或是其他的http的合格方法<br>全局调用</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.http(option)</span><br></pre></td></tr></table></figure>
+<p>组件实例调用</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">this.$http(option)</span><br></pre></td></tr></table></figure>
+<p>以上两种调用方式接受相同的option参数，都返回promise对象。不同的是，全局调用方式回调中的this指向window，而组件实例调用方式回调指向组件实例</p>
 </li>
-<li><p>多参数<br>过滤器函数除了以值为参数外，还支持接受任意数量的参数，参数之间以空格分隔：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.filter('wrap',function(value,begin,end)&#123;</span><br><span class="line">  return begin +value+end</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>双向过滤器<br>上面的过滤器函数都是在model数据输出到view层之前进行数据转化，实际上vue还支持把来自视图的值在写回模型前进行转化，即双向过滤器</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.filter(id,&#123;</span><br><span class="line">read:function(val)&#123;&#125;,</span><br><span class="line">write:function(newVal,oldVal)&#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>动态参数<br>filter语法还有一个需要注意的点，动态参数，如果过滤器参数没有用引号包起来，则它会在当前vm作用域内动态计算，此外，过滤器函数的this始终指向调用它的vm，代码实例：</p>
+<li><p>便捷调用<br>不同于底层方法，便捷方法是对底层方法的封装，在调用时可以省去选项option中的method属性，以下为vue-resource提供的便捷方法：<br>get(url,[data],[option])<br>post(url,[data],[option])<br>put(url,[data],[option])<br>patch(url,[data],[option])<br>delete(url,[data],[option])<br>jsonp(url,[data],[option])<br>便捷方法接受三个参数：<br>url：请求地址，可被option对象中的url属性覆盖<br>data：要发送的数据，可被option对象中的data属性覆盖<br>option：</p>
 </li>
 </ol>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"userInput"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;msg |cocat userInput&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"></span><br><span class="line">vue.filter('concat',function(value,input)&#123;</span><br><span class="line">return value+input</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
+<h3 id="请求选项对象"><a href="#请求选项对象" class="headerlink" title="请求选项对象"></a>请求选项对象</h3><p>在调用http请求方法时，可以传入选项对象来控制请求，例如：vue.http(option)<br>url：请求地址<br>method：默认值为get，请求的http方法（get、post等）<br>data：默认值为，需要发送给服务器的数据，注意，打他属性的值对于method为post、put、delete等请求会作为请求体来传送，对于get、jsonp等方式的请求将会拼接在url查询参数中<br>params：默认值为{}，用来替换url中的模版变量，模版变量中未匹配到的属性添加在url地址后边作为查询参数。<br>headers：默认值为{}，设置http请求头<br>xhr：默认值为null，该对象中的属性都会应用到原生xhr实例对象上。<br>upload：默认值为null，该对象的属性都会应用到原生xhr实例对象的upload属性上。<br>jsonp：默认值是callback，jsonp请求中回调函数的名字<br>timeout：默认为0，单位为ms，表示请求超过时间。<br>beforesend：默认为null，该函数接受请求选项对象作为参数，该函数在发送请求之前执行，vue-resource内部在拦截器的最前端调用该方法，源码定义如下：</p>
+<h3 id="restful调用"><a href="#restful调用" class="headerlink" title="restful调用"></a>restful调用</h3><p>restful调用方式就是客户端通过http动词来表示增删改查实现对服务器端数据操作的一种架构模式<br>vue-resource提供全局调用vue-resource或者在组件实例上调用this.$resource，这两种调用方式接受相同的参数</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">resource(url,[params],[actions],[options])</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>url<br>请求地址，可以包含占位符，它会被params对象中的同名属性的值替换</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">this.$resource('/books/&#123;cat&#125;',&#123;cat:'1'&#125;)</span><br></pre></td></tr></table></figure>
+<p>最终实际url为/books/1</p>
+</li>
+<li><p>params<br>参数对象，可用来替换url中的占位符，多出来的属性会拼接成url的查询参数</p>
+</li>
+<li><p>actions<br>用来对已有的action进行配置，也可以用来定义新的action</p>
+</li>
+<li><p>options<br>resource方法执行后返回一个包含所有action方法名的对象，其包含自定义的action方法，这些方法会返回promise对象</p>
+</li>
+</ol>
+<h3 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h3><p>可以全局进行拦截器设置，拦截器可以在请求发送或响应返回时做一些特殊的处理</p>
+<ol>
+<li>拦截器的注册<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.http.interceptors.pash(&#123;</span><br><span class="line">  request:function(request)&#123;</span><br><span class="line">    request.method = 'POST'</span><br><span class="line">    return request</span><br><span class="line">  &#125;,</span><br><span class="line">  requese:function(response)&#123;</span><br><span class="line">  //修改返回数据</span><br><span class="line">    response.data = [&#123;</span><br><span class="line">      custom:'custom'</span><br><span class="line">    &#125;]</span><br><span class="line">    return response</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>工厂函数注册<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.http.interceptors.push(function()&#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    request:function(request)&#123;</span><br><span class="line">      return request</span><br><span class="line">    &#125;,</span><br><span class="line">    response:function(response)&#123;</span><br><span class="line">      return response</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="跨域AJAX"><a href="#跨域AJAX" class="headerlink" title="跨域AJAX"></a>跨域AJAX</h3><p>vue-resource中用到的cors特性，以及XMLHttpRequest2的替代品XDomainRequest<br>1.XMLHttpRwquest2 CORS<br>在提交AJAX跨域请求时，首先我们需要知道当前浏览器是否支持XMLHttpRequest2，在支持的情况下，还需要服务端启用CORS支持<br>假如我么想从<a href="http://example.com域中提交请求到http://crossdomain.com域，那么需要在crossdomain.com域中添加如下响应头：" target="_blank" rel="noopener">http://example.com域中提交请求到http://crossdomain.com域，那么需要在crossdomain.com域中添加如下响应头：</a><br>Access-Control-Allow-Origin：<a href="http://example.com" target="_blank" rel="noopener">http://example.com</a><br>如果crossdomain.com要允许所有异域都可以AJAX请求该域资源，则添加如下响应头：<br>Access-Control-Allow-Origin：*<br>代码如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">var xhr = new XMLHttpRequest()</span><br><span class="line">xhr.open('get','http://wwww.crossdomain.com/hello.json')</span><br><span class="line">xhr.onload = function(e)&#123;</span><br><span class="line">  var data = JSON.parse(this.response)</span><br><span class="line">&#125;</span><br><span class="line">xhr.send()</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>XDomainRequset</li>
+</ol>
+<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><p>vue-resource基本http调用和restful调用action方法执行后都会返回一个Promise对象，该Promise对象提供了then、catch、finally等常用方法来注册回调函数。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">var promise = this.$http.post(</span><br><span class="line">  'http://example.com/book/create',</span><br><span class="line">  &#123;</span><br><span class="line">    cat:'1',</span><br><span class="line">    name:'newbook'</span><br><span class="line">  &#125;,&#123;</span><br><span class="line">    'headers':&#123;</span><br><span class="line">      'content-type':'x-www-form-urlencoded'</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line">promise.then(function(response)&#123;</span><br><span class="line">  console.log(response.data)</span><br><span class="line">&#125;,function(response)&#123;</span><br><span class="line">  </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>vue.js</category>
       </categories>
@@ -1441,86 +1551,6 @@ vuex<br>当非父子组件之间通信较多时，用eventBus很容易逻辑混�
 </ol>
 <p>模块通信<br>eventBus<br>eventBus的原理是引入一个新的vue实例，然后通过分别调用这个实例的事件触发和监听来实现通信和参数传递。<br>eventBus.js 一般会直接用公共一个文件来存放vue实例</p>
 <h3 id="组件生命周期"><a href="#组件生命周期" class="headerlink" title="组件生命周期"></a>组件生命周期</h3><p>三个阶段：创建、编译、销毁<br>created和mounted区别</p>
-]]></content>
-      <categories>
-        <category>vue.js</category>
-      </categories>
-      <tags>
-        <tag>书籍</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue权威指导笔记-服务端通信</title>
-    <url>/2019/11/01/vue/vue_10/</url>
-    <content><![CDATA[<h3 id="参数配置"><a href="#参数配置" class="headerlink" title="参数配置"></a>参数配置</h3><p>vue-resource将请求配置分为全局配置、组件实例配置会调用配置三部分，这三部分的优先级一次增高，优先级高的配置会覆盖优先级低的配置。</p>
-<ol>
-<li>全局配置<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.http.options.root = '/root'</span><br></pre></td></tr></table></figure></li>
-<li>组件实例配置<br>在实例化组件时可以传入http选项来进行配置，代码示例如下<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">new vue(&#123;</span><br><span class="line">  http:&#123;</span><br><span class="line">    root:'/root',</span><br><span class="line">    headers:&#123;</span><br><span class="line">      authorization:'basic Yxsdlfjui'</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li>方法调用时配置<br>在调用vue-resource请求方法时传入选项对象，代码示例如下<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">new vue(&#123;</span><br><span class="line">  ready:function()&#123;</span><br><span class="line">    this.$http.get(&#123;url:'/someUrl',headers:&#123;authorization:'B.then(function(response)&#123;</span><br><span class="line">    //请求成功回调</span><br><span class="line">    &#125;，function(response)&#123;</span><br><span class="line">    //请求失败回调</span><br><span class="line">    &#125;)'&#125;&#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="headers配置"><a href="#headers配置" class="headerlink" title="headers配置"></a>headers配置</h3>我们了解可以通过headers属性来配置请求头，合并策略遵循参数配置合并策略，除了参数配置headers属性可以设置请求头外，在vue-resource中也提供了全局默认的headers配置。<br>vue.http.headers健值可以是http方法名，common、custom三种类型，这三种类型的配置会进行合并，优先级从低到高是：common、custom、http方法名。<br>其中common对应的请求会在所有的请求头中设置，dustom对应请求头在非跨域时设置，http方法名对应的请求头只有在请求的method匹配方法名时才会被设置。</li>
-</ol>
-<h3 id="基本调用http"><a href="#基本调用http" class="headerlink" title="基本调用http"></a>基本调用http</h3><p>get、post、，实际上时执行增删改查是前后端开发人员共同约定的并非通过http的请求方法如get代表获取数据、put代表写入数据、post代表更新数据。后者为restful调用。</p>
-<ol>
-<li><p>底层方法<br>全局vue.http方法和vue组件的实例方法this.$http都属于底层方法，它们根据所传option参数的methos属性来判断请求方式是get还是post，抑或是其他的http的合格方法<br>全局调用</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.http(option)</span><br></pre></td></tr></table></figure>
-<p>组件实例调用</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">this.$http(option)</span><br></pre></td></tr></table></figure>
-<p>以上两种调用方式接受相同的option参数，都返回promise对象。不同的是，全局调用方式回调中的this指向window，而组件实例调用方式回调指向组件实例</p>
-</li>
-<li><p>便捷调用<br>不同于底层方法，便捷方法是对底层方法的封装，在调用时可以省去选项option中的method属性，以下为vue-resource提供的便捷方法：<br>get(url,[data],[option])<br>post(url,[data],[option])<br>put(url,[data],[option])<br>patch(url,[data],[option])<br>delete(url,[data],[option])<br>jsonp(url,[data],[option])<br>便捷方法接受三个参数：<br>url：请求地址，可被option对象中的url属性覆盖<br>data：要发送的数据，可被option对象中的data属性覆盖<br>option：</p>
-</li>
-</ol>
-<h3 id="请求选项对象"><a href="#请求选项对象" class="headerlink" title="请求选项对象"></a>请求选项对象</h3><p>在调用http请求方法时，可以传入选项对象来控制请求，例如：vue.http(option)<br>url：请求地址<br>method：默认值为get，请求的http方法（get、post等）<br>data：默认值为，需要发送给服务器的数据，注意，打他属性的值对于method为post、put、delete等请求会作为请求体来传送，对于get、jsonp等方式的请求将会拼接在url查询参数中<br>params：默认值为{}，用来替换url中的模版变量，模版变量中未匹配到的属性添加在url地址后边作为查询参数。<br>headers：默认值为{}，设置http请求头<br>xhr：默认值为null，该对象中的属性都会应用到原生xhr实例对象上。<br>upload：默认值为null，该对象的属性都会应用到原生xhr实例对象的upload属性上。<br>jsonp：默认值是callback，jsonp请求中回调函数的名字<br>timeout：默认为0，单位为ms，表示请求超过时间。<br>beforesend：默认为null，该函数接受请求选项对象作为参数，该函数在发送请求之前执行，vue-resource内部在拦截器的最前端调用该方法，源码定义如下：</p>
-<h3 id="restful调用"><a href="#restful调用" class="headerlink" title="restful调用"></a>restful调用</h3><p>restful调用方式就是客户端通过http动词来表示增删改查实现对服务器端数据操作的一种架构模式<br>vue-resource提供全局调用vue-resource或者在组件实例上调用this.$resource，这两种调用方式接受相同的参数</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">resource(url,[params],[actions],[options])</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>url<br>请求地址，可以包含占位符，它会被params对象中的同名属性的值替换</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">this.$resource('/books/&#123;cat&#125;',&#123;cat:'1'&#125;)</span><br></pre></td></tr></table></figure>
-<p>最终实际url为/books/1</p>
-</li>
-<li><p>params<br>参数对象，可用来替换url中的占位符，多出来的属性会拼接成url的查询参数</p>
-</li>
-<li><p>actions<br>用来对已有的action进行配置，也可以用来定义新的action</p>
-</li>
-<li><p>options<br>resource方法执行后返回一个包含所有action方法名的对象，其包含自定义的action方法，这些方法会返回promise对象</p>
-</li>
-</ol>
-<h3 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h3><p>可以全局进行拦截器设置，拦截器可以在请求发送或响应返回时做一些特殊的处理</p>
-<ol>
-<li>拦截器的注册<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.http.interceptors.pash(&#123;</span><br><span class="line">  request:function(request)&#123;</span><br><span class="line">    request.method = 'POST'</span><br><span class="line">    return request</span><br><span class="line">  &#125;,</span><br><span class="line">  requese:function(response)&#123;</span><br><span class="line">  //修改返回数据</span><br><span class="line">    response.data = [&#123;</span><br><span class="line">      custom:'custom'</span><br><span class="line">    &#125;]</span><br><span class="line">    return response</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li>工厂函数注册<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">vue.http.interceptors.push(function()&#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    request:function(request)&#123;</span><br><span class="line">      return request</span><br><span class="line">    &#125;,</span><br><span class="line">    response:function(response)&#123;</span><br><span class="line">      return response</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="跨域AJAX"><a href="#跨域AJAX" class="headerlink" title="跨域AJAX"></a>跨域AJAX</h3><p>vue-resource中用到的cors特性，以及XMLHttpRequest2的替代品XDomainRequest<br>1.XMLHttpRwquest2 CORS<br>在提交AJAX跨域请求时，首先我们需要知道当前浏览器是否支持XMLHttpRequest2，在支持的情况下，还需要服务端启用CORS支持<br>假如我么想从<a href="http://example.com域中提交请求到http://crossdomain.com域，那么需要在crossdomain.com域中添加如下响应头：" target="_blank" rel="noopener">http://example.com域中提交请求到http://crossdomain.com域，那么需要在crossdomain.com域中添加如下响应头：</a><br>Access-Control-Allow-Origin：<a href="http://example.com" target="_blank" rel="noopener">http://example.com</a><br>如果crossdomain.com要允许所有异域都可以AJAX请求该域资源，则添加如下响应头：<br>Access-Control-Allow-Origin：*<br>代码如下：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">var xhr = new XMLHttpRequest()</span><br><span class="line">xhr.open('get','http://wwww.crossdomain.com/hello.json')</span><br><span class="line">xhr.onload = function(e)&#123;</span><br><span class="line">  var data = JSON.parse(this.response)</span><br><span class="line">&#125;</span><br><span class="line">xhr.send()</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>XDomainRequset</li>
-</ol>
-<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><p>vue-resource基本http调用和restful调用action方法执行后都会返回一个Promise对象，该Promise对象提供了then、catch、finally等常用方法来注册回调函数。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">var promise = this.$http.post(</span><br><span class="line">  'http://example.com/book/create',</span><br><span class="line">  &#123;</span><br><span class="line">    cat:'1',</span><br><span class="line">    name:'newbook'</span><br><span class="line">  &#125;,&#123;</span><br><span class="line">    'headers':&#123;</span><br><span class="line">      'content-type':'x-www-form-urlencoded'</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line">promise.then(function(response)&#123;</span><br><span class="line">  console.log(response.data)</span><br><span class="line">&#125;,function(response)&#123;</span><br><span class="line">  </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>vue.js</category>
-      </categories>
-      <tags>
-        <tag>书籍</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue权威指导笔记-路由</title>
-    <url>/2019/11/01/vue/vue_11/</url>
-    <content><![CDATA[<h3 id="视图部分"><a href="#视图部分" class="headerlink" title="视图部分"></a>视图部分</h3><h4 id="v-link"><a href="#v-link" class="headerlink" title="v-link"></a>v-link</h4><p>在原生的html中，我们使用<a>标签的href属性来导航，在vue-router应用中，我们还是使用<a>标签，不同的是，我们使用v-link属性不是href属性</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-link</span> = <span class="string">"&#123;path:'/join/DDFE'&#125;"</span>&gt;</span>join DDFE<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>当用户在页面上点击join DDFE时，vue-router会在路由映射中匹配path为/join/DDFE的路由规则，如果成功匹配到，则会将对应路由组件的模版内容渲染到router-view区域中<br>v-link是一个vue指令，它的值是一个JavaScript表达式，可以接受一个表示path的字符串或者包含name或path属性的对象。如果属性值既不是字符串也不是对象字面量，则会被当作对应组件的数据属性来解析<br>当v-link解析后的值是对象时，该对象可以有以下属性</p>
-<ol>
-<li>params<br>包含路由中的动态片段和全匹配片段的健值对，</li>
-<li>query<br>包含路由中添加到路径path后的健值对：<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-link</span>=<span class="string">"&#123;path:'/home',query:&#123;isAuthed:true&#125;&#125;"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-当该path被匹配时，地址栏url为：/home？isAuthed=true</li>
-<li>replace<br>默认值为false，当该值为true时，此次导航不会产生历史记录</li>
-<li>append<br>默认值为false，当该值为true时，如果此次导航的目的的path为相对路径，则实际url中的路径是当前path后拼接目的的path<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">//不加append属性，目的url路径为/b</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-link</span>=<span class="string">"&#123;path:'b'&#125;"</span>&gt;</span>b<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">//append为true，目的url路径为/a/b</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-link</span>=<span class="string">"&#123;path:'b',append:true&#125;"</span>&gt;</span>/a/b<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li>activeClass<br>默认值为v-link-active，指带有v-link指令的a元素处于激活状态时的class名称，该值也可以在创建路由器实例通过选项的linkActiveClass属性来进行全局设置</li>
-</ol>
-<h4 id="router-view"><a href="#router-view" class="headerlink" title="router-view"></a>router-view</h4><p>视图部分用来展示匹配路由的模版内容，在vue-router中使用router-view来渲染匹配的组件。router-view是一个vue组件，具有以下特性<br>通过props传递数据<br>支持v-transition和transition-mode<br>支持v-ref，被渲染的组件会注册到父组件的this.$对象中<br>支持slot，router-view中的html内容会被插入到相应路由组件模版的slot中</p>
 ]]></content>
       <categories>
         <category>vue.js</category>

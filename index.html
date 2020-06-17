@@ -82,7 +82,7 @@
     
     
     
-    <article id="post-javascript/JavaScript_03" class="article article-type-post" itemscope
+    <article id="post-javascript/javascript_05" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -90,8 +90,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/02/01/javascript/JavaScript_03/"
-    >javascript-cookie、localStorage和sessionStorage 三者之间的区别以及存储、获取、删除等使用方式</a> 
+  <a class="article-title" href="/2020/02/01/javascript/javascript_05/"
+    >javascript-promise</a> 
 </h2>
  
 
@@ -100,7 +100,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/02/01/javascript/JavaScript_03/" class="article-date">
+      <a href="/2020/02/01/javascript/javascript_05/" class="article-date">
   <time datetime="2020-02-01T00:00:00.000Z" itemprop="datePublished">2020-02-01</time>
 </a>
       
@@ -122,45 +122,65 @@
       
 
       
-      <h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><p>Cookie 是小甜饼的意思。顾名思义，cookie 确实非常小，它的大小限制为4KB左右，是网景公司的前雇员 Lou Montulli 在1993年3月的发明。它的主要用途有保存登录信息，比如你登录某个网站市场可以看到“记住密码”，这通常就是通过在 Cookie 中存入一段辨别用户身份的数据来实现的。<br>####localStorage<br>localStorage 是 HTML5 标准中新加入的技术，它并不是什么划时代的新东西。早在 IE 6 时代，就有一个叫 userData 的东西用于本地存储，而当时考虑到浏览器兼容性，更通用的方案是使用 Flash。而如今，localStorage 被大多数浏览器所支持，如果你的网站需要支持 IE6+，那以 userData 作为你的 polyfill 的方案是种不错的选择。</p>
-<h4 id="sessionStorage"><a href="#sessionStorage" class="headerlink" title="sessionStorage"></a>sessionStorage</h4><p>sessionStorage 与 localStorage 的接口类似，但保存数据的生命周期与 localStorage 不同。做过后端开发的同学应该知道 Session 这个词的意思，直译过来是“会话”。而 sessionStorage 是一个前端的概念，它只是可以将一部分数据在当前会话中保存下来，刷新页面数据依旧存在。但当页面关闭后，sessionStorage 中的数据就会被清空。</p>
-<h3 id="三者的异同"><a href="#三者的异同" class="headerlink" title="三者的异同"></a>三者的异同</h3><table>
-<thead>
-<tr>
-<th>特性</th>
-<th>Cookie</th>
-<th>localStorage</th>
-<th>sessionStorage</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>数据的生命期</td>
-<td>可设置失效时间，默认是关闭浏览器后失效</td>
-<td>除非被清除，否则永久保存</td>
-<td>仅在当前会话下有效，关闭页面或浏览器后被清除</td>
-</tr>
-<tr>
-<td>存放数据大小</td>
-<td>4K左右</td>
-<td>一般为5MB</td>
-<td>一般为5MB</td>
-</tr>
-<tr>
-<td>与服务器端通信</td>
-<td>每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题</td>
-<td>仅在客户端（即浏览器）中保存，不参与和服务器的通信</td>
-<td>仅在客户端（即浏览器）中保存，不参与和服务器的通信</td>
-</tr>
-<tr>
-<td>易用性</td>
-<td>需要程序员自己封装，源生的Cookie接口不友好</td>
-<td>源生接口可以接受，亦可再次封装来对Object和Array有更好的支持</td>
-<td>源生接口可以接受，亦可再次封装来对Object和Array有更好的支持</td>
-</tr>
-</tbody></table>
-<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>有了对上面这些差别的直观理解，我们就可以讨论三者的应用场景了。</p>
-<p>因为考虑到每个 HTTP 请求都会带着 Cookie 的信息，所以 Cookie 当然是能精简就精简啦，比较常用的一个应用场景就是判断用户是否登录。<strong>针对登录过的用户</strong>，服务器端会在他登录时往 Cookie 中插入一段加密过的唯一辨识单一用户的辨识码，下次只要读取这个值就可以判断当前用户是否登录啦。曾经还使用 Cookie 来保存用户在电商网站的购物车信息，如今有了 localStorage，似乎在这个方面也可以给 Cookie 放个假了~</p>
-<p>而另一方面 localStorage 接替了 Cookie 管理购物车的工作，同时也能胜任其他一些工作。比如HTML5游戏通常会产生一些本地数据，localStorage 也是非常适用的。如果遇到一些内容特别多的表单，为了优化用户体验，我们可能要把表单页面拆分成多个子页面，然后按步骤引导用户填写。这时候 sessionStorage 的作用就发挥出来了。</p>
+      <h3 id="常见-Promise-面试题"><a href="#常见-Promise-面试题" class="headerlink" title="常见 Promise 面试题"></a>常见 Promise 面试题</h3><p>我们看一些 Promise 的常见面试问法，由浅至深。</p>
+<p>1、了解 Promise 吗？<br>2、Promise 解决的痛点是什么？<br>3、Promise 解决的痛点还有其他方法可以解决吗？如果有，请列举。<br>4、Promise 如何使用？<br>5、Promise 常用的方法有哪些？它们的作用是什么？<br>6、Promise 在事件循环中的执行过程是怎样的？<br>7、Promise 的业界实现都有哪些？<br>8、能不能手写一个 Promise 的 polyfill。</p>
+<p>这些问题，如果你都能 hold 住，那么面试官基本认可你了。带着上面这些问题，我们往下看。</p>
+<p>Promise 出现的原因<br>在 Promise 出现以前，我们处理一个异步网络请求，大概是这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 请求 代表 一个异步网络调用。</span></span><br><span class="line"><span class="comment">// 请求结果 代表网络请求的响应。</span></span><br><span class="line">请求<span class="number">1</span>(<span class="function"><span class="keyword">function</span>(<span class="params">请求结果<span class="number">1</span></span>)</span>&#123;</span><br><span class="line">    处理请求结果<span class="number">1</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>看起来还不错。<br>但是，需求变化了，我们需要根据第一个网络请求的结果，再去执行第二个网络请求，代码大概如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">请求<span class="number">1</span>(<span class="function"><span class="keyword">function</span>(<span class="params">请求结果<span class="number">1</span></span>)</span>&#123;</span><br><span class="line">    请求<span class="number">2</span>(<span class="function"><span class="keyword">function</span>(<span class="params">请求结果<span class="number">2</span></span>)</span>&#123;</span><br><span class="line">        处理请求结果<span class="number">2</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>需求是永无止境的 回调地狱 现身了</p>
+<h3 id="什么是-Promise"><a href="#什么是-Promise" class="headerlink" title="什么是 Promise"></a>什么是 Promise</h3><p>Promise 是异步编程的一种解决方案，比传统的异步解决方案【回调函数】和【事件】更合理、更强大。现已被 ES6 纳入进规范中。<br>代码书写比较<br>还是使用上面的网络请求例子，我们看下 Promise 的常规写法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(请求<span class="number">1</span>)</span><br><span class="line">    .then(请求<span class="number">2</span>(请求结果<span class="number">1</span>))</span><br><span class="line">    .then(请求<span class="number">3</span>(请求结果<span class="number">2</span>))</span><br><span class="line">    .then(请求<span class="number">4</span>(请求结果<span class="number">3</span>))</span><br><span class="line">    .then(请求<span class="number">5</span>(请求结果<span class="number">4</span>))</span><br><span class="line">    .catch(处理异常(异常信息))</span><br></pre></td></tr></table></figure>
+<p>比较一下这种写法和上面的回调式的写法。我们不难发现，Promise 的写法更为直观，并且能够在外层捕获异步函数的异常信息。</p>
+<p>API<br>Promise 的常用 API 如下：</p>
+<ul>
+<li>Promise.resolve(value)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">类方法，该方法返回一个以 value 值解析后的 Promise 对象</span><br><span class="line">1、如果这个值是个 thenable（即带有 then 方法），返回的 Promise 对象会“跟随”这个 thenable 的对象，采用它的最终状态（指 resolved&#x2F;rejected&#x2F;pending&#x2F;settled）</span><br><span class="line">2、如果传入的 value 本身就是 Promise 对象，则该对象作为 Promise.resolve 方法的返回值返回。</span><br><span class="line">3、其他情况以该值为成功状态返回一个 Promise 对象。</span><br></pre></td></tr></table></figure>
+上面是 resolve 方法的解释，传入不同类型的 value 值，返回结果也有区别。这个 API 比较重要，建议大家通过练习一些小例子，并且配合上面的解释来熟悉它。如下几个小例子：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如果传入的 value 本身就是 Promise 对象，则该对象作为 Promise.resolve 方法的返回值返回。  </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">resolve</span>)</span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        resolve(<span class="number">123</span>);</span><br><span class="line">    &#125;,<span class="number">3000</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> p0 = <span class="keyword">new</span> <span class="built_in">Promise</span>(fn);</span><br><span class="line"><span class="keyword">let</span> p1 = <span class="built_in">Promise</span>.resolve(p0);</span><br><span class="line"><span class="comment">// 返回为true，返回的 Promise 即是 入参的 Promise 对象。</span></span><br><span class="line"><span class="built_in">console</span>.log(p0 === p1);</span><br></pre></td></tr></table></figure>
+复制代码传入 thenable 对象，返回 Promise 对象跟随 thenable 对象的最终状态。</li>
+</ul>
+<p>ES6 Promises 里提到了 Thenable 这个概念，简单来说它就是一个非常类似 Promise 的东西。最简单的例子就是 jQuery.ajax，它的返回值就是 thenable 对象。但是要谨记，并不是只要实现了 then 方法就一定能作为 Promise 对象来使用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如果传入的 value 本身就是 thenable 对象，返回的 promise 对象会跟随 thenable 对象的状态。</span></span><br><span class="line"><span class="keyword">let</span> promise = <span class="built_in">Promise</span>.resolve($.ajax(<span class="string">'/test/test.json'</span>));<span class="comment">// =&gt; promise对象</span></span><br><span class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;);</span><br><span class="line">复制代码返回一个状态已变成 resolved 的 <span class="built_in">Promise</span> 对象。</span><br><span class="line"><span class="keyword">let</span> p1 = <span class="built_in">Promise</span>.resolve(<span class="number">123</span>); </span><br><span class="line"><span class="comment">//打印p1 可以看到p1是一个状态置为resolved的Promise对象</span></span><br><span class="line"><span class="built_in">console</span>.log(p1)</span><br><span class="line">复制代码</span><br><span class="line"><span class="built_in">Promise</span>.reject</span><br></pre></td></tr></table></figure>
+
+<p>类方法，且与 resolve 唯一的不同是，返回的 promise 对象的状态为 rejected。</p>
+<ul>
+<li>Promise.prototype.then</li>
+</ul>
+<p>实例方法，为 Promise 注册回调函数，函数形式：fn(vlaue){}，value 是上一个任务的返回结果，then 中的函数一定要 return 一个结果或者一个新的 Promise 对象，才可以让之后的then 回调接收。</p>
+<ul>
+<li>Promise.prototype.catch</li>
+</ul>
+<p>实例方法，捕获异常，函数形式：fn(err){}, err 是 catch 注册 之前的回调抛出的异常信息。</p>
+<ul>
+<li>Promise.race</li>
+</ul>
+<p>类方法，多个 Promise 任务同时执行，返回最先执行结束的 Promise 任务的结果，不管这个 Promise 结果是成功还是失败。<br>。</p>
+<ul>
+<li>Promise.all</li>
+</ul>
+<p>类方法，多个 Promise 任务同时执行。<br>如果全部成功执行，则以数组的方式返回所有 Promise 任务的执行结果。  如果有一个 Promise 任务 rejected，则只返回 rejected 任务的结果。</p>
+<p>…</p>
+<p>以上几种便是 Promise 的常用 API，掌握了这些，我们便可以熟练使用 Promise了。</p>
+<p>###如何理解 Promise<br>为了便于理解 Promise，大家除了要多加练习以外，最好的方式是能够将Promise的机制与现实生活中的例子联系起来，这样才能真正得到消化。<br>我们可以把 Promise 比作一个保姆，家里的一连串的事情，你只需要吩咐给他，他就能帮你做，你就可以去做其他事情了。<br>比如，作为一家之主的我，某一天要出门办事，但是我还要买菜做饭送到老婆单位（请理解我在家里的地位。。）<br>出门办的事情很重要，买菜做饭也重要。。但我自己只能做一件事。<br>这时我就可以把买菜做饭的事情交给保姆，我会告诉她：</p>
+<p>你先去超市买菜。<br>用超市买回来的菜做饭。<br>将做好的饭菜送到老婆单位。<br>送到单位后打电话告诉我。</p>
+<p>我们知道，上面三步都是需要消耗时间的，我们可以理解为三个异步任务。利用 Promise 的写法来书写这个操作：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> 买菜(<span class="params">resolve，reject</span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        resolve([<span class="string">'西红柿'</span>、<span class="string">'鸡蛋'</span>、<span class="string">'油菜'</span>]);</span><br><span class="line">    &#125;,<span class="number">3000</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> 做饭(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//对做好的饭进行下一步处理。</span></span><br><span class="line">        resolve (&#123;</span><br><span class="line">            主食: <span class="string">'米饭'</span>,</span><br><span class="line">            菜: [<span class="string">'西红柿炒鸡蛋'</span>、<span class="string">'清炒油菜'</span>]</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,<span class="number">3000</span>) </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> 送饭(<span class="params">resolve，reject</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//对送饭的结果进行下一步处理</span></span><br><span class="line">    resolve(<span class="string">'老婆的么么哒'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> 电话通知我(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//电话通知我后的下一步处理</span></span><br><span class="line">    给保姆加<span class="number">100</span>块钱奖金;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>复制代码好了，现在我整理好了四个任务，这时我需要告诉保姆，让他按照这个任务列表去做。这个过程是必不可少的，因为如果不告诉保姆，保姆不知道需要做这些事情。。（我这个保姆比较懒）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 告诉保姆帮我做几件连贯的事情，先去超市买菜</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(买菜)</span><br><span class="line"><span class="comment">//用买好的菜做饭</span></span><br><span class="line">.then(<span class="function">(<span class="params">买好的菜</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(做饭);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//把做好的饭送到老婆公司</span></span><br><span class="line">.then(<span class="function">(<span class="params">做好的饭</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(送饭);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//送完饭后打电话通知我</span></span><br><span class="line">.then(<span class="function">(<span class="params">送饭结果</span>)=&gt;</span>&#123;</span><br><span class="line">    电话通知我();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>复制代码至此，我通知了保姆要做这些事情，然后我就可以放心地去办我的事情。</p>
+<p>请一定要谨记：如果我们的后续任务是异步任务的话，必须return 一个 新的 promise 对象。<br>如果后续任务是同步任务，只需 return 一个结果即可。<br>我们上面举的例子，除了电话通知我是一个同步任务，其余的都是异步任务，异步任务 return 的是 promise对象。</p>
+<p>除此之外，一定谨记，一个 Promise 对象有三个状态，并且状态一旦改变，便不能再被更改为其他状态。</p>
+<p>pending，异步任务正在进行。<br>resolved (也可以叫fulfilled)，异步任务执行成功。<br>rejected，异步任务执行失败。</p>
+<p>###Promise的使用总结。<br>Promise 这么多概念，初学者很难一下子消化掉，那么我们可以采取强制记忆法，强迫自己去记住使用过程。</p>
+<p>首先初始化一个 Promise 对象，可以通过两种方式创建，<br>这两种方式都会返回一个 Promise 对象。</p>
+<p>1、new Promise(fn)<br>2、Promise.resolve(fn)</p>
+<p>然后调用上一步返回的 promise 对象的 then 方法，注册回调函数。</p>
+<p>then 中的回调函数可以有一个参数，也可以不带参数。如果 then 中的回调函数依赖上一步的返回结果，那么要带上参数。比如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(fn)</span><br><span class="line">.then(fn1(value）&#123;</span><br><span class="line">    <span class="comment">//处理value</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>复制代码</p>
+<p>最后注册 catch 异常处理函数，处理前面回调中可能抛出的异常。</p>
+<p>通常按照这三个步骤，你就能够应对绝大部分的异步处理场景。用熟之后，再去研究 Promise 各个函数更深层次的原理以及使用方式即可。<br>看到这里之后，我们便能回答上面的问题 4 和问题 5了。</p>
+<h3 id="Promsie-与事件循环"><a href="#Promsie-与事件循环" class="headerlink" title="Promsie 与事件循环"></a>Promsie 与事件循环</h3><p>Promise在初始化时，传入的函数是同步执行的，然后注册 then 回调。注册完之后，继续往下执行同步代码，在这之前，then 中回调不会执行。同步代码块执行完毕后，才会在事件循环中检测是否有可用的 promise 回调，如果有，那么执行，如果没有，继续下一个事件循环。<br>关于 Promise 在事件循环中还有一个 微任务的概念（microtask），感兴趣的话可以看我这篇关于nodejs 时间循环的文章 剖析nodejs的事件循环，虽然和浏览器端有些不同，但是Promise 微任务的执行时机相差不大。</p>
 
       
       <!-- reward -->
@@ -307,7 +327,7 @@
 
 </article>
     
-    <article id="post-javascript/javascript_05" class="article article-type-post" itemscope
+    <article id="post-javascript/JavaScript_03" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -315,8 +335,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/02/01/javascript/javascript_05/"
-    >javascript-promise</a> 
+  <a class="article-title" href="/2020/02/01/javascript/JavaScript_03/"
+    >javascript-cookie、localStorage和sessionStorage 三者之间的区别以及存储、获取、删除等使用方式</a> 
 </h2>
  
 
@@ -325,7 +345,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/02/01/javascript/javascript_05/" class="article-date">
+      <a href="/2020/02/01/javascript/JavaScript_03/" class="article-date">
   <time datetime="2020-02-01T00:00:00.000Z" itemprop="datePublished">2020-02-01</time>
 </a>
       
@@ -347,65 +367,45 @@
       
 
       
-      <h3 id="常见-Promise-面试题"><a href="#常见-Promise-面试题" class="headerlink" title="常见 Promise 面试题"></a>常见 Promise 面试题</h3><p>我们看一些 Promise 的常见面试问法，由浅至深。</p>
-<p>1、了解 Promise 吗？<br>2、Promise 解决的痛点是什么？<br>3、Promise 解决的痛点还有其他方法可以解决吗？如果有，请列举。<br>4、Promise 如何使用？<br>5、Promise 常用的方法有哪些？它们的作用是什么？<br>6、Promise 在事件循环中的执行过程是怎样的？<br>7、Promise 的业界实现都有哪些？<br>8、能不能手写一个 Promise 的 polyfill。</p>
-<p>这些问题，如果你都能 hold 住，那么面试官基本认可你了。带着上面这些问题，我们往下看。</p>
-<p>Promise 出现的原因<br>在 Promise 出现以前，我们处理一个异步网络请求，大概是这样：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 请求 代表 一个异步网络调用。</span></span><br><span class="line"><span class="comment">// 请求结果 代表网络请求的响应。</span></span><br><span class="line">请求<span class="number">1</span>(<span class="function"><span class="keyword">function</span>(<span class="params">请求结果<span class="number">1</span></span>)</span>&#123;</span><br><span class="line">    处理请求结果<span class="number">1</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>看起来还不错。<br>但是，需求变化了，我们需要根据第一个网络请求的结果，再去执行第二个网络请求，代码大概如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">请求<span class="number">1</span>(<span class="function"><span class="keyword">function</span>(<span class="params">请求结果<span class="number">1</span></span>)</span>&#123;</span><br><span class="line">    请求<span class="number">2</span>(<span class="function"><span class="keyword">function</span>(<span class="params">请求结果<span class="number">2</span></span>)</span>&#123;</span><br><span class="line">        处理请求结果<span class="number">2</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>需求是永无止境的 回调地狱 现身了</p>
-<h3 id="什么是-Promise"><a href="#什么是-Promise" class="headerlink" title="什么是 Promise"></a>什么是 Promise</h3><p>Promise 是异步编程的一种解决方案，比传统的异步解决方案【回调函数】和【事件】更合理、更强大。现已被 ES6 纳入进规范中。<br>代码书写比较<br>还是使用上面的网络请求例子，我们看下 Promise 的常规写法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(请求<span class="number">1</span>)</span><br><span class="line">    .then(请求<span class="number">2</span>(请求结果<span class="number">1</span>))</span><br><span class="line">    .then(请求<span class="number">3</span>(请求结果<span class="number">2</span>))</span><br><span class="line">    .then(请求<span class="number">4</span>(请求结果<span class="number">3</span>))</span><br><span class="line">    .then(请求<span class="number">5</span>(请求结果<span class="number">4</span>))</span><br><span class="line">    .catch(处理异常(异常信息))</span><br></pre></td></tr></table></figure>
-<p>比较一下这种写法和上面的回调式的写法。我们不难发现，Promise 的写法更为直观，并且能够在外层捕获异步函数的异常信息。</p>
-<p>API<br>Promise 的常用 API 如下：</p>
-<ul>
-<li>Promise.resolve(value)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">类方法，该方法返回一个以 value 值解析后的 Promise 对象</span><br><span class="line">1、如果这个值是个 thenable（即带有 then 方法），返回的 Promise 对象会“跟随”这个 thenable 的对象，采用它的最终状态（指 resolved&#x2F;rejected&#x2F;pending&#x2F;settled）</span><br><span class="line">2、如果传入的 value 本身就是 Promise 对象，则该对象作为 Promise.resolve 方法的返回值返回。</span><br><span class="line">3、其他情况以该值为成功状态返回一个 Promise 对象。</span><br></pre></td></tr></table></figure>
-上面是 resolve 方法的解释，传入不同类型的 value 值，返回结果也有区别。这个 API 比较重要，建议大家通过练习一些小例子，并且配合上面的解释来熟悉它。如下几个小例子：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如果传入的 value 本身就是 Promise 对象，则该对象作为 Promise.resolve 方法的返回值返回。  </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">resolve</span>)</span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        resolve(<span class="number">123</span>);</span><br><span class="line">    &#125;,<span class="number">3000</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> p0 = <span class="keyword">new</span> <span class="built_in">Promise</span>(fn);</span><br><span class="line"><span class="keyword">let</span> p1 = <span class="built_in">Promise</span>.resolve(p0);</span><br><span class="line"><span class="comment">// 返回为true，返回的 Promise 即是 入参的 Promise 对象。</span></span><br><span class="line"><span class="built_in">console</span>.log(p0 === p1);</span><br></pre></td></tr></table></figure>
-复制代码传入 thenable 对象，返回 Promise 对象跟随 thenable 对象的最终状态。</li>
-</ul>
-<p>ES6 Promises 里提到了 Thenable 这个概念，简单来说它就是一个非常类似 Promise 的东西。最简单的例子就是 jQuery.ajax，它的返回值就是 thenable 对象。但是要谨记，并不是只要实现了 then 方法就一定能作为 Promise 对象来使用。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如果传入的 value 本身就是 thenable 对象，返回的 promise 对象会跟随 thenable 对象的状态。</span></span><br><span class="line"><span class="keyword">let</span> promise = <span class="built_in">Promise</span>.resolve($.ajax(<span class="string">'/test/test.json'</span>));<span class="comment">// =&gt; promise对象</span></span><br><span class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;);</span><br><span class="line">复制代码返回一个状态已变成 resolved 的 <span class="built_in">Promise</span> 对象。</span><br><span class="line"><span class="keyword">let</span> p1 = <span class="built_in">Promise</span>.resolve(<span class="number">123</span>); </span><br><span class="line"><span class="comment">//打印p1 可以看到p1是一个状态置为resolved的Promise对象</span></span><br><span class="line"><span class="built_in">console</span>.log(p1)</span><br><span class="line">复制代码</span><br><span class="line"><span class="built_in">Promise</span>.reject</span><br></pre></td></tr></table></figure>
-
-<p>类方法，且与 resolve 唯一的不同是，返回的 promise 对象的状态为 rejected。</p>
-<ul>
-<li>Promise.prototype.then</li>
-</ul>
-<p>实例方法，为 Promise 注册回调函数，函数形式：fn(vlaue){}，value 是上一个任务的返回结果，then 中的函数一定要 return 一个结果或者一个新的 Promise 对象，才可以让之后的then 回调接收。</p>
-<ul>
-<li>Promise.prototype.catch</li>
-</ul>
-<p>实例方法，捕获异常，函数形式：fn(err){}, err 是 catch 注册 之前的回调抛出的异常信息。</p>
-<ul>
-<li>Promise.race</li>
-</ul>
-<p>类方法，多个 Promise 任务同时执行，返回最先执行结束的 Promise 任务的结果，不管这个 Promise 结果是成功还是失败。<br>。</p>
-<ul>
-<li>Promise.all</li>
-</ul>
-<p>类方法，多个 Promise 任务同时执行。<br>如果全部成功执行，则以数组的方式返回所有 Promise 任务的执行结果。  如果有一个 Promise 任务 rejected，则只返回 rejected 任务的结果。</p>
-<p>…</p>
-<p>以上几种便是 Promise 的常用 API，掌握了这些，我们便可以熟练使用 Promise了。</p>
-<p>###如何理解 Promise<br>为了便于理解 Promise，大家除了要多加练习以外，最好的方式是能够将Promise的机制与现实生活中的例子联系起来，这样才能真正得到消化。<br>我们可以把 Promise 比作一个保姆，家里的一连串的事情，你只需要吩咐给他，他就能帮你做，你就可以去做其他事情了。<br>比如，作为一家之主的我，某一天要出门办事，但是我还要买菜做饭送到老婆单位（请理解我在家里的地位。。）<br>出门办的事情很重要，买菜做饭也重要。。但我自己只能做一件事。<br>这时我就可以把买菜做饭的事情交给保姆，我会告诉她：</p>
-<p>你先去超市买菜。<br>用超市买回来的菜做饭。<br>将做好的饭菜送到老婆单位。<br>送到单位后打电话告诉我。</p>
-<p>我们知道，上面三步都是需要消耗时间的，我们可以理解为三个异步任务。利用 Promise 的写法来书写这个操作：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> 买菜(<span class="params">resolve，reject</span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        resolve([<span class="string">'西红柿'</span>、<span class="string">'鸡蛋'</span>、<span class="string">'油菜'</span>]);</span><br><span class="line">    &#125;,<span class="number">3000</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> 做饭(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//对做好的饭进行下一步处理。</span></span><br><span class="line">        resolve (&#123;</span><br><span class="line">            主食: <span class="string">'米饭'</span>,</span><br><span class="line">            菜: [<span class="string">'西红柿炒鸡蛋'</span>、<span class="string">'清炒油菜'</span>]</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,<span class="number">3000</span>) </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> 送饭(<span class="params">resolve，reject</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//对送饭的结果进行下一步处理</span></span><br><span class="line">    resolve(<span class="string">'老婆的么么哒'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> 电话通知我(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//电话通知我后的下一步处理</span></span><br><span class="line">    给保姆加<span class="number">100</span>块钱奖金;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>复制代码好了，现在我整理好了四个任务，这时我需要告诉保姆，让他按照这个任务列表去做。这个过程是必不可少的，因为如果不告诉保姆，保姆不知道需要做这些事情。。（我这个保姆比较懒）</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 告诉保姆帮我做几件连贯的事情，先去超市买菜</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(买菜)</span><br><span class="line"><span class="comment">//用买好的菜做饭</span></span><br><span class="line">.then(<span class="function">(<span class="params">买好的菜</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(做饭);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//把做好的饭送到老婆公司</span></span><br><span class="line">.then(<span class="function">(<span class="params">做好的饭</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(送饭);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//送完饭后打电话通知我</span></span><br><span class="line">.then(<span class="function">(<span class="params">送饭结果</span>)=&gt;</span>&#123;</span><br><span class="line">    电话通知我();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>复制代码至此，我通知了保姆要做这些事情，然后我就可以放心地去办我的事情。</p>
-<p>请一定要谨记：如果我们的后续任务是异步任务的话，必须return 一个 新的 promise 对象。<br>如果后续任务是同步任务，只需 return 一个结果即可。<br>我们上面举的例子，除了电话通知我是一个同步任务，其余的都是异步任务，异步任务 return 的是 promise对象。</p>
-<p>除此之外，一定谨记，一个 Promise 对象有三个状态，并且状态一旦改变，便不能再被更改为其他状态。</p>
-<p>pending，异步任务正在进行。<br>resolved (也可以叫fulfilled)，异步任务执行成功。<br>rejected，异步任务执行失败。</p>
-<p>###Promise的使用总结。<br>Promise 这么多概念，初学者很难一下子消化掉，那么我们可以采取强制记忆法，强迫自己去记住使用过程。</p>
-<p>首先初始化一个 Promise 对象，可以通过两种方式创建，<br>这两种方式都会返回一个 Promise 对象。</p>
-<p>1、new Promise(fn)<br>2、Promise.resolve(fn)</p>
-<p>然后调用上一步返回的 promise 对象的 then 方法，注册回调函数。</p>
-<p>then 中的回调函数可以有一个参数，也可以不带参数。如果 then 中的回调函数依赖上一步的返回结果，那么要带上参数。比如</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(fn)</span><br><span class="line">.then(fn1(value）&#123;</span><br><span class="line">    <span class="comment">//处理value</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>复制代码</p>
-<p>最后注册 catch 异常处理函数，处理前面回调中可能抛出的异常。</p>
-<p>通常按照这三个步骤，你就能够应对绝大部分的异步处理场景。用熟之后，再去研究 Promise 各个函数更深层次的原理以及使用方式即可。<br>看到这里之后，我们便能回答上面的问题 4 和问题 5了。</p>
-<h3 id="Promsie-与事件循环"><a href="#Promsie-与事件循环" class="headerlink" title="Promsie 与事件循环"></a>Promsie 与事件循环</h3><p>Promise在初始化时，传入的函数是同步执行的，然后注册 then 回调。注册完之后，继续往下执行同步代码，在这之前，then 中回调不会执行。同步代码块执行完毕后，才会在事件循环中检测是否有可用的 promise 回调，如果有，那么执行，如果没有，继续下一个事件循环。<br>关于 Promise 在事件循环中还有一个 微任务的概念（microtask），感兴趣的话可以看我这篇关于nodejs 时间循环的文章 剖析nodejs的事件循环，虽然和浏览器端有些不同，但是Promise 微任务的执行时机相差不大。</p>
+      <h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><p>Cookie 是小甜饼的意思。顾名思义，cookie 确实非常小，它的大小限制为4KB左右，是网景公司的前雇员 Lou Montulli 在1993年3月的发明。它的主要用途有保存登录信息，比如你登录某个网站市场可以看到“记住密码”，这通常就是通过在 Cookie 中存入一段辨别用户身份的数据来实现的。<br>####localStorage<br>localStorage 是 HTML5 标准中新加入的技术，它并不是什么划时代的新东西。早在 IE 6 时代，就有一个叫 userData 的东西用于本地存储，而当时考虑到浏览器兼容性，更通用的方案是使用 Flash。而如今，localStorage 被大多数浏览器所支持，如果你的网站需要支持 IE6+，那以 userData 作为你的 polyfill 的方案是种不错的选择。</p>
+<h4 id="sessionStorage"><a href="#sessionStorage" class="headerlink" title="sessionStorage"></a>sessionStorage</h4><p>sessionStorage 与 localStorage 的接口类似，但保存数据的生命周期与 localStorage 不同。做过后端开发的同学应该知道 Session 这个词的意思，直译过来是“会话”。而 sessionStorage 是一个前端的概念，它只是可以将一部分数据在当前会话中保存下来，刷新页面数据依旧存在。但当页面关闭后，sessionStorage 中的数据就会被清空。</p>
+<h3 id="三者的异同"><a href="#三者的异同" class="headerlink" title="三者的异同"></a>三者的异同</h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Cookie</th>
+<th>localStorage</th>
+<th>sessionStorage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据的生命期</td>
+<td>可设置失效时间，默认是关闭浏览器后失效</td>
+<td>除非被清除，否则永久保存</td>
+<td>仅在当前会话下有效，关闭页面或浏览器后被清除</td>
+</tr>
+<tr>
+<td>存放数据大小</td>
+<td>4K左右</td>
+<td>一般为5MB</td>
+<td>一般为5MB</td>
+</tr>
+<tr>
+<td>与服务器端通信</td>
+<td>每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题</td>
+<td>仅在客户端（即浏览器）中保存，不参与和服务器的通信</td>
+<td>仅在客户端（即浏览器）中保存，不参与和服务器的通信</td>
+</tr>
+<tr>
+<td>易用性</td>
+<td>需要程序员自己封装，源生的Cookie接口不友好</td>
+<td>源生接口可以接受，亦可再次封装来对Object和Array有更好的支持</td>
+<td>源生接口可以接受，亦可再次封装来对Object和Array有更好的支持</td>
+</tr>
+</tbody></table>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>有了对上面这些差别的直观理解，我们就可以讨论三者的应用场景了。</p>
+<p>因为考虑到每个 HTTP 请求都会带着 Cookie 的信息，所以 Cookie 当然是能精简就精简啦，比较常用的一个应用场景就是判断用户是否登录。<strong>针对登录过的用户</strong>，服务器端会在他登录时往 Cookie 中插入一段加密过的唯一辨识单一用户的辨识码，下次只要读取这个值就可以判断当前用户是否登录啦。曾经还使用 Cookie 来保存用户在电商网站的购物车信息，如今有了 localStorage，似乎在这个方面也可以给 Cookie 放个假了~</p>
+<p>而另一方面 localStorage 接替了 Cookie 管理购物车的工作，同时也能胜任其他一些工作。比如HTML5游戏通常会产生一些本地数据，localStorage 也是非常适用的。如果遇到一些内容特别多的表单，为了优化用户体验，我们可能要把表单页面拆分成多个子页面，然后按步骤引导用户填写。这时候 sessionStorage 的作用就发挥出来了。</p>
 
       
       <!-- reward -->
@@ -419,6 +419,96 @@
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%A7%86%E9%A2%91/" rel="tag">视频</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-picture" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/01/01/picture/"
+    >图片优化</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/01/01/picture/" class="article-date">
+  <time datetime="2020-01-01T00:00:00.000Z" itemprop="datePublished">2020-01-01</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BC%98%E5%8C%96/">优化</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h3 id="图片预加载"><a href="#图片预加载" class="headerlink" title="图片预加载"></a>图片预加载</h3><ol>
+<li>img标签 如上面所列举的那些情况，就可以利用，比如用img标签与dom的background-image 来达到预加载的效果。在展示前就可以保证图片资源已经加载完成。</li>
+<li>js Image对象</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> preloadImg = <span class="function">(<span class="params">url</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">        <span class="keyword">if</span>(img.complete) &#123;</span><br><span class="line">            <span class="comment">//图片已经加载过了，可以使用图片</span></span><br><span class="line">            <span class="comment">//do something here</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="comment">//图片首次加载完成，可以使用图片</span></span><br><span class="line">                <span class="comment">//do something here</span></span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        img.src = url;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>注意，最好是先定义onload，再赋值src，不然会出现资源返回，但是onload还没有挂载的情况。<br>在实际的项目我遇到过的，就是需要在某些图片加载完成再做下一步，那么这个时候，我们就需要知道某些图片序列确定是预加载完成，同样还是使用preloadImg，结合一下promise，有多个图片资源，可以用promise.all。就可以保证所有的图片加载完成再进行下一步</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promiseAll = imgData.map(<span class="function"><span class="keyword">function</span> (<span class="params">item, index</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">      img.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        img.onload = <span class="literal">null</span>;</span><br><span class="line">        resolve(img);</span><br><span class="line">      &#125;;</span><br><span class="line">      img.error = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        reject(<span class="string">'图片加载失败'</span>);</span><br><span class="line">      &#125;;</span><br><span class="line">      img.src = item;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="built_in">Promise</span>.all(promiseAll).then(</span><br><span class="line">    <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="comment">// 图片全部加载完成，进行下一步</span></span><br><span class="line">      <span class="comment">// todo</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(err);</span><br><span class="line">    &#125;</span><br><span class="line">  );</span><br></pre></td></tr></table></figure>
+
+<h3 id="图片懒加载"><a href="#图片懒加载" class="headerlink" title="图片懒加载"></a>图片懒加载</h3><p>所谓图片懒加载，就是延迟加载图片资源，是对网页性能的一种优化方式，比如当我们打开一个网页的时候，优先展示的图片，比如首屏图片，就先加载，而其他的图片，当需要展示的时候，再去请求图片资源，避免了首次打开时，一次性加载过多图片资源。</p>
+<h4 id="最简单的图片懒加载"><a href="#最简单的图片懒加载" class="headerlink" title="最简单的图片懒加载"></a>最简单的图片懒加载</h4><p>同样地，我们再回顾一下文章开始讲的，如果是img标签，浏览器解析到img的src有值，就会去发起请求，那么我们就可以借助这个操作，在懒加载的图片，先不赋值，等到需要展示的时候，再赋值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;img class&#x3D;&quot;show-img&quot; data-src&#x3D;&quot;&#x2F;&#x2F;static&#x2F;show.jpg&quot; &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">const src &#x3D; $(&#39;.show-img&#39;).attr(&#39;data-src&#39;);</span><br><span class="line">$(&#39;.show-img&#39;).attr(src, src);</span><br></pre></td></tr></table></figure>
+
+<h4 id="在距离可视区域一定距离的时候加载图片"><a href="#在距离可视区域一定距离的时候加载图片" class="headerlink" title="在距离可视区域一定距离的时候加载图片"></a>在距离可视区域一定距离的时候加载图片</h4><p>一般实际中，我们不会在需要展示的时候，才发起图片请求，不然就不会有图片预加载的需求了，那么如何判断图片在何时需要展示呢？在下拉流之类的网页中，我们一般是在图片距离可视区域的一定距离，比如50px，就开始请求图片资源</p>
+<p><strong>如何判断图片是否在可视区域中？</strong></p>
+<p>原生js判断元素是否在可视区域内，这里的可视区域的距离都是以垂直距离为准</p>
+<ul>
+<li>方法一：<br>A: document.documentElement.clientHeight 可视窗口的高度<br>B: element.offsetTop dom相对于文档顶部的距离<br>C: document.documentElement.scrollTop 滚动条滚动的距离<br>B - C &lt; A 即说明元素在可视区域内</li>
+<li>方法二：getBoundingClientRect<br>const domObj = element.getBoundingClientRect();<br>domObj.top：元素上边到视窗上边的距离;<br> domObj.right：元素右边到视窗左边的距离;<br> domObj.bottom：元素下边到视窗上边的距离;<br> domObj.left：元素左边到视窗左边的距离;<br>const clientHeight = window.innerHeight;<br>当 domObj.top &lt; clientHeight 表示dom在可视区域内了</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> preImages = $(<span class="string">'img[data-src]'</span>).not(<span class="string">'.pred-img'</span>);</span><br><span class="line"><span class="built_in">Array</span>.from(preImages).forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (isPreLoad(item)) &#123;</span><br><span class="line">        loadImg(item);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> loadImg = <span class="function">(<span class="params">img</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!img.src) &#123;</span><br><span class="line">        img.src = img.attr(<span class="string">'data-src'</span>).addClass(<span class="string">'pred-img'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> isPreLoad = () &#123;</span><br><span class="line">    <span class="keyword">const</span> preObj = getBoundingClientRect();</span><br><span class="line">    <span class="keyword">const</span> cH = $(<span class="built_in">window</span>).height();</span><br><span class="line">    <span class="keyword">return</span> preObj &lt;= cH + <span class="number">100</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%96%87%E7%AB%A0/" rel="tag">文章</a></li></ul>
 
 
     </footer>
@@ -1501,145 +1591,6 @@ a.func2()     // this.func1 is not a function</code></pre><p>这个简单一点�
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;cents/<span class="number">100</span>&#125;&#125;</span><br><span class="line">&#123;&#123;<span class="literal">true</span>?<span class="number">1</span>:<span class="number">0</span>&#125;&#125;</span><br><span class="line">&#123;&#123;example | toUpperCase&#125;&#125; <span class="comment">//这里的toupperCase就是一个过滤器，其本质是一个js函数，返回字符串的全大写形式，vue同样允许过滤器串连</span></span><br><span class="line"></span><br><span class="line">&#123;&#123;example | filterA |filterB&#125;&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h4><p>指令是带有v-前缀的特殊性，其值限定为绑定表达式，也就是javascript表达式和过滤器，指令的作用是当表达式的值发生变化时，将这个变化也反映到DOM上</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B9%A6%E7%B1%8D/" rel="tag">书籍</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-vue/vue_02" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2019/11/01/vue/vue_02/"
-    >vue权威指导笔记-指令</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2019/11/01/vue/vue_02/" class="article-date">
-  <time datetime="2019-11-01T00:00:00.000Z" itemprop="datePublished">2019-11-01</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/vue-js/">vue.js</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h3 id="内部指令"><a href="#内部指令" class="headerlink" title="内部指令"></a>内部指令</h3><p>v-show v-html v-else v-on v-model v-bind v-repeat(1.0-) v-ref v-for() v-pre v-text v-cloak v-el v-if</p>
-<h4 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a>v-if</h4><p>v-if指令可以完全根据表达式的值在DOM中生成或移除一个元素，如果v-if表达式赋值为false，那么对应的元素就会从DOM中移除，否则，对应元素的克隆将会被重新插入DOM中</p>
-<h4 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a>v-show</h4><p>v-show指令是根据表达式的值来显示或者隐藏HTML元素，当v-show赋值为false时，元素将会被隐藏<br>注意：v-show不支持<code>&lt;template&gt;</code>语法</p>
-<h4 id="v-else"><a href="#v-else" class="headerlink" title="v-else"></a>v-else</h4><p>它必须跟着v-if或v-show，充当else功能</p>
-<h4 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h4><p>用于在input、select、text、checkbox、radio等表单控件元素上创建双向数据绑定，根据控件类型v-model自动选取正确的方法更新元素。v-model指令后面还可以添加多个参数（number、lazy、debounce）<br>1.number：将用户的输入自动转换为number类型<br>2.lazy：在默认情况下，v-model在input事件中同步输入框的值和数据，我们可以添加一个lazy特性，从而将数据改到change事件中发生</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"msg"</span> <span class="attr">lazy</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>3.debounce：设置一个最小延时，在每次敲击之后延时同步输入框的值和数据，如果每次更新都要进行高消耗操作（例如，在input中输入内容时要随时发送Ajax请求），那么它较为有效</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"msg"</span> <span class="attr">debounce</span>=<span class="string">"5000"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="v-for"><a href="#v-for" class="headerlink" title="v-for"></a>v-for</h4><p>v-for指令基于源数据重复渲染元素，我们也可以使用$index来呈现相应对应的数据索引：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">id</span>=<span class="string">"example"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"demo"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"item initems"</span> <span class="attr">class</span>=<span class="string">"item-&#123;&#123;$index&#125;&#125;"</span>&gt;</span></span><br><span class="line">&#123;&#123;$index&#125;&#125;-&#123;&#123;parentMessage&#125;&#125; &#123;&#123;item.msg&#125;&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>v-for需要特殊的别名，形式为item in items，在vue.js1.0.17及之后的版本支持of分隔符，更接近JavaScript遍历器语法<br>使用v-for，将会得到一个特殊的作用域，类似与Angular的隔离作用域，我们需要明确指定props属性传递数据，否则在组件内将获取不到数据。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">my-item</span> <span class="attr">v-for</span>=<span class="string">"item in items"</span> <span class="attr">:item</span>=<span class="string">"item"</span> <span class="attr">:index</span>=<span class="string">"$index"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;item.text&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">my-item</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>*当数组数据发生变动时如何检测？ vue包装了被观察数组变异方法，它们能触发视图更新，被包装的方法有：<br>push（）<br>pop（）<br>shift（）<br>unshift（）<br>splice（）<br>sort（）<br>reverse（）</p>
-<h4 id="v-bind"><a href="#v-bind" class="headerlink" title="v-bind"></a>v-bind</h4><p>v-bind指令用于响应更新HTML特性，将一个或者多个attribute，或者一个组件prop动态绑定到表达式，可以简写为：<br>在没有参数时，可以绑定到一个对象，注意，此时class和style绑定不支持数组和对象（对象key会转换为小写）</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind</span>=<span class="string">"&#123;id:someProp,'OTHERAttr':otherProp&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">data:&#123;</span><br><span class="line">  someProp:'idName',</span><br><span class="line">  otherProp:'prop'</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在绑定prop时，prop必须在子组件中声明，可以用修饰符指定不同的绑定类型，修饰符为：<br>*.sync:双向绑定，只能用于prop绑定<br>*.once：单次绑定，只能用于prop绑定<br>*.camel:将绑定的特性名字转换回驼峰命名，只能用于普通的HTML特性绑定，通常用于绑定用驼峰命名的SVG特性</p>
-<h4 id="v-on"><a href="#v-on" class="headerlink" title="v-on"></a>v-on</h4><p>v-on指令用于绑定事件监听器，事件类型由参数指定，表达死可以是一个方法的名字或一个内联语句，也可以省略。<br>在普通元素上时，只能监听DOM事件，使用在自定义元素组件上时，也可以监听组件触发的自定义事件。<br>在监听原生DOM事件时，如果只定义一个参数，DOM event为事件的唯一参数，如果在内联语句处理器中访问原生DOM事件，则可以用特殊变量$event把它传入方法<br>vue1.0.11之后的版本，内联语句可以访问一个$arguments属性，它是一个数组，包含了传入子组件的$emit回调的参数</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"dothis"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"dothat('hello',$emit)"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>v-on后面不仅可以跟参数，还可以增加修饰符：</p>
-<ul>
-<li>.stop:调用event.stopPropagation()</li>
-<li>.prevent:调用event.preventDefault()</li>
-<li>capture:添加事件侦听器时使用capture模式</li>
-<li>.self:只当事件是从侦听器绑定的元素本身触发时才触发回调<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click.stop</span>=<span class="string">"dothis"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span>  //  停止冒泡</span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click.prevent</span>=<span class="string">"dothis"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span>   //阻止默认表达式</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="v-ref"><a href="#v-ref" class="headerlink" title="v-ref"></a>v-ref</h4><p>在父组件上注册一个子组件的索引，便于直接访问，不需要表达式，必须提供参数id，可以通过父组件的$refs对象访问子组件。<br>当ref和for一起使用时，注册的值将是一个数组，包含所以的子组件，对应于绑定数组，如果v-for使用在一个对象上，注册的值将是一个对象，包含所有的子组件，对应于绑定对象</p>
-<h4 id="v-el"><a href="#v-el" class="headerlink" title="v-el"></a>v-el</h4><p>为DOM元素注册一个索引，方便通过所属实例的$els访问这个元素，可以用v-el：some-el设置this.$els.someEl</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">v-el:msg</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">v-el:other-msg</span>&gt;</span>world<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>通过this.$els获取对应的DOM元素：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">this.$els.msg.textContent //hello</span><br><span class="line">this.$els.othermsg.textContent //world</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="v-pre"><a href="#v-pre" class="headerlink" title="v-pre"></a>v-pre</h4><p>编译时跳过当前元素和它的子元素，用来显示原始Mustache标签，跳过大量没有指令的节点会加快编译</p>
-<h4 id="v-cloak"><a href="#v-cloak" class="headerlink" title="v-cloak"></a>v-cloak</h4><p>v-cloak这个指令保持在元素上直到关联实例结束编译</p>
-<h3 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h3><h4 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h4><p>vue用vue.directive(id,definition)方法注册一个全局自定义指令，它接收两个参数：指令ID与定义对象，也可以用组件dedirectives选项注册一个局部定义指令。<br>  *钩子函数<br>  vue提供了几个钩子函数<br>   *bind：只调用一次，在指令第一次绑定到元素上时调用<br>   *update：在bind之后立即以初始值为参数第一次调用，之后每当绑定值变化时调用，参数为新值和旧值<br>   *unbind：只调用一次，在指令从元素上解绑时调用</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">vue.directive(<span class="string">'my-directive'</span>,&#123;</span><br><span class="line">  bind:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">//准备工作</span></span><br><span class="line">  <span class="comment">//例如，添加事件处理器或只需运行一次的高耗任务</span></span><br><span class="line">  &#125;,</span><br><span class="line">  update:<span class="function"><span class="keyword">function</span>(<span class="params">newValue,oldValue</span>)</span>&#123;</span><br><span class="line">  <span class="comment">//值更新时的工作</span></span><br><span class="line">  <span class="comment">//也会以初始值为参数调用一次</span></span><br><span class="line">  &#125;,</span><br><span class="line">  unbind:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">//清理工作</span></span><br><span class="line">  <span class="comment">//例如，删除bind（）添加的事件监听器</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>在注册之后，便可以在vue中这样用（前面要加入v-）</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-my-directive</span>=<span class="string">"someValue"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-<h4 id="指令实例属性"><a href="#指令实例属性" class="headerlink" title="指令实例属性"></a>指令实例属性</h4><p>所有的钩子函数都将被复制到实际的指令对象中，在钩子内this指向这个指令对象，这个对象暴露一个有用的属性：</p>
-<ul>
-<li>el：指令绑定元素</li>
-<li>vm：拥有该指令的上下文viewModel</li>
-<li>expression：指令的表达式，不包括参数和过滤器</li>
-<li>arg：指令的参数</li>
-<li>name：指令的名字，不包含前缀</li>
-<li>modifiers：一个对象，包含指令的修饰符</li>
-<li>descriptor：一个对象，包含指令的解析结果</li>
-</ul>
-<h4 id="对象字面量"><a href="#对象字面量" class="headerlink" title="对象字面量"></a>对象字面量</h4><p>如果指令需要多个值，则可以传入一个JavaScript对象字面量，记住，指令可以使用任意合法的JavaScript表达式：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"demo"</span> <span class="attr">v-demo</span>=<span class="string">"&#123;color:'white',text:'hello'&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">vuedirective(<span class="string">'demo'</span>,<span class="function"><span class="keyword">function</span><span class="params">(value)</span></span>&#123;</span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log(value.color)</span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log(value.text)</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="actionscript"><span class="keyword">var</span> demo = =<span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">el:<span class="string">'#demo'</span></span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-<h4 id="字面修饰符"><a href="#字面修饰符" class="headerlink" title="字面修饰符"></a>字面修饰符</h4><p>当指令使用了字面修饰符时，它的值将按普通字符串处理并传递给update方法，update方法将只调用一次，因为普通字符串不能响应数据变化：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"demo"</span> <span class="attr">v-demo.literal</span>=<span class="string">"foo bar baz"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">vue.directive(<span class="string">'demo'</span>,<span class="function"><span class="keyword">function</span><span class="params">(value)</span></span>&#123;</span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.info(value)</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="actionscript"><span class="keyword">var</span> demo = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">el:<span class="string">'#demo'</span></span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="高级选项"><a href="#高级选项" class="headerlink" title="高级选项"></a>高级选项</h3><p>angularjs提供了几种方法能够将指令内部的隔离作用域同指令外部的作用域进行数据绑定，vue也允许注册自定义指令，自定义指令提供一种机制将数据的变化映射为DOM行为</p>
-<ol>
-<li><p>params<br>自定义指令可以接受一个params数组，指定一个特性列表，vue编译器将自动提取绑定元素的这些特性：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">id</span>=<span class="string">"demo"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">my-directive</span> <span class="attr">class</span>=<span class="string">"hello"</span> <span class="attr">name</span>=<span class="string">"hi"</span> <span class="attr">a</span>=<span class="string">"params"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-directive</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">vue.elementDirective(<span class="string">'my-directive'</span>,&#123;</span></span><br><span class="line"><span class="actionscript">params:[<span class="string">'a'</span>],</span></span><br><span class="line"><span class="actionscript">bind:<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log(<span class="keyword">this</span>.params.a)</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>deep<br>如果自定义指令使用在一个对象上，当对象内部属性变化时触发update，则在指令定义对象中指定deep:true</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">id</span>=<span class="string">"demo"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-my-directive</span>=<span class="string">"a"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
 
       
       <!-- reward -->
