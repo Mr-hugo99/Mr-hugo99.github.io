@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    vue权威指导笔记-计算属性 |  Hugo
+    TCP三次握手 |  Hugo
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -42,7 +42,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-vue/vue_03" class="article article-type-post" itemscope
+  <article id="post-HTTP/http" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -50,7 +50,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  vue权威指导笔记-计算属性
+  TCP三次握手
 </h1>
  
 
@@ -59,12 +59,12 @@
 
     
     <div class="article-meta">
-      <a href="/2019/11/01/vue/vue_03/" class="article-date">
-  <time datetime="2019-11-01T00:00:00.000Z" itemprop="datePublished">2019-11-01</time>
+      <a href="/2019/11/19/HTTP/http/" class="article-date">
+  <time datetime="2019-11-18T16:00:00.000Z" itemprop="datePublished">2019-11-19</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/vue-js/">vue.js</a>
+    <a class="article-category-link" href="/categories/HTTP/">HTTP</a>
   </div>
 
       
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">396</span>
+            <span class="post-count">789</span>
         </span>
     </span>
 
@@ -83,7 +83,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">2 min</span>
         </span>
     </span>
 </div>
@@ -108,15 +108,23 @@
       
 
       
-      <h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><p>计算属性就是当其依赖属性的值发生变化时，这个属性的值会自动更新，与之相关的DOM部分也会同步自动更新</p>
-<h3 id="计算属性缓存"><a href="#计算属性缓存" class="headerlink" title="计算属性缓存"></a>计算属性缓存</h3><p>在vue0.12.8版本之前，只要读取相应的计算属性，对应的getter就会重新执行，而在vue0.12.8版本中在这方便进行了优化，即只有计算属性依赖的属性值发生了改变时才会重新执行getter：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">data:&#123;</span><br><span class="line">  welcome:<span class="string">'welcome'</span></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">computed:&#123;</span><br><span class="line">  example:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Date</span>.now()+<span class="keyword">this</span>.welcome</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
-<p>每次访问example时都会读取最新的时间而不是缓存的时间，而vue0.12.11版本开始，默认提供了缓存开关，在计算属性中指定cache字段来控制是否开启缓存：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data:&#123;</span><br><span class="line">  welcome:<span class="string">'welcome'</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">compute:&#123;</span><br><span class="line">  example:&#123;</span><br><span class="line">    coche:<span class="literal">false</span></span><br><span class="line">    <span class="keyword">get</span>:function()&#123;</span><br><span class="line">      <span class="keyword">return</span> Data.now() +<span class="keyword">this</span>.welcome</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
-<p>设置cache属性为false关闭缓存之后每次直接访问example时都会重新执行getter方法</p>
-<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><ol>
-<li>计算属性getter不执行的场景<br>当包含计算属性的节点被移除并且模版中的其他地方没有再引用该属性时，那么对应的计算属性的getter方法不会执行<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">'toggleshow'</span>&gt;</span>toggle<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"show"</span>&gt;</span>&#123;&#123;to&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">new vue(&#123;</span><br><span class="line">el:'#example',</span><br><span class="line">data:&#123;</span><br><span class="line">  show:true,</span><br><span class="line">  base:100</span><br><span class="line">&#125;,</span><br><span class="line">computed:&#123;</span><br><span class="line">  to:function()&#123;</span><br><span class="line">    return this.base+1</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">methods:&#123;</span><br><span class="line">  to:function()&#123;</span><br><span class="line">    this.show=!this.show</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-</ol>
+      <h3 id="经典的五层模型"><a href="#经典的五层模型" class="headerlink" title="经典的五层模型"></a>经典的五层模型</h3><p>应用层-传输层-网络层-数据链路层-物理层</p>
+<h3 id="Http协议的发展史"><a href="#Http协议的发展史" class="headerlink" title="Http协议的发展史"></a>Http协议的发展史</h3><p>http0.9:只有一个命令GET，没有header等描述数据的信息，服务端发送完毕就关闭tcp协议<br>http1.0:<br>*增加了请求命令（GET、POST、HEAD）<br>*status code<br>*多字符集支持<br>*权限<br>*缓存<br>*内容编码<br>*多部分发送</p>
+<p>http1.1:<br>*增加请求命令（option、put、patch、delete、trace、connect）<br>*持久链接<br>*增加host<br>（允许复用TCP链接）</p>
+<p>http2.0:<br>*二进制传输<br>*信道复用<br>*分帧传输<br>*server push</p>
+<h3 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h3><p>第一次握手：客户端发送SYN报文<br>第二次握手：服务端回传SYN+ACK报文<br>第三次握手：客户端回传ACK报文</p>
+<p>三次握手：确保信息传输的可靠性</p>
+<h3 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h3><p>第一次：客户端发送FIN seq<br>第二次：服务端回传ACK seq ack=u+1<br>第三次：服务端发送 FIN ACK seq ack<br>第四次：客户端回传ACK seq ack</p>
+<p>进行四次挥手的原因：因为数据传输结束后发出链接释放的通知，待对方确认后进入半关闭状态，当另一方也没有数据再发送的时候，则发出链接释放通知，对方确认后就完全关闭了tcp链接</p>
+<h3 id="http报文"><a href="#http报文" class="headerlink" title="http报文"></a>http报文</h3><p>*亲求报文<br>*响应报文</p>
+<h3 id="http请求方法："><a href="#http请求方法：" class="headerlink" title="http请求方法："></a>http请求方法：</h3><p>*GET：请求获取Request-url所标识的资源<br>*post：在request-url标识的资源后附加新的数据<br>*HEAD：请求获取由Request-url所标识的资源的响应消息报头<br>*PUT：请求服务器存储一个资源，并用Request-url作为标识<br>*DELETE：请求服务器删除Request-url所标识的资源<br>*TRACK：请求服务器回送收到的请求信息，用于测试或诊断<br>*CONNECT：http/1.1协议中预留给能够链接改为管道方式的代理服务器<br>*OPTION：请求查询服务器的性能，或者查询与资源相关的选项和需求</p>
+<h3 id="http状态码："><a href="#http状态码：" class="headerlink" title="http状态码："></a>http状态码：</h3><p>1xx：表示请求已接收，继续处理<br>2xx：成功-表示请求已成功接收<br>3xx：重定向-要完成请求必须进行下一次的操纵<br>4xx：客户端错误-请求有语法错误或请求无法实现<br>5xx：服务器错误-服务端无法实现合理的请求</p>
+<p>注意：<br>301 永久跳转（走缓存）<br>302:临时跳转</p>
+<h3 id="跨域（cors）"><a href="#跨域（cors）" class="headerlink" title="跨域（cors）"></a>跨域（cors）</h3><p>浏览器的同源策略限制了跨域请求资源<br>scrip可以允许跨域</p>
+<p>跨域的限制：<br>*默认跨域允许的方法只有GET、POST、head，其他方法不允许</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'Access-Control-Allow-Methods'</span>:<span class="string">'POST,PUT,DELETE'</span><span class="comment">//设置通过请求的方法</span></span><br></pre></td></tr></table></figure>
+<p>*默认允许Content-type以下3个，其他预请求验证，通过才能发送<br>text/heml<br>multipart/form-data<br>application/x-www-form-urlencoded<br>请求头限制自定义的请求头是不允许的，预请求验证通过才能发送</p>
+<h3 id="cache-control"><a href="#cache-control" class="headerlink" title="cache-control"></a>cache-control</h3><p>可缓存性：<br>*pubilc 任何都可以<br>*private 只有它发起浏览器可以缓存<br>*no-cache：去服务端验证才能缓存<br>*no-store：彻底不能<br>*no-transform：代理服务器不能改动返回内容</p>
 
       
       <!-- reward -->
@@ -171,15 +179,13 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2019/11/01/vue/vue_03/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2019/11/19/HTTP/http/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B9%A6%E7%B1%8D/" rel="tag">书籍</a></li></ul>
-
 
     </footer>
 
@@ -189,19 +195,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2019/11/01/vue/vue_06/" class="article-nav-link">
+      <a href="/2019/11/19/typescript/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            vue权威指导笔记-class与style绑定
+            typescript基础入门
           
         </div>
       </a>
     
     
-      <a href="/2019/11/01/vue/vue_07/" class="article-nav-link">
+      <a href="/2019/11/01/css/css_01/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">vue权威指导笔记-method</div>
+        <div class="article-nav-title">css-3D</div>
       </a>
     
   </nav>
